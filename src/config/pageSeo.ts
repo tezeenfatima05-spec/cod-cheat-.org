@@ -13,7 +13,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title:
       'Cod Cheats For Pc Aimbot Player Esp Wallhack – Cod Cheats',
     description:
-      'cod cheats for pc aimbot player esp wallhack for MW4 on Windows—aim, ESP, wallhack, triggerbot, and Lite, Pro, or Elite tiers.',
+      'cod cheats for pc aimbot player esp wallhack for MW4 on Windows—Lite, Pro, Elite: aim, ESP, radar, DMZ on PC.',
   },
   '/products/cod-cheats/': {
     title: 'cod cheats for pc aimbot player esp wallhack — MW4 tiers | COD',
@@ -58,7 +58,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/about/': {
     title: 'About | COD Cheats — MW4 tiers, guides & editorial scope',
     description:
-      'What this site covers: MW4 cheat tier comparisons, PC setup guides, and blog resources—editorial summaries only; product specs and checkout live on linked.',
+      'MW4 cheat tiers, PC guides, and blog resources—editorial only; specs and checkout on linked product pages.',
   },
   '/support/': {
     title: 'Support | COD Cheats',
@@ -83,7 +83,7 @@ export const BLOG_PAGE_SEO: Record<string, PageSeoEntry> = {
   '/blog/anticheat-patch-day-checklist/': {
     title: 'Anti-cheat wave checklist — pause play & retest MW4 (PC)',
     description:
-      'Checklist: Pause matchmaking, read status, reload conservative profiles, and offline-test before going live again. Checkout starts at /go/mw4/.',
+      'Checklist: pause matchmaking, reload safe profiles, offline-test, then go live. Checkout at /go/mw4/.',
   },
   '/blog/how-to-buy-cod-mw4-cheats/': {
     title: 'How to buy COD MW4 cheats securely — portal & order email',
@@ -93,12 +93,12 @@ export const BLOG_PAGE_SEO: Record<string, PageSeoEntry> = {
   '/blog/mw4-2d-radar-zoom/': {
     title: 'MW4 2D radar zoom — when to widen the sweep (PC guide)',
     description:
-      'Ground War benefits from a wider radar sweep; tight MP maps need a shorter range to reduce noise. Tune zoom before queueing and verify overlays after.',
+      'Ground War: wider radar sweep; small maps: tighter zoom. Queue after tuning; verify overlays after patches.',
   },
   '/blog/mw4-elite-tier-guide/': {
     title: 'MW4 Elite tier guide — full aim, ESP, radar & DMZ stack',
     description:
-      'Elite Tier: Elite adds radar, DMZ loot layers, and misc gunplay assists on top of Pro. Compare modules on the products hub, then use /go/mw4/ for checkout.',
+      'Elite tier: radar, DMZ loot, misc on Pro. Compare on the products hub; checkout /go/mw4/.',
   },
   '/blog/mw4-lite-vs-pro/': {
     title: 'MW4 Lite vs Pro — ESP-first vs aim & trigger add-ons',

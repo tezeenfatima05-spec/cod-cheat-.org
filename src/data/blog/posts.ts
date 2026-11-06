@@ -145,7 +145,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'mw4-2d-radar-zoom',
     image: '/images/mw4/screenshot-6.webp',
     metaDesc:
-      'Ground War benefits from a wider radar sweep; tight MP maps need a shorter range to reduce noise. Tune zoom before queueing and verify overlays after.',
+      'Ground War: wider radar sweep; small maps: tighter zoom. Queue after tuning; verify overlays after patches.',
     desc: 'When to widen the radar for Ground War versus tight MP spawns.',
     date: 'Oct 31, 2026',
     readTime: '5 min read',
@@ -203,7 +203,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'mw4-elite-tier-guide',
     image: '/images/mw4/screenshot-1.webp',
     metaDesc:
-      'Elite Tier: Elite adds radar, DMZ loot layers, and misc gunplay assists on top of Pro. Compare modules on the products hub, then use /go/mw4/ for checkout.',
+      'Elite tier: radar, DMZ loot, misc on Pro. Compare on the products hub; checkout /go/mw4/.',
     desc: 'What unlocks when you need every overlay class on PC.',
     date: 'Oct 29, 2026',
     readTime: '7 min read',
@@ -257,7 +257,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'anticheat-patch-day-checklist',
     image: '/images/mw4/screenshot-4.webp',
     metaDesc:
-      'Checklist: Pause matchmaking, read status, reload conservative profiles, and offline-test before going live again. Checkout starts at /go/mw4/.',
+      'Checklist: pause matchmaking, reload safe profiles, offline-test, then go live. Checkout at /go/mw4/.',
     desc: 'Pause play, read status, reload conservative profiles, then retest offline.',
     date: 'Oct 26, 2026',
     readTime: '5 min read',
