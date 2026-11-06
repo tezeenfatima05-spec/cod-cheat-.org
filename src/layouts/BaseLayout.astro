@@ -67,6 +67,8 @@ const shareUrl = sharePageUrl ?? pageUrl;
 const shareText = sharePageTitle ?? title;
 const xShare = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
 const facebookShare = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+const telegramShare = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
+const redditShare = `https://www.reddit.com/submit?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(shareText)}`;
 const robotsContent = noindex
   ? 'noindex, nofollow'
   : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
@@ -181,6 +183,8 @@ const robotsContent = noindex
         <div class="sr-only" aria-label="Share this page">
           <a href={xShare}>Post {pathname} on X (Twitter)</a>
           <a href={facebookShare}>Share {pathname} on Facebook</a>
+          <a href={telegramShare}>Send {pathname} link via Telegram</a>
+          <a href={redditShare}>Submit {pathname} to Reddit</a>
         </div>
       )
     }

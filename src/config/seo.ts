@@ -43,20 +43,34 @@ function nodeEnv(key: string): string {
   }
 }
 
+/** Matches `scripts/site-origin.mjs` — apex DNS can still point at parking while the live site is on Workers. */
+const WORKERS_SITE_ORIGIN = 'https://cod-cheat--org.tazeenrooziroti.workers.dev';
+
+function preferWorkersSiteOrigin(origin: string): string {
+  if (!origin) return WORKERS_SITE_ORIGIN;
+  try {
+    const { hostname } = new URL(origin);
+    if (hostname === 'cod-cheat.org' || hostname === 'www.cod-cheat.org') return WORKERS_SITE_ORIGIN;
+  } catch {
+    /* ignore */
+  }
+  return origin;
+}
+
 /**
  * Canonical / hreflang origin: prefer Cloudflare / deploy URLs over a stale PUBLIC_SITE_ORIGIN,
  * then `site` from astro.config, so crawlers on *.workers.dev get self-canonicals that match the live host.
  */
 export function resolveDocumentOrigin(site: URL | string | undefined): string {
   const fromConfig = site ? String(site).replace(/\/$/, '') : '';
-  return (
+  return preferWorkersSiteOrigin(
     nodeEnv('CF_PAGES_URL') ||
-    nodeEnv('CF_PAGES_BRANCH_URL') ||
-    nodeEnv('CANONICAL_SITE_ORIGIN') ||
-    fromConfig ||
-    trimOrigin(import.meta.env.PUBLIC_SITE_ORIGIN) ||
-    trimOrigin(import.meta.env.SITEMAP_PUBLIC_ORIGIN) ||
-    SITE_ORIGIN
+      nodeEnv('CF_PAGES_BRANCH_URL') ||
+      nodeEnv('CANONICAL_SITE_ORIGIN') ||
+      fromConfig ||
+      trimOrigin(import.meta.env.PUBLIC_SITE_ORIGIN) ||
+      trimOrigin(import.meta.env.SITEMAP_PUBLIC_ORIGIN) ||
+      SITE_ORIGIN,
   );
 }
 

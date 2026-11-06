@@ -4,7 +4,10 @@ import { parseBlogDate } from '../utils/schema';
 
 const buildDate = new Date().toISOString();
 
-/** Same locales as `BaseLayout` `<link rel="alternate" hreflang>` — sitemap `xhtml:link` mirrors page-level signals. */
+/**
+ * Same locales as `BaseLayout` `<link rel="alternate" hreflang>` — sitemap `xhtml:link` mirrors page-level signals.
+ * Order matches `<head>` so audits see a consistent alternate set.
+ */
 const HREFLANG_ALTERNATES: { lang: string; hreflang: string }[] = [
   { lang: 'en', hreflang: 'en' },
   { lang: 'en-US', hreflang: 'en-US' },

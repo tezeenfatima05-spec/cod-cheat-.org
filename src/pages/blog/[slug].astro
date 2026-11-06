@@ -153,6 +153,7 @@ const companionGuideLabel =
             }
           </header>
 
+          <h2 class="sr-only">Main article text</h2>
           <Prose class="blog-article__prose prose-headings:scroll-mt-24 max-w-none text-left">
             {post.body.map((block: BlogBlock) => {
               if (block.type === 'h2') {
@@ -235,7 +236,7 @@ const companionGuideLabel =
   <SiteFaqSection
     items={getBlogFaqs(post.tag, post.slug)}
     titleId={`blog-faq-${faqTitleSlug}`}
-    titleLevel="h2"
+    titleLevel="h3"
     class="border-t border-border bg-muted/20"
   />
 </BaseLayout>

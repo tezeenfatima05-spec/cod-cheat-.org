@@ -27,19 +27,20 @@ function a(text: string): string {
   return text;
 }
 
+/** Unique visible anchor text per destination (same `href` must not reuse the same label). */
 function link(text: string, href: string): string {
   return `<a href="${normalizeInternalPath(href)}">${text}</a>`;
 }
 
-const elite = link('MW4 Elite', productPath('elite'));
-const lite = link('Lite tier (ESP focus)', ROUTES.products);
-const liteVisualsTier = link('Lite tier (visuals)', ROUTES.products);
-const pro = link('Pro tier (aim + trigger)', ROUTES.products);
-const productsHub = link('COD MW4 products', ROUTES.products);
-const ugc = link('UGC', productPath('ugc'));
-const skin = link('Skin changer', productPath('unlock-all'));
-const faqPage = link('full FAQ', ROUTES.faq);
-const blog = link('blog guides', ROUTES.blog);
+const elite = link('Elite tier — MW4 feature stack', productPath('elite'));
+const lite = link('Lite lane — ESP-first MW4 tier', ROUTES.products);
+const liteVisualsTier = link('Lite visuals lane — same catalog hub', ROUTES.products);
+const pro = link('Pro lane — aim plus trigger add-ons', ROUTES.products);
+const productsHub = link('MW4 tiers catalog — Lite, Pro, Elite', ROUTES.products);
+const ugc = link('UGC appeals workflow page', productPath('ugc'));
+const skin = link('Skin changer preview route', productPath('unlock-all'));
+const faqPage = link('Full FAQ — every topic', ROUTES.faq);
+const blog = link('Blog hub — setup and patch guides', ROUTES.blog);
 
 export const siteFaqs: SiteFaqItem[] = [
   {
