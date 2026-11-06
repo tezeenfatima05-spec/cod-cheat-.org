@@ -7,6 +7,8 @@ import ProductsSection from '../components/ProductsSection.astro';
 import ContentSections from '../components/ContentSections.astro';
 import { t } from '../i18n';
 import { resolvePageSeo, canonicalUrl } from '../config/seo';
+import { ROUTES } from '../utils/path';
+import { checkoutPath } from '../config/checkout';
 import { faqPageSchema, organizationSchema, websiteSchema } from '../utils/schema';
 import { getLandingFaqs } from '../data/faq';
 import { webpSrc } from '../utils/responsiveImage';
@@ -34,6 +36,13 @@ const shareUrl = canonicalUrl('/');
     media="(min-width: 1024px)"
     fetchpriority="high"
   />
+  <div class="sr-only" aria-label="Site shortcuts">
+    <a href={ROUTES.products}>MW4 cheat tiers and product hub</a>
+    <a href={ROUTES.blog}>MW4 guides and patch notes index</a>
+    <a href={ROUTES.forum}>Demo community threads index</a>
+    <a href={ROUTES.faq}>FAQ on checkout and module tiers</a>
+    <a href={checkoutPath('mw4')}>Short checkout path /go/mw4/</a>
+  </div>
   <HeroSection />
   <FeaturesSection />
   <ProductsSection />

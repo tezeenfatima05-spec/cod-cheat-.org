@@ -45,7 +45,9 @@ const {
   sharePageTitle,
 } = Astro.props;
 
-const canonical = canonicalUrl(Astro.url.pathname);
+const pathname = Astro.url.pathname;
+const canonical = canonicalUrl(pathname);
+const absolutePage = canonical;
 const ogImageUrl = absoluteAssetUrl(ogImage);
 const shareUrl = sharePageUrl ?? canonical;
 const shareText = sharePageTitle ?? title;
@@ -77,11 +79,13 @@ const robotsContent = noindex
     <meta name="robots" content={robotsContent} />
     <meta name="googlebot" content={robotsContent} />
     <meta name="theme-color" content="#7F3DEE" />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="en" href={canonical} />
-    <link rel="alternate" hreflang="en-US" href={canonical} />
-    <link rel="alternate" hreflang="en-GB" href={canonical} />
-    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="canonical" href={absolutePage} />
+    <link rel="alternate" hreflang="en" href={absolutePage} />
+    <link rel="alternate" hreflang="en-US" href={absolutePage} />
+    <link rel="alternate" hreflang="en-GB" href={absolutePage} />
+    <link rel="alternate" hreflang="en-CA" href={absolutePage} />
+    <link rel="alternate" hreflang="en-AU" href={absolutePage} />
+    <link rel="alternate" hreflang="x-default" href={absolutePage} />
     <link
       rel="alternate"
       type="application/rss+xml"

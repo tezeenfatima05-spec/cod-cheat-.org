@@ -14,13 +14,17 @@ if (!fs.existsSync(source)) {
 let raw = fs.readFileSync(source, 'utf8');
 const urlCount = (raw.match(/<url>/g) ?? []).length;
 
-const origin = getPublicSiteOrigin();
+const trim = (v) => (typeof v === 'string' ? v.trim().replace(/\/$/, '') : '');
+/** Force sitemap &lt;loc&gt; host (e.g. *.workers.dev preview) when the build runs outside Cloudflare. */
+const origin = trim(process.env.SITEMAP_PUBLIC_ORIGIN) || getPublicSiteOrigin();
 /** Rewrite <loc> bases if Astro emitted a different deploy host (e.g. first build used prod URL). */
 const hostsToRewrite = [
   'https://cod-cheat.org',
   'http://cod-cheat.org',
   'https://www.cod-cheat.org',
   'http://www.cod-cheat.org',
+  'https://cod-cheat--org.tazeenrooziroti.workers.dev',
+  'http://cod-cheat--org.tazeenrooziroti.workers.dev',
 ];
 for (const h of hostsToRewrite) {
   if (h !== origin) raw = raw.split(h).join(origin);

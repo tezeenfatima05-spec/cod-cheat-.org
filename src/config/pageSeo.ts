@@ -10,7 +10,7 @@ export interface PageSeoEntry {
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'Cod cheats — MW4 aimbot, ESP & wallhack for PC',
+    title: 'cod cheats — MW4 aimbot, player ESP & wallhack (PC)',
     description:
       'Cod cheats for MW4 on PC: aimbot, player ESP, triggerbot, 2D radar, DMZ loot, no recoil, and stream-proof options—built for Modern Warfare on Windows.',
   },
