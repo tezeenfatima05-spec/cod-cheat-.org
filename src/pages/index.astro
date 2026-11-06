@@ -29,7 +29,7 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
   sharePageTitle={seo.title}
   trimOgLocales
   heavyHeadTrim
-  omitHeadSocialSrLinks
+  minimalHeadSocialSrLinks
   omitBodySitemapLink
   linkAbsoluteBase={schemaOrigin}
   jsonLd={[
@@ -55,33 +55,36 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
     fetchpriority="high"
   />
   <div class="sr-only" aria-label="Site shortcuts">
-    <a href={`${schemaOrigin}/sitemap.xml`}>Machine-readable URL list (application/xml)</a>
+    <a href={`${schemaOrigin}/sitemap.xml`}>XML crawl manifest listing every public route</a>
     <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>
-      Side-by-side feature matrix for Lite, Pro, and Elite stacks
+      Three-column grid contrasting entry, mid, and full builds
     </a>
-    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Newest-first archive of patch notes and loader setup notes</a>
-    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Sample thread titles in a non-production discussion shell</a>
-    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>HWID swaps, portal keys, and refund eligibility Q&amp;A</a>
-    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Internal /go/mw4/ hop before off-site payment</a>
-    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Editorial boundaries for MW4 module coverage here</a>
-    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Cookie use and what happens if you email support</a>
-    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>License grant scope and chargeback handling summary</a>
-    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Where to escalate stuck loaders or missing invoices</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Chronological writeups on loaders, patches, and tuning</a>
+    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Mock forum shell showing example discussion titles only</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Answers on key resets, chargebacks, and hardware IDs</a>
+    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Brief same-origin redirect before hosted payment form</a>
+    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Scope note: multiplayer overlay documentation only</a>
+    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>How analytics tags behave and how support mail is stored</a>
+    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Contract text covering digital goods and dispute windows</a>
+    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Mailbox path for stuck injections or order receipts</a>
     <a href={canonicalUrl(`${ROUTES.blog}mw4-stream-proof-setup/`, schemaOrigin)}>
-      OBS capture filters that keep HUD overlays off recordings
+      Stream-recording hygiene: mask capture without leaking HUD
     </a>
     <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>
-      When ESP-only is enough versus adding aim smoothing
+      Visual-first build compared with aim-assist add-ons explained
     </a>
     <a href={canonicalUrl(blogPostPath('mw4-elite-tier-guide'), schemaOrigin)}>
-      Full spread: 2D radar width plus DMZ loot layer stacks
+      Wide radar sweep paired with extraction-mode loot highlights
     </a>
-    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>Every overlay class listed on one long-form listing</a>
-    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>Box styles, skeletons, and snapline caps for the entry build</a>
-    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>Aim circle tuning plus hold-to-arm trigger timing notes</a>
-    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>UGC utilities and cosmetic unlock tools grouped together</a>
+    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>Single destination for every module class on the top build</a>
+    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>Corner boxes, skeleton draw, snapline distance ceilings</a>
+    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>Crosshair gate delay plus arming key for burst sprays</a>
+    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>Cosmetic swaps and account-side extras in one index</a>
   </div>
-  <HeroSection productsSrHref={canonicalUrl(ROUTES.products, schemaOrigin)} />
+  <HeroSection
+    productsSrHref={canonicalUrl(ROUTES.products, schemaOrigin)}
+    heroTitleOverride="COD Cheats for PC — Aimbot, Player ESP & Wallhack — Call Of Duty"
+  />
   <FeaturesSection />
   <ProductsSection linkBase={schemaOrigin} />
   <WhySetupSection />

@@ -10,9 +10,9 @@ export interface PageSeoEntry {
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'Cod Cheats For Pc Aimbot Player Esp Wallhack –',
+    title: 'Call Of Duty – Cod Cheats For Pc Aimbot Player Esp Wallhack',
     description:
-      'cod cheats for pc aimbot player esp wallhack: COD MW4 cheats on PC—aimbot, player ESP, wallhack, enemy tracking, triggerbot, and tier plans.',
+      'Call Of Duty: cod cheats for pc aimbot player esp wallhack: COD MW4 cheats on PC—aimbot, player ESP, wallhack, enemy tracking, triggerbot, and tier plans.',
   },
   '/products/cod-cheats/': {
     title: 'COD MW4 Cheats for PC — Aimbot, ESP & Wallhack',
