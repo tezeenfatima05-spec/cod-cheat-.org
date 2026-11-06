@@ -7,7 +7,7 @@ import ProductsSection from '../components/ProductsSection.astro';
 import ContentSections from '../components/ContentSections.astro';
 import { t } from '../i18n';
 import { resolvePageSeo, canonicalUrl, resolveDocumentOrigin } from '../config/seo';
-import { ROUTES } from '../utils/path';
+import { ROUTES, blogPostPath, productPath } from '../utils/path';
 import { checkoutPath } from '../config/checkout';
 import { faqPageSchema, homeWebPageSchema, organizationSchema, websiteSchema } from '../utils/schema';
 import { getHomeLandingFaqs } from '../data/faq';
@@ -26,6 +26,7 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
   description={seo.description}
   sharePageUrl={shareUrl}
   sharePageTitle={seo.title}
+  minimalHeadSocialSrLinks
   omitBodySitemapLink
   linkAbsoluteBase={schemaOrigin}
   jsonLd={[
@@ -63,6 +64,12 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
     <a href={canonicalUrl(`${ROUTES.blog}mw4-stream-proof-setup/`, schemaOrigin)}>
       OBS capture modes — stream overlay walkthrough
     </a>
+    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Tier choice guide — Lite vs Pro comparison</a>
+    <a href={canonicalUrl(blogPostPath('mw4-elite-tier-guide'), schemaOrigin)}>Elite tier guide — full module stack</a>
+    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>Elite product page — radar and DMZ modules</a>
+    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>Lite tier page — ESP-first module list</a>
+    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>Pro tier page — aim and trigger modules</a>
+    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>Utilities hub — UGC and related tools</a>
   </div>
   <HeroSection productsSrHref={canonicalUrl(ROUTES.products, schemaOrigin)} />
   <FeaturesSection />
