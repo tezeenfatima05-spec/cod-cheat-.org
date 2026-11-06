@@ -334,7 +334,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'how-to-buy-cod-mw4-cheats',
     image: '/images/mw4/screenshot-2.webp',
     metaDesc:
-      'Buy Cod Mw4 Cheats Securely: Portal access, order email hygiene, and avoiding fake loader links. go/mw4/ redirect Related: MW4 capture-safe OBS checklist.',
+      'buy cod mw4 cheats securely: Portal access, order email hygiene, and avoiding fake loader links. Checkout: /go/mw4/. Related: MW4 capture-safe OBS checklist.',
     desc: 'Portal access, order email hygiene, and avoiding fake loader links.',
     date: 'Oct 21, 2026',
     readTime: '5 min read',
@@ -343,6 +343,30 @@ export const blogPosts: BlogPostFull[] = [
       {
         type: 'p',
         text: 'Use only the checkout button surfaced on this site. Never run unsigned files from random chats—your order email is the recovery key.',
+      },
+      {
+        type: 'h2',
+        text: 'Before you pay',
+      },
+      {
+        type: 'p',
+        text: 'Confirm status on the product hub, keep one browser profile for checkout, and save the receipt email before the portal link expires.',
+      },
+      {
+        type: 'h2',
+        text: 'After checkout',
+      },
+      {
+        type: 'p',
+        text: 'Sign in with the same inbox, download only from the operator portal, and pause if the banner warns about maintenance.',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Treat your order email like a password reset—loss locks you out',
+          'Ignore cold DMs that attach loaders or “updated” zips',
+          'If stream capture is noisy, verify overlays with the stream-proof guide before going live',
+        ],
       },
     ],
   },

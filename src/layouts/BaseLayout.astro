@@ -38,6 +38,8 @@ interface Props {
   minimalHeadSocialSrLinks?: boolean;
   /** Skip duplicate body sr-only sitemap link when `<head>` already exposes it (homepage trim). */
   omitBodySitemapLink?: boolean;
+  /** Homepage-only: drop redundant `og:locale:alternate` meta rows (smaller `<head>`). */
+  trimOgLocales?: boolean;
   /** Prefix same-origin nav/footer `<a href>` with deploy origin (canonical URL crawls). */
   linkAbsoluteBase?: string;
 }
@@ -58,6 +60,7 @@ const {
   omitHeadSocialSrLinks = false,
   minimalHeadSocialSrLinks = false,
   omitBodySitemapLink = false,
+  trimOgLocales = false,
   linkAbsoluteBase,
 } = Astro.props;
 
@@ -148,14 +151,20 @@ const robotsContent = noindex
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={t.site.name} />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="en_GB" />
-    <meta property="og:locale:alternate" content="en_CA" />
-    <meta property="og:locale:alternate" content="en_AU" />
-    <meta property="og:locale:alternate" content="en_NZ" />
-    <meta property="og:locale:alternate" content="en_IN" />
-    <meta property="og:locale:alternate" content="en_SG" />
-    <meta property="og:locale:alternate" content="en_IE" />
-    <meta property="og:locale:alternate" content="en_ZA" />
+    {
+      !trimOgLocales && (
+        <>
+          <meta property="og:locale:alternate" content="en_GB" />
+          <meta property="og:locale:alternate" content="en_CA" />
+          <meta property="og:locale:alternate" content="en_AU" />
+          <meta property="og:locale:alternate" content="en_NZ" />
+          <meta property="og:locale:alternate" content="en_IN" />
+          <meta property="og:locale:alternate" content="en_SG" />
+          <meta property="og:locale:alternate" content="en_IE" />
+          <meta property="og:locale:alternate" content="en_ZA" />
+        </>
+      )
+    }
 
     {
       ogType === 'article' && articlePublishedTime && (

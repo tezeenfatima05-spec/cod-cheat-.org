@@ -27,7 +27,8 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
   description={seo.description}
   sharePageUrl={shareUrl}
   sharePageTitle={seo.title}
-  minimalHeadSocialSrLinks
+  omitHeadSocialSrLinks
+  trimOgLocales
   omitBodySitemapLink
   linkAbsoluteBase={schemaOrigin}
   jsonLd={[
@@ -53,24 +54,24 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
     fetchpriority="high"
   />
   <div class="sr-only" aria-label="Site shortcuts">
-    <a href={`${schemaOrigin}/sitemap.xml`}>Machine-readable sitemap — URL list (XML)</a>
-    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Product lineup — compare MW4 PC cheat tiers</a>
-    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Editorial archive — MW4 setup and patch writeups</a>
-    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Sample community threads (demo forum)</a>
-    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Help center — tiers, loader, and checkout</a>
-    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Paid checkout shortcut — /go/mw4/ handoff</a>
-    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Editorial scope — how guides are written</a>
-    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Privacy statement — analytics and email</a>
-    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Terms of purchase — license and refunds</a>
+    <a href={`${schemaOrigin}/sitemap.xml`}>Full XML sitemap — every indexable path</a>
+    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Compare MW4 PC cheat tiers on the catalog hub</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Read setup guides and patch-day writeups</a>
+    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Open demo forum threads (layout sample)</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Loader, licensing, and checkout Q&amp;A</a>
+    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Hand off to the secure /go/mw4/ route</a>
+    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>See how this site publishes MW4 coverage</a>
+    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Cookies, analytics, and contact data</a>
+    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Purchase license terms and refund rules</a>
     <a href={canonicalUrl(`${ROUTES.blog}mw4-stream-proof-setup/`, schemaOrigin)}>
-      OBS capture modes — stream overlay walkthrough
+      Stream-proof OBS checklist for overlays
     </a>
-    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Tier choice guide — Lite vs Pro comparison</a>
-    <a href={canonicalUrl(blogPostPath('mw4-elite-tier-guide'), schemaOrigin)}>Elite tier guide — full module stack</a>
-    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>Elite product page — radar and DMZ modules</a>
-    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>Lite tier page — ESP-first module list</a>
-    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>Pro tier page — aim and trigger modules</a>
-    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>Utilities hub — UGC and related tools</a>
+    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Lite versus Pro tier tradeoffs (guide)</a>
+    <a href={canonicalUrl(blogPostPath('mw4-elite-tier-guide'), schemaOrigin)}>Elite stack: radar, DMZ, misc modules</a>
+    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>Shop Elite — full feature lineup page</a>
+    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>Lite SKU — ESP-first module details</a>
+    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>Pro SKU — aim plus trigger add-ons</a>
+    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>Utilities index — UGC and paired tools</a>
   </div>
   <HeroSection productsSrHref={canonicalUrl(ROUTES.products, schemaOrigin)} />
   <FeaturesSection />

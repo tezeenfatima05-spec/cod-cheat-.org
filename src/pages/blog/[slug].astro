@@ -89,6 +89,9 @@ const companionGuideLabel =
   post.slug === companionStreamSlug
     ? 'Related: player distance guide (clean 6v6 HUD)'
     : 'Related: MW4 capture-safe OBS checklist (stream overlays)';
+
+const articleSchemaName =
+  post.slug === 'how-to-buy-cod-mw4-cheats' ? docTitle : post.title;
 ---
 
 <BaseLayout
@@ -104,7 +107,7 @@ const companionGuideLabel =
   articleModifiedTime={published}
   jsonLd={[
     articleSchema({
-      name: post.title,
+      name: articleSchemaName,
       description: metaDescription,
       url: postPath,
       image: post.image,
@@ -115,13 +118,27 @@ const companionGuideLabel =
   ]}
 >
   <div class="sr-only" aria-label="Article cross-links">
-    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Site root — homepage</a>
-    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>All posts — chronological list</a>
-    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Tier catalog — Lite / Pro / Elite</a>
-    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Support FAQ — licensing and pay</a>
-    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Project notes — how we write</a>
-    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Paid checkout — /go/mw4/ redirect</a>
-    <a href={companionGuideHref}>{companionGuideLabel}</a>
+    {post.slug === 'how-to-buy-cod-mw4-cheats' ? (
+      <>
+        <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>MW4 cheat hub (site root)</a>
+        <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Blog index — newest guides first</a>
+        <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Catalog — Lite, Pro, Elite tier pages</a>
+        <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>FAQ — licenses, refunds, support email</a>
+        <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>About — editorial scope for MW4 posts</a>
+        <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Secure access — /go/mw4/ checkout handoff</a>
+        <a href={companionGuideHref}>Stream-proof OBS steps (related guide)</a>
+      </>
+    ) : (
+      <>
+        <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Site root — homepage</a>
+        <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>All posts — chronological list</a>
+        <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Tier catalog — Lite / Pro / Elite</a>
+        <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Support FAQ — licensing and pay</a>
+        <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Project notes — how we write</a>
+        <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Paid checkout — /go/mw4/ redirect</a>
+        <a href={companionGuideHref}>{companionGuideLabel}</a>
+      </>
+    )}
   </div>
   <article class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
