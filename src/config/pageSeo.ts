@@ -10,9 +10,9 @@ export interface PageSeoEntry {
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'cod cheats – MW4 PC cheat catalog (hero CTA destination)',
+    title: 'COD Cheats for PC — Aimbot, Player ESP & Wallhack | ZADEYO',
     description:
-      'cod cheats for pc aimbot player esp wallhack: Cod cheats for MW4 on PC: aimbot, player ESP, triggerbot, 2D radar, DMZ loot, no recoil, and stream-proof.',
+      'Explore ZADEYO COD cheats for PC featuring aimbot, player ESP, wallhack, enemy tracking, triggerbot, and customizable cheat settings. Explore available features and plans.',
   },
   '/products/cod-cheats/': {
     title: 'COD MW4 Cheats for PC — Aimbot, ESP & Wallhack',
