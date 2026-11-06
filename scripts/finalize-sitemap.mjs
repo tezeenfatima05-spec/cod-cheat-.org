@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { getDistRoot } from './dist-root.mjs';
-import { getPublicSiteOrigin } from './site-origin.mjs';
+import { getPublicSiteOrigin, preferWorkersSiteOrigin, WORKERS_SITE_ORIGIN } from './site-origin.mjs';
 
 const dist = getDistRoot();
 const source = path.join(dist, 'sitemap-0.xml');
@@ -16,13 +16,14 @@ const urlCount = (raw.match(/<url>/g) ?? []).length;
 
 const trim = (v) => (typeof v === 'string' ? v.trim().replace(/\/$/, '') : '');
 /** Prefer Cloudflare deploy host so `<loc>` matches live canonical (Workers) over a stale PUBLIC_SITE_ORIGIN. */
-const origin =
+const origin = preferWorkersSiteOrigin(
   trim(process.env.CF_PAGES_URL) ||
-  trim(process.env.CF_PAGES_BRANCH_URL) ||
-  trim(process.env.CANONICAL_SITE_ORIGIN) ||
-  trim(process.env.PUBLIC_SITE_ORIGIN) ||
-  trim(process.env.SITEMAP_PUBLIC_ORIGIN) ||
-  trim(getPublicSiteOrigin());
+    trim(process.env.CF_PAGES_BRANCH_URL) ||
+    trim(process.env.CANONICAL_SITE_ORIGIN) ||
+    trim(process.env.PUBLIC_SITE_ORIGIN) ||
+    trim(process.env.SITEMAP_PUBLIC_ORIGIN) ||
+    trim(getPublicSiteOrigin())
+);
 if (urlCount === 0) {
   console.error('finalize-sitemap: sitemap-0.xml contains no URLs.');
   process.exit(1);
@@ -50,7 +51,7 @@ const candidateHosts = [
   'http://cod-cheat.org',
   'https://www.cod-cheat.org',
   'http://www.cod-cheat.org',
-  'https://cod-cheat--org.tazeenrooziroti.workers.dev',
+  WORKERS_SITE_ORIGIN,
   'http://cod-cheat--org.tazeenrooziroti.workers.dev',
   trim(process.env.CF_PAGES_URL),
   trim(process.env.CF_PAGES_BRANCH_URL),

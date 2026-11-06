@@ -5,7 +5,7 @@ You verify the domain at your DNS provider—no HTML meta tags in the repo.
 ## Setup (once)
 
 1. Open [Google Search Console](https://search.google.com/search-console) and add the **domain** property for `cod-cheat.org` if it is not already there.
-2. Under **Sitemaps**, submit the **live deployment** URL (example): `https://cod-cheat--org.tazeenrooziroti.workers.dev/sitemap.xml` — use the same host Search Console is verifying. Do **not** submit `https://cod-cheat.org/sitemap.xml` unless that host serves HTTP 200 + `application/xml` for that path (that requires pointing `cod-cheat.org` DNS at this project or proxying `/sitemap.xml`).
+2. Under **Sitemaps**, submit the **live deployment** URL (example): `https://cod-cheat--org.tazeenrooziroti.workers.dev/sitemap.xml` — use the same host Search Console is verifying. The repo includes `functions/_middleware.js` so **apex** `https://cod-cheat.org/sitemap.xml` (and `www`) can **proxy** the same XML from the Workers deploy **after** Cloudflare Pages deploys with that function; if the middleware is absent, point DNS at this Pages project or use the Workers URL in Search Console only.
 3. In **Cloudflare Pages / Workers** project settings, set **`CANONICAL_SITE_ORIGIN`** or **`PUBLIC_SITE_ORIGIN`** to the same canonical HTTPS origin as the deployment (e.g. `https://cod-cheat--org.tazeenrooziroti.workers.dev`) if your build does not inject **`CF_PAGES_URL`**. **`CANONICAL_SITE_ORIGIN`** overrides a stale dashboard `PUBLIC_SITE_ORIGIN` so `<loc>` URLs and HTML canonicals stay on the Workers host. The build syncs `site` into Vite via `astro.config.mjs`.
 4. Repeat in [Bing Webmaster Tools](https://www.bing.com/webmasters) if you use Bing.
 
