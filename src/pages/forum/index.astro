@@ -28,12 +28,12 @@ const sourceTimestamp = (path?: string) => {
   collectionPageSchema({ name: `${SITE_BRAND} forum (demo)`, description: seo.description, url: '/forum/', origin: schemaOrigin }),
   breadcrumbSchema(breadcrumbs, schemaOrigin),
 ]}>
-  <div class="sr-only" aria-label="Cross-links from forum">
-    <a href={ROUTES.home}>Forum index: site homepage</a>
-    <a href={ROUTES.blog}>Forum index: MW4 blog</a>
-    <a href={ROUTES.faq}>Forum index: FAQ</a>
-    <a href={ROUTES.about}>Forum index: about page</a>
-    <a href={ROUTES.products}>Forum index: product catalog</a>
+  <div class="sr-only" aria-label="Related hubs">
+    <a href={ROUTES.home}>Site homepage</a>
+    <a href={ROUTES.blog}>MW4 guides — blog</a>
+    <a href={ROUTES.faq}>Help — FAQ</a>
+    <a href={ROUTES.about}>Editorial — about</a>
+    <a href={ROUTES.products}>Products — catalog</a>
   </div>
   <section class="forum-page py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">

@@ -54,14 +54,15 @@ const shareUrl = canonicalUrl('/blog/', schemaOrigin);
   <link slot="head" rel="preload" as="image" href={lcpImage} type="image/webp" fetchpriority="high" />
 
   <div class="sr-only" aria-label="Related site entry points">
-    <a href={ROUTES.home}>Blog listing: site homepage</a>
-    <a href={ROUTES.products}>Blog listing: MW4 products catalog</a>
-    <a href={blogPostPath('mw4-player-esp-distance')}>Blog listing: player ESP distance article</a>
-    <a href={blogPostPath('mw4-triggerbot-guide')}>Blog listing: triggerbot guide article</a>
-    <a href={ROUTES.about}>Blog listing: about this site</a>
-    <a href={ROUTES.forum}>Blog listing: demo forum index</a>
+    <a href={ROUTES.home}>Home — COD Cheats front page</a>
+    <a href={ROUTES.products}>Catalog — MW4 cheat tiers</a>
+    <a href={blogPostPath('mw4-player-esp-distance')}>Guide — player distance and HUD clutter</a>
+    <a href={blogPostPath('mw4-triggerbot-guide')}>Guide — trigger timing and hold key</a>
+    <a href={ROUTES.about}>About — editorial scope</a>
+    <a href={ROUTES.forum}>Forum — demo discussions</a>
   </div>
 
+  <h2 class="sr-only">Featured MW4 article</h2>
   <section class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
       <Breadcrumbs items={breadcrumbs} />
@@ -69,6 +70,7 @@ const shareUrl = canonicalUrl('/blog/', schemaOrigin);
     </div>
   </section>
 
+  <h2 class="sr-only">All articles — filter by topic</h2>
   <section class="border-y border-border bg-muted/20 py-12 md:py-16" aria-labelledby="blog-latest-title">
     <div class="mx-auto max-w-6xl px-5">
       <header class="section-header max-w-2xl">

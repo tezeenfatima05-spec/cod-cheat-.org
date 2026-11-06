@@ -35,13 +35,13 @@ const shareUrl = canonicalUrl('/about/', schemaOrigin);
     ),
   ]}
 >
-  <div class="sr-only" aria-label="Cross-links from about">
-    <a href={ROUTES.home}>About page: return to site homepage</a>
-    <a href={ROUTES.blog}>About page: open blog index (guides)</a>
-    <a href={blogPostPath('mw4-lite-vs-pro')}>About page: read Lite vs Pro comparison</a>
-    <a href={ROUTES.privacy}>About page: open privacy policy</a>
-    <a href={ROUTES.faq}>About page: open FAQ</a>
-    <a href={ROUTES.support}>About page: open support contact</a>
+  <div class="sr-only" aria-label="Related site pages">
+    <a href={ROUTES.home}>Site homepage overview</a>
+    <a href={ROUTES.blog}>Blog — MW4 guides listing</a>
+    <a href={blogPostPath('mw4-lite-vs-pro')}>Article — Lite vs Pro tier comparison</a>
+    <a href={ROUTES.privacy}>Policy — analytics and messages</a>
+    <a href={ROUTES.faq}>Help center FAQ</a>
+    <a href={ROUTES.support}>Support — loader and orders</a>
   </div>
   <LegalPage
     title={content.title}

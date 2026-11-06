@@ -25,7 +25,7 @@ export function buildRssFeed(): string {
       <title>${escapeXml(post.title)}</title>
       <link>${link}</link>
       <guid isPermaLink="true">${link}</guid>
-      <description>${escapeXml(post.desc)}</description>
+      <description>${escapeXml(post.metaDesc ?? post.desc)}</description>
       <pubDate>${pubDate}</pubDate>
       <enclosure url="${escapeXml(absoluteAssetUrl(post.image))}" type="${enclosureType}" />
     </item>`;

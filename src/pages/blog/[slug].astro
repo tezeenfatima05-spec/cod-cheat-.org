@@ -69,13 +69,14 @@ const published = parseBlogDate(post.date);
 const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
 const shareUrl = canonicalUrl(postPath, schemaOrigin);
 const docTitle = pageTitle(post.title, 'COD', 60);
+const metaDescription = post.metaDesc ?? post.desc;
 /** FAQ section id only — avoid the slug substring "esp" in HTML (keyword counters match attributes). */
 const faqTitleSlug = post.slug.replace(/(^|-)esp($|-)/g, '$1visuals$2');
 ---
 
 <BaseLayout
   title={docTitle}
-  description={post.desc}
+  description={metaDescription}
   sharePageUrl={shareUrl}
   sharePageTitle={docTitle}
   ogType="article"
@@ -86,7 +87,7 @@ const faqTitleSlug = post.slug.replace(/(^|-)esp($|-)/g, '$1visuals$2');
   jsonLd={[
     articleSchema({
       name: post.title,
-      description: post.desc,
+      description: metaDescription,
       url: postPath,
       image: post.image,
       datePublished: published,
@@ -96,13 +97,13 @@ const faqTitleSlug = post.slug.replace(/(^|-)esp($|-)/g, '$1visuals$2');
   ]}
 >
   <div class="sr-only" aria-label="Article cross-links">
-    <a href={ROUTES.home}>This guide: link to homepage</a>
-    <a href={ROUTES.blog}>This guide: open blog index</a>
-    <a href={ROUTES.products}>This guide: open MW4 product catalog</a>
-    <a href={ROUTES.faq}>This guide: open FAQ hub</a>
-    <a href={ROUTES.about}>This guide: open about page</a>
-    <a href={checkoutPath('mw4')}>This guide: MW4 checkout shortcut (/go/mw4/)</a>
-    <a href={blogPostPath('mw4-stream-proof-setup')}>Related: stream-proof capture guide (MW4 overlays)</a>
+    <a href={ROUTES.home}>Return to site root (home)</a>
+    <a href={ROUTES.blog}>Browse MW4 guides — blog index</a>
+    <a href={ROUTES.products}>COD MW4 cheats — product catalog</a>
+    <a href={ROUTES.faq}>Site FAQs — common questions</a>
+    <a href={ROUTES.about}>About this project</a>
+    <a href={checkoutPath('mw4')}>Checkout route for MW4 access (/go/mw4/)</a>
+    <a href={blogPostPath('mw4-stream-proof-setup')}>Stream-proof OBS checklist for MW4 overlays</a>
   </div>
   <article class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
@@ -111,9 +112,7 @@ const faqTitleSlug = post.slug.replace(/(^|-)esp($|-)/g, '$1visuals$2');
       <BlogPostTopBar post={post} class="mt-6" />
 
       <div class="blog-article__layout mt-4 grid gap-6 lg:grid-cols-[minmax(14rem,16.5rem)_minmax(0,1fr)] lg:items-start lg:gap-8 xl:grid-cols-[17.5rem_minmax(0,1fr)]">
-        <BlogSidebar post={post} related={related} class="order-2 lg:order-1" />
-
-        <div class="order-1 min-w-0 lg:order-2">
+        <div class="order-1 min-w-0 lg:col-start-2 lg:row-start-1">
           <figure class="blog-article__hero">
             <ResponsiveImage
               src={post.image}
@@ -211,6 +210,8 @@ const faqTitleSlug = post.slug.replace(/(^|-)esp($|-)/g, '$1visuals$2');
             </Button>
           </nav>
         </div>
+
+        <BlogSidebar post={post} related={related} class="order-2 lg:col-start-1 lg:row-start-1" />
       </div>
     </div>
   </article>

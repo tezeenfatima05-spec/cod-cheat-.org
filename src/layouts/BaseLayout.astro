@@ -12,6 +12,7 @@ import {
   GA_MEASUREMENT_ID,
   absoluteAssetUrl,
 } from '../config/seo';
+import { SITE_URL } from '../config/site';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import JsonLd from '../components/JsonLd.astro';
@@ -48,6 +49,9 @@ const {
 const pathname = Astro.url.pathname;
 const siteOriginTrim = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
 const pageUrl = canonicalUrl(pathname, siteOriginTrim);
+const legacySiteOrigin = SITE_URL.replace(/\/$/, '');
+const secondarySitemapHref =
+  legacySiteOrigin && legacySiteOrigin !== siteOriginTrim ? `${legacySiteOrigin}/sitemap.xml` : undefined;
 const ogImageUrl = absoluteAssetUrl(ogImage);
 const shareUrl = sharePageUrl ?? pageUrl;
 const shareText = sharePageTitle ?? title;
@@ -98,6 +102,9 @@ const robotsContent = noindex
       href={RSS_FEED_PATH}
     />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+    {secondarySitemapHref && (
+      <link rel="sitemap" type="application/xml" title="Sitemap (cod-cheat.org)" href={secondarySitemapHref} />
+    )}
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -163,8 +170,8 @@ const robotsContent = noindex
 
     {jsonLd && <JsonLd data={jsonLd} />}
     <div class="sr-only" aria-label="Share this page">
-      <a href={xShare}>Share on X</a>
-      <a href={facebookShare}>Share on Facebook</a>
+      <a href={xShare}>Post {pathname} on X (Twitter)</a>
+      <a href={facebookShare}>Share {pathname} on Facebook</a>
     </div>
     <slot name="head" />
 

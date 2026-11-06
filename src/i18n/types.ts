@@ -53,6 +53,8 @@ export interface BlogPost {
   slug: string;
   image: string;
   desc: string;
+  /** Optional; when set, used for meta description + JSON-LD only (visible lead uses `desc`). */
+  metaDesc?: string;
   date: string;
   readTime: string;
 }

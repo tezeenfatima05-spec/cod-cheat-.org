@@ -114,6 +114,7 @@ const jsonLd = {
   <body>
     <h1>{h1Text}</h1>
     <main>
+      <h2>Secure checkout handoff</h2>
       <p>
         You are leaving this site for a hosted checkout page. Most browsers follow the redirect immediately; if not,
         use the link below.
@@ -121,6 +122,19 @@ const jsonLd = {
       <p>
         <a href={destination}>Continue to checkout</a>
       </p>
+      {isMw4 && (
+        <figure style="margin:1rem 0">
+          <img
+            src="/images/mw4/screenshot-1.webp"
+            alt="MW4 module preview — related to COD MW4 checkout"
+            width="640"
+            height="360"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      )}
+      <h2>More on this site</h2>
       <p>
         <a href={ROUTES.products}>MW4 product overview</a>
         {' · '}
