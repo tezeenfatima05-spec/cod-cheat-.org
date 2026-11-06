@@ -27,7 +27,6 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
   description={seo.description}
   sharePageUrl={shareUrl}
   sharePageTitle={seo.title}
-  minimalHeadSocialSrLinks
   trimOgLocales
   omitBodySitemapLink
   linkAbsoluteBase={schemaOrigin}
@@ -54,28 +53,29 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
     fetchpriority="high"
   />
   <div class="sr-only" aria-label="Site shortcuts">
-    <a href={`${schemaOrigin}/sitemap.xml`}>Machine-readable sitemap index (XML)</a>
-    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>MW4 PC cheat tier comparison hub</a>
-    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Patch-day setup guides — blog index</a>
-    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Demo forum — sample discussion layout</a>
-    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Loader and checkout questions — FAQ hub</a>
-    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Partner checkout handoff — /go/mw4/</a>
-    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Editorial scope — how MW4 posts are written</a>
-    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Privacy policy — cookies and contact email</a>
-    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>License terms — refunds and usage</a>
+    <a href={`${schemaOrigin}/sitemap.xml`}>Crawlable URL manifest (application/xml)</a>
+    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Compare Lite Pro Elite on the MW4 catalog</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Chronological MW4 guides and patch writeups</a>
+    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Demo-only forum thread index</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Billing HWID and refund topics (FAQ)</a>
+    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>External partner route: /go/mw4/ checkout</a>
+    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Site editorial scope for MW4 coverage</a>
+    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Analytics cookies and support email policy</a>
+    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Digital license purchase and refund wording</a>
+    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Direct help desk for loaders and orders</a>
     <a href={canonicalUrl(`${ROUTES.blog}mw4-stream-proof-setup/`, schemaOrigin)}>
-      MW4 stream-proof guide — OBS capture steps
+      Stream-overlay OBS checklist (capture-safe)
     </a>
-    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Lite vs Pro — tier comparison article</a>
-    <a href={canonicalUrl(blogPostPath('mw4-elite-tier-guide'), schemaOrigin)}>Elite tier guide — radar and DMZ stack</a>
-    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>Elite product page — module matrix</a>
-    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>Lite product page — visuals-first stack</a>
-    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>Pro product page — aim and trigger stack</a>
-    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>Utilities hub — skin preview and UGC tools</a>
+    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Article: Lite tier vs Pro modules</a>
+    <a href={canonicalUrl(blogPostPath('mw4-elite-tier-guide'), schemaOrigin)}>Article: Elite radar plus DMZ bundle</a>
+    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>SKU detail: Elite full feature column</a>
+    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>SKU detail: Lite ESP-first modules</a>
+    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>SKU detail: Pro aim and trigger add-ons</a>
+    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>Cosmetic and UGC utility index page</a>
   </div>
   <HeroSection
     productsSrHref={canonicalUrl(ROUTES.products, schemaOrigin)}
-    heroTitleOverride="COD Cheats for PC — aimbot, player ESP & wallhack — catalog hero destination"
+    heroTitleOverride="cod cheats for pc aimbot player esp wallhack — ZADEYO"
   />
   <FeaturesSection />
   <ProductsSection linkBase={schemaOrigin} />

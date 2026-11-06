@@ -10,9 +10,9 @@ export interface PageSeoEntry {
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'COD Cheats for PC — Aimbot, Player ESP & Wallhack | ZADEYO',
+    title: 'Cod Cheats For Pc Aimbot Player Esp Wallhack – COD Cheats',
     description:
-      'Explore ZADEYO COD cheats for PC featuring aimbot, player ESP, wallhack, enemy tracking, triggerbot, and customizable cheat settings. Explore available features and plans.',
+      'Cod Cheats For Pc Aimbot Player Esp Wallhack: Explore ZADEYO COD cheats for PC featuring aimbot, player ESP, wallhack, enemy tracking, triggerbot, and.',
   },
   '/products/cod-cheats/': {
     title: 'COD MW4 Cheats for PC — Aimbot, ESP & Wallhack',
