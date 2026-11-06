@@ -7,6 +7,7 @@ import ContactSupportSection from '../components/ContactSupportSection.astro';
 import { breadcrumbSchema, webPageSchema } from '../utils/schema';
 
 const seo = resolvePageSeo('/support/');
+const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
 ---
 
 <BaseLayout
@@ -17,11 +18,15 @@ const seo = resolvePageSeo('/support/');
       name: t.support.title,
       description: t.support.subtitle,
       url: '/support/',
+      origin: schemaOrigin,
     }),
-    breadcrumbSchema([
-      { name: 'Home', path: '/' },
-      { name: 'Support', path: '/support/' },
-    ]),
+    breadcrumbSchema(
+      [
+        { name: 'Home', path: '/' },
+        { name: 'Support', path: '/support/' },
+      ],
+      schemaOrigin,
+    ),
   ]}
 >
   <div class="mx-auto max-w-6xl px-5 pt-8 md:pt-10">

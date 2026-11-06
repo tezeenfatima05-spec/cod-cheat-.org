@@ -20,7 +20,8 @@ const product = CHECKOUT_SLUG_TO_PRODUCT[slug!];
 const destination = product ? CHECKOUT[product] : '/';
 
 const selfPath = `/go/${slug}/`;
-const selfCanonical = canonicalUrl(selfPath);
+const siteOriginTrim = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const selfCanonical = canonicalUrl(selfPath, siteOriginTrim);
 
 const isMw4 = slug === 'mw4';
 const docTitle = isMw4
@@ -132,6 +133,22 @@ const jsonLd = {
           <p>
             This shortcut exists so in-product links can stay short while the destination URL carries the full product path
             on the partner site. Crawlers still see this HTML before the browser follows the redirect.
+          </p>
+          <p>
+            Before you leave, confirm you are on Windows 10 or 11 with current GPU drivers—most MW4 loader issues come from outdated
+            vendor stacks or aggressive antivirus hooks that block unsigned modules.
+          </p>
+          <p>
+            After checkout, your operator email is the recovery line: keep it out of public chats, use a mailbox you control, and
+            whitelist incoming mail from the partner host so portal links do not land in spam.
+          </p>
+          <p>
+            If you recently changed hardware, open the Support route and note your tier before requesting a portal reset—HWID
+            limits vary by plan, and the team needs your order reference to align the right policy.
+          </p>
+          <p>
+            Large title updates often pause public status briefly. When that happens, load a private lobby with overlays off,
+            install the newest portal build from your account, then retest one module at a time instead of stacking changes.
           </p>
           <p>
             If your session blocks automatic redirects, copy the destination URL manually or return to the product page and use

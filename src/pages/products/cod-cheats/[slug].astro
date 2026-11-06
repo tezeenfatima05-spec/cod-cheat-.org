@@ -22,6 +22,7 @@ const breadcrumbs = [
   { name: 'Products', path: productHub.path },
   { name: product.title, path: pagePath },
 ];
+const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
 ---
 
 <BaseLayout
@@ -35,8 +36,9 @@ const breadcrumbs = [
       offerUrl: product.buyUrl,
       image: product.images[0]?.src,
       sku: product.slug,
+      origin: schemaOrigin,
     }),
-    breadcrumbSchema(breadcrumbs),
+    breadcrumbSchema(breadcrumbs, schemaOrigin),
   ]}
 >
   <ProductDetail product={product} breadcrumbs={breadcrumbs} />

@@ -52,7 +52,7 @@ const productLinks: { label: string; href: string; icon: IconName }[] = [
   {
     toc.length > 0 && (
       <section class="blog-sidebar__block" aria-labelledby="blog-sidebar-toc-title">
-        <h2 id="blog-sidebar-toc-title" class="blog-sidebar__heading">
+        <h3 id="blog-sidebar-toc-title" class="blog-sidebar__heading">
           <Icon name="layers" size={14} class="text-primary" aria-hidden="true" />
           <span class="blog-sidebar__heading-text">In this article</span>
           {tocCount > 0 && (
@@ -60,7 +60,7 @@ const productLinks: { label: string; href: string; icon: IconName }[] = [
               {tocCount}
             </Badge>
           )}
-        </h2>
+        </h3>
         <nav aria-label="Table of contents">
           <ul class="blog-sidebar__toc-list" data-blog-toc>
             {toc.map((item) => (
@@ -84,10 +84,10 @@ const productLinks: { label: string; href: string; icon: IconName }[] = [
   {
     related.length > 0 && (
       <section class="blog-sidebar__block" aria-labelledby="blog-sidebar-related-title">
-        <h2 id="blog-sidebar-related-title" class="blog-sidebar__heading">
+        <h3 id="blog-sidebar-related-title" class="blog-sidebar__heading">
           <Icon name="navBlog" size={14} class="text-primary" aria-hidden="true" />
           Related guides
-        </h2>
+        </h3>
         <ul class="blog-sidebar__list">
           {related.map((item) => (
             <li>
@@ -103,10 +103,10 @@ const productLinks: { label: string; href: string; icon: IconName }[] = [
   }
 
   <section class="blog-sidebar__block blog-sidebar__block--shop" aria-labelledby="blog-sidebar-products-title">
-    <h2 id="blog-sidebar-products-title" class="blog-sidebar__heading">
+    <h3 id="blog-sidebar-products-title" class="blog-sidebar__heading">
       <Icon name="navProducts" size={14} class="text-primary" aria-hidden="true" />
       Our products
-    </h2>
+    </h3>
     <ul class="blog-sidebar__list">
       {productLinks.map((link) => (
         <li>

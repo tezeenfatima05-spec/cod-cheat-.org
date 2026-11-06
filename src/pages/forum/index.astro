@@ -14,7 +14,8 @@ import { ROUTES } from '../../utils/path';
 const seo = resolvePageSeo('/forum/');
 const breadcrumbs = [{ name: 'Home', path: '/' }, { name: 'Forum', path: '/forum/' }];
 const categoryKey = (name: string) => name.toLowerCase().replace(/[^a-z0-9]/g, '');
-const shareUrl = canonicalUrl('/forum/');
+const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const shareUrl = canonicalUrl('/forum/', schemaOrigin);
 
 const sourceTimestamp = (path?: string) => {
   const slug = path?.split('/').filter(Boolean).at(-1);
@@ -24,8 +25,8 @@ const sourceTimestamp = (path?: string) => {
 ---
 
 <BaseLayout title={seo.title} description={seo.description} sharePageUrl={shareUrl} sharePageTitle={seo.title} jsonLd={[
-  collectionPageSchema({ name: `${SITE_BRAND} forum (demo)`, description: seo.description, url: '/forum/' }),
-  breadcrumbSchema(breadcrumbs),
+  collectionPageSchema({ name: `${SITE_BRAND} forum (demo)`, description: seo.description, url: '/forum/', origin: schemaOrigin }),
+  breadcrumbSchema(breadcrumbs, schemaOrigin),
 ]}>
   <div class="sr-only" aria-label="Cross-links from forum">
     <a href={ROUTES.home}>Forum index: site homepage</a>
@@ -108,7 +109,7 @@ const sourceTimestamp = (path?: string) => {
           <section class="forum-side-card forum-about" id="community-guidelines">
             <div class="forum-side-card__banner"></div>
             <div class="forum-about__content">
-              <div class="forum-about__title"><span class="forum-community-avatar forum-community-avatar--brand"><img src="/images/mw4/logo.webp" alt="" width="34" height="34" class="rounded-md object-cover" /></span><h2>{SITE_BRAND}</h2></div>
+              <div class="forum-about__title"><span class="forum-community-avatar forum-community-avatar--brand"><img src="/images/mw4/logo.webp" alt="COD Cheats logo" width="34" height="34" class="rounded-md object-cover" /></span><h2>{SITE_BRAND}</h2></div>
               <p>Illustrative discussions paired with MW4 guides—posting is disabled here.</p>
               <div class="forum-stats"><span><b>{forumPosts.length}</b> guide discussions</span><span><b>{forumCategories.length}</b> topics</span></div>
               <a class="forum-join" href="/blog/">Explore all guides</a>

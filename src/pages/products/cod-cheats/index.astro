@@ -29,6 +29,7 @@ function cardLabel(product: (typeof productHubCatalog)[number]) {
   }
   return product.category ?? 'Utility';
 }
+const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
 ---
 
 <BaseLayout
@@ -39,13 +40,15 @@ function cardLabel(product: (typeof productHubCatalog)[number]) {
       name: productHub.title,
       description: productHub.description,
       url: productHub.path,
+      origin: schemaOrigin,
     }),
-    breadcrumbSchema(breadcrumbs),
+    breadcrumbSchema(breadcrumbs, schemaOrigin),
     itemListSchema(
       productHubCatalog.map((product) => ({
         name: product.title,
         url: productPath(product.slug),
       })),
+      schemaOrigin,
     ),
   ]}
 >

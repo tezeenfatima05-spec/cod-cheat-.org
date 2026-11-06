@@ -15,6 +15,7 @@ export function getStaticPaths() {
 const post = getForumPost(Astro.params.slug!);
 if (!post) return Astro.redirect('/forum/');
 const path = `/forum/${post.slug}/`;
+const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
 const breadcrumbs = [{ name: 'Home', path: '/' }, { name: 'Forum', path: '/forum/' }, { name: post.category, path: '/forum/' }, { name: post.title, path }];
 const relatedPosts = [
   ...forumPosts.filter((item) => item.slug !== post.slug && item.category === post.category),
@@ -23,8 +24,8 @@ const relatedPosts = [
 ---
 
 <BaseLayout title={pageTitle(post.title)} description={post.excerpt} jsonLd={[
-  discussionForumPostingSchema({ name: post.title, text: post.body.join('\n\n'), url: path, author: post.author, comments: post.commentsCount }),
-  breadcrumbSchema(breadcrumbs),
+  discussionForumPostingSchema({ name: post.title, text: post.body.join('\n\n'), url: path, author: post.author, comments: post.commentsCount, origin: schemaOrigin }),
+  breadcrumbSchema(breadcrumbs, schemaOrigin),
 ]}>
   <section class="forum-page py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">

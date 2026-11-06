@@ -46,7 +46,8 @@ const {
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
-const pageUrl = canonicalUrl(pathname);
+const siteOriginTrim = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const pageUrl = canonicalUrl(pathname, siteOriginTrim);
 const ogImageUrl = absoluteAssetUrl(ogImage);
 const shareUrl = sharePageUrl ?? pageUrl;
 const shareText = sharePageTitle ?? title;

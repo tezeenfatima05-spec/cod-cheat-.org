@@ -7,7 +7,12 @@ export interface BreadcrumbItem {
   path: string;
 }
 
-export function breadcrumbSchema(items: BreadcrumbItem[]) {
+function siteRootId(origin?: string) {
+  const base = (origin ?? SITE_ORIGIN).replace(/\/$/, '');
+  return `${base}/`;
+}
+
+export function breadcrumbSchema(items: BreadcrumbItem[], origin?: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -15,17 +20,18 @@ export function breadcrumbSchema(items: BreadcrumbItem[]) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: canonicalUrl(item.path),
+      item: canonicalUrl(item.path, origin),
     })),
   };
 }
 
-export function websiteSchema() {
-  const siteUrl = `${SITE_ORIGIN}/`;
+export function websiteSchema(origin?: string) {
+  const base = (origin ?? SITE_ORIGIN).replace(/\/$/, '');
+  const siteUrl = `${base}/`;
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': `${siteUrl}#website`,
+    '@id': siteUrl,
     name: SITE_BRAND,
     url: siteUrl,
     inLanguage: 'en-US',
@@ -35,28 +41,29 @@ export function websiteSchema() {
 }
 
 /** Self-referencing WebPage for the homepage (matches document `<title>` / canonical). */
-export function homeWebPageSchema(input: { name: string; description: string }) {
-  const pageUrl = canonicalUrl('/');
+export function homeWebPageSchema(input: { name: string; description: string; origin?: string }) {
+  const pageUrl = canonicalUrl('/', input.origin);
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': `${pageUrl}#webpage`,
+    '@id': pageUrl,
     name: input.name,
     description: input.description,
     url: pageUrl,
     inLanguage: 'en-US',
-    isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
+    isPartOf: { '@id': siteRootId(input.origin) },
   };
 }
 
-export function organizationSchema() {
+export function organizationSchema(origin?: string) {
   const sameAs = getOrganizationSameAs();
+  const base = (origin ?? SITE_ORIGIN).replace(/\/$/, '');
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: SITE_BRAND,
-    url: `${SITE_ORIGIN}/`,
+    url: `${base}/`,
     logo: absoluteAssetUrl(SITE_ASSETS.logo),
     email: SUPPORT_EMAIL,
     ...(sameAs.length > 0 ? { sameAs } : {}),
@@ -65,7 +72,7 @@ export function organizationSchema() {
         '@type': 'ContactPoint',
         contactType: 'customer support',
         email: SUPPORT_EMAIL,
-        url: canonicalUrl('/support/'),
+        url: canonicalUrl('/support/', origin),
         availableLanguage: ['English'],
         areaServed: 'Worldwide',
       },
@@ -73,31 +80,31 @@ export function organizationSchema() {
   };
 }
 
-export function collectionPageSchema(input: { name: string; description: string; url: string }) {
-  const pageUrl = canonicalUrl(input.url);
+export function collectionPageSchema(input: { name: string; description: string; url: string; origin?: string }) {
+  const pageUrl = canonicalUrl(input.url, input.origin);
   return {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    '@id': `${pageUrl}#webpage`,
+    '@id': pageUrl,
     name: input.name,
     description: input.description,
     url: pageUrl,
     inLanguage: 'en-US',
-    isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
+    isPartOf: { '@id': siteRootId(input.origin) },
   };
 }
 
-export function webPageSchema(input: { name: string; description: string; url: string }) {
-  const pageUrl = canonicalUrl(input.url);
+export function webPageSchema(input: { name: string; description: string; url: string; origin?: string }) {
+  const pageUrl = canonicalUrl(input.url, input.origin);
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': `${pageUrl}#webpage`,
+    '@id': pageUrl,
     name: input.name,
     description: input.description,
     url: pageUrl,
     inLanguage: 'en-US',
-    isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
+    isPartOf: { '@id': siteRootId(input.origin) },
   };
 }
 
@@ -116,7 +123,7 @@ export function faqPageSchema(items: FaqItem[]) {
   };
 }
 
-export function itemListSchema(items: { name: string; url: string }[]) {
+export function itemListSchema(items: { name: string; url: string }[], origin?: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -124,7 +131,7 @@ export function itemListSchema(items: { name: string; url: string }[]) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      url: canonicalUrl(item.url),
+      url: canonicalUrl(item.url, origin),
     })),
   };
 }
@@ -135,26 +142,27 @@ export function discussionForumPostingSchema(input: {
   url: string;
   author: string;
   comments: number;
+  origin?: string;
 }) {
   return {
     '@context': 'https://schema.org',
     '@type': 'DiscussionForumPosting',
     headline: input.name,
     articleBody: input.text,
-    url: canonicalUrl(input.url),
+    url: canonicalUrl(input.url, input.origin),
     author: { '@type': 'Person', name: input.author },
     commentCount: input.comments,
     isPartOf: {
       '@type': 'CollectionPage',
       name: `${SITE_BRAND} Community Forum (demo)`,
-      url: canonicalUrl('/forum/'),
+      url: canonicalUrl('/forum/', input.origin),
     },
   };
 }
 
-function offerUrl(path: string): string {
+function offerUrl(path: string, origin?: string): string {
   if (path.startsWith('http://') || path.startsWith('https://')) return path;
-  return canonicalUrl(path);
+  return canonicalUrl(path, origin);
 }
 
 export function productSchema(input: {
@@ -164,6 +172,7 @@ export function productSchema(input: {
   offerUrl: string;
   image?: string;
   sku?: string;
+  origin?: string;
 }) {
   return {
     '@context': 'https://schema.org',
@@ -178,7 +187,7 @@ export function productSchema(input: {
     ...(input.image ? { image: absoluteAssetUrl(input.image) } : {}),
     offers: {
       '@type': 'Offer',
-      url: offerUrl(input.offerUrl),
+      url: offerUrl(input.offerUrl, input.origin),
       priceCurrency: 'USD',
       availability: 'https://schema.org/InStock',
       seller: {
@@ -196,6 +205,7 @@ export function softwareApplicationSchema(input: {
   url: string;
   image?: string;
   offerUrl?: string;
+  origin?: string;
 }) {
   return productSchema({
     name: input.name,
@@ -203,6 +213,7 @@ export function softwareApplicationSchema(input: {
     url: input.url,
     offerUrl: input.offerUrl ?? input.url,
     image: input.image,
+    origin: input.origin,
   });
 }
 
@@ -213,13 +224,14 @@ export function articleSchema(input: {
   image: string;
   datePublished: string;
   dateModified?: string;
+  origin?: string;
 }) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: input.name,
     description: input.description,
-    url: canonicalUrl(input.url),
+    url: canonicalUrl(input.url, input.origin),
     image: absoluteAssetUrl(input.image),
     datePublished: input.datePublished,
     dateModified: input.dateModified ?? input.datePublished,
@@ -238,7 +250,7 @@ export function articleSchema(input: {
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${canonicalUrl(input.url)}#webpage`,
+      '@id': canonicalUrl(input.url, input.origin),
     },
   };
 }

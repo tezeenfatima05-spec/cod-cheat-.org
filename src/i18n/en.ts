@@ -292,7 +292,7 @@ export const en: Translations = {
         title: 'MW4 player ESP: distance caps that keep 6v6 readable',
         slug: 'mw4-player-esp-distance',
         image: '/images/mw4/screenshot-1.webp',
-        desc: 'Esp on MW4: scale box size, snaplines, and squad colors before the HUD turns to noise—distance caps keep 6v6 esp overlays readable without clutter on PC.',
+        desc: 'Player overlays on MW4: scale box size, snaplines, and squad colors before the HUD turns to noise—distance caps keep 6v6 callouts readable without clutter on PC.',
         date: 'Nov 5, 2026',
         readTime: '6 min read',
       },
@@ -301,7 +301,7 @@ export const en: Translations = {
         title: 'Stream-proof overlay checklist for MW4 cheats',
         slug: 'mw4-stream-proof-setup',
         image: '/images/mw4/screenshot-2.webp',
-        desc: 'Stream proof for MW4 cheats: hide capture feeds while overlays stay on your display—OBS checklist so recordings stay clean while ESP and radar remain.',
+        desc: 'Stream proof for MW4 cheats: hide capture feeds while overlays stay on your display—OBS checklist so recordings stay clean while player callouts and radar stay off the tape.',
         date: 'Nov 4, 2026',
         readTime: '5 min read',
       },
@@ -638,7 +638,7 @@ export const en: Translations = {
     },
     privacy: {
       title: 'Privacy Policy',
-      description: `How ${SITE_DOMAIN} handles analytics, cookies, and contact data when you browse this site or email us.`,
+      description: `How ${SITE_DOMAIN} handles analytics, cookies, and messages when you browse this site or email us.`,
       sections: [
         {
           heading: 'Information we collect',
@@ -666,7 +666,7 @@ export const en: Translations = {
         {
           heading: 'Contact',
           paragraphs: [
-            `Privacy questions can be sent to support@${SITE_DOMAIN}. Purchase rules live in the Terms page.`,
+            `Questions about this policy can be sent to support@${SITE_DOMAIN}. Purchase rules live in the Terms page.`,
           ],
         },
       ],
@@ -678,7 +678,7 @@ export const en: Translations = {
         {
           heading: 'Agreement',
           paragraphs: [
-            `Last updated: November 2026. Using ${SITE_DOMAIN} or completing checkout for listed products means you accept these Terms and the Privacy Policy.`,
+            `Last updated: November 2026. Using ${SITE_DOMAIN} or completing checkout for listed products means you accept these Terms and the data policy linked from this site.`,
           ],
         },
         {

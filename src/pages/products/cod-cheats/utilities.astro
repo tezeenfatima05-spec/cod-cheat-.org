@@ -30,6 +30,7 @@ const utilityUseCases: Record<string, string> = {
   ugc: 'Structured appeal and account recovery workflows when access is restricted.',
   'unlock-all': 'Local blueprint and operator preview before you commit loadouts in-game.',
 };
+const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
 ---
 
 <BaseLayout
@@ -40,13 +41,15 @@ const utilityUseCases: Record<string, string> = {
       name: 'Compare COD utilities',
       description: seo.description,
       url: utilitiesPath,
+      origin: schemaOrigin,
     }),
-    breadcrumbSchema(breadcrumbs),
+    breadcrumbSchema(breadcrumbs, schemaOrigin),
     itemListSchema(
       utilities.map((product) => ({
         name: product.title,
         url: productPath(product.slug),
       })),
+      schemaOrigin,
     ),
   ]}
 >

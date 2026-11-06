@@ -9,7 +9,8 @@ import LegalPage from '../components/LegalPage.astro';
 import { breadcrumbSchema, organizationSchema, webPageSchema } from '../utils/schema';
 
 const content = t.legalPages.about;
-const shareUrl = canonicalUrl('/about/');
+const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const shareUrl = canonicalUrl('/about/', schemaOrigin);
 ---
 
 <BaseLayout
@@ -18,16 +19,20 @@ const shareUrl = canonicalUrl('/about/');
   sharePageUrl={shareUrl}
   sharePageTitle={seo.title}
   jsonLd={[
-    organizationSchema(),
+    organizationSchema(schemaOrigin),
     webPageSchema({
       name: 'About COD Cheats — tiers, guides, site publishing',
       description: content.description,
       url: '/about/',
+      origin: schemaOrigin,
     }),
-    breadcrumbSchema([
-      { name: 'Home', path: '/' },
-      { name: 'About', path: '/about/' },
-    ]),
+    breadcrumbSchema(
+      [
+        { name: 'Home', path: '/' },
+        { name: 'About', path: '/about/' },
+      ],
+      schemaOrigin,
+    ),
   ]}
 >
   <div class="sr-only" aria-label="Cross-links from about">

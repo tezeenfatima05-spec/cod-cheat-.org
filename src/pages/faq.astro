@@ -17,7 +17,8 @@ const breadcrumbs = [
 ];
 
 const faqs = getAllFaqs();
-const shareUrl = canonicalUrl('/faq/');
+const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const shareUrl = canonicalUrl('/faq/', schemaOrigin);
 ---
 
 <BaseLayout
@@ -30,9 +31,10 @@ const shareUrl = canonicalUrl('/faq/');
       name: 'Cheats FAQ — COD MW4 tiers, guides & checkout',
       description: `Cheats FAQ for COD MW4 on PC: tier differences, ESP and aim modules, utilities, blog setup guides, and secure checkout help at ${SITE_DOMAIN}.`,
       url: '/faq/',
+      origin: schemaOrigin,
     }),
     faqPageSchema(faqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') }))),
-    breadcrumbSchema(breadcrumbs),
+    breadcrumbSchema(breadcrumbs, schemaOrigin),
   ]}
 >
   <div class="sr-only" aria-label="Cross-links from FAQ">

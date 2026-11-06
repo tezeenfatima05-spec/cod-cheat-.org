@@ -66,7 +66,8 @@ function slugify(text: string): string {
     .replace(/^-|-$/g, '');
 }
 const published = parseBlogDate(post.date);
-const shareUrl = canonicalUrl(postPath);
+const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const shareUrl = canonicalUrl(postPath, schemaOrigin);
 const docTitle = pageTitle(post.title, 'COD', 60);
 ---
 
@@ -87,8 +88,9 @@ const docTitle = pageTitle(post.title, 'COD', 60);
       url: postPath,
       image: post.image,
       datePublished: published,
+      origin: schemaOrigin,
     }),
-    breadcrumbSchema(breadcrumbs),
+    breadcrumbSchema(breadcrumbs, schemaOrigin),
   ]}
 >
   <div class="sr-only" aria-label={`Cross-links from ${post.slug}`}>
@@ -98,7 +100,7 @@ const docTitle = pageTitle(post.title, 'COD', 60);
     <a href={ROUTES.faq}>{post.slug}: open FAQ</a>
     <a href={ROUTES.about}>{post.slug}: open about page</a>
     <a href={checkoutPath('mw4')}>{post.slug}: MW4 checkout shortcut (/go/mw4/)</a>
-    <a href={blogPostPath('mw4-stream-proof-setup')}>{post.slug}: stream-proof setup guide</a>
+    <a href={blogPostPath('mw4-stream-proof-setup')}>{post.slug}: guide for hiding overlays from capture (stream proof)</a>
   </div>
   <article class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">

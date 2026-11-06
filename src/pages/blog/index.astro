@@ -32,7 +32,8 @@ const tags = getBlogTags();
 const lcpImage = webpSrc(featured?.image ?? blogPosts[0]!.image, CARD_IMAGE_WIDTHS[0]);
 
 const tagIcon = (tag: string): IconName => blogTagIcons[tag] ?? 'tag';
-const shareUrl = canonicalUrl('/blog/');
+const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const shareUrl = canonicalUrl('/blog/', schemaOrigin);
 ---
 
 <BaseLayout
@@ -45,8 +46,9 @@ const shareUrl = canonicalUrl('/blog/');
       name: t.blog.title,
       description: t.blog.subtitle,
       url: '/blog/',
+      origin: schemaOrigin,
     }),
-    breadcrumbSchema(breadcrumbs),
+    breadcrumbSchema(breadcrumbs, schemaOrigin),
   ]}
 >
   <link slot="head" rel="preload" as="image" href={lcpImage} type="image/webp" fetchpriority="high" />

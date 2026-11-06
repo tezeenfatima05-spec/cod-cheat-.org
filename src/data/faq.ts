@@ -407,11 +407,24 @@ const defaultBlogFaqs: SiteFaqItem[] = [
   },
 ];
 
+function blogFaqDensityFilter(items: SiteFaqItem[], slug: string): SiteFaqItem[] {
+  let out = items;
+  if (slug.includes('stream-proof')) {
+    out = out.filter((f) => f.id !== 'stream-proof' && f.id !== 'which-tier-esp');
+  }
+  if (slug === 'mw4-player-esp-distance') {
+    out = out.filter(
+      (f) => !['what-is-esp', 'esp-vs-aim', 'esp-safer', 'which-tier-esp', 'who-lite'].includes(f.id),
+    );
+  }
+  return out;
+}
+
 export function getBlogFaqs(tag: string, slug: string): SiteFaqItem[] {
   const topicFaqs = blogTopicFaqs[tag] ?? [];
   const slugHints: SiteFaqItem[] = [];
 
-  if (slug.includes('esp') || slug.includes('map')) {
+  if (slug.includes('map') || (slug.includes('esp') && slug !== 'mw4-player-esp-distance')) {
     slugHints.push({
       id: 'blog-slug-esp',
       topic: 'esp',
@@ -439,7 +452,7 @@ export function getBlogFaqs(tag: string, slug: string): SiteFaqItem[] {
     });
   }
 
-  return [...slugHints, ...topicFaqs, ...defaultBlogFaqs].slice(0, 8);
+  return blogFaqDensityFilter([...slugHints, ...topicFaqs, ...defaultBlogFaqs], slug).slice(0, 8);
 }
 
 export const compareRows = [

@@ -17,7 +17,8 @@ import { SITE_ASSETS } from '../config/site';
 const seo = resolvePageSeo('/');
 const homeFaqs = getLandingFaqs();
 const heroLcpImage = webpSrc(SITE_ASSETS.heroPoster, 512);
-const shareUrl = canonicalUrl('/');
+const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const shareUrl = canonicalUrl('/', schemaOrigin);
 ---
 
 <BaseLayout
@@ -26,9 +27,9 @@ const shareUrl = canonicalUrl('/');
   sharePageUrl={shareUrl}
   sharePageTitle={seo.title}
   jsonLd={[
-    websiteSchema(),
-    organizationSchema(),
-    homeWebPageSchema({ name: seo.title, description: seo.description }),
+    websiteSchema(schemaOrigin),
+    organizationSchema(schemaOrigin),
+    homeWebPageSchema({ name: seo.title, description: seo.description, origin: schemaOrigin }),
     faqPageSchema(
       homeFaqs.map((f, i) => ({
         num: String(i + 1).padStart(2, '0'),

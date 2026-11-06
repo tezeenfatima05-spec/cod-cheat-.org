@@ -9,7 +9,7 @@ export const blogPosts: BlogPostFull[] = [
     title: 'MW4 player ESP: distance caps that keep 6v6 readable',
     slug: 'mw4-player-esp-distance',
     image: '/images/mw4/screenshot-1.webp',
-    desc: 'Esp on MW4: scale box size, snaplines, and squad colors before the HUD turns to noise—distance caps keep 6v6 esp overlays readable without clutter on PC.',
+    desc: 'Player overlays on MW4: scale box size, snaplines, and squad colors before the HUD turns to noise—distance caps keep 6v6 callouts readable without clutter on PC.',
     date: 'Nov 5, 2026',
     readTime: '6 min read',
     featured: true,
@@ -17,7 +17,7 @@ export const blogPosts: BlogPostFull[] = [
     body: [
       {
         type: 'p',
-        text: `Start with distance caps and name tags off—those two settings matter more than flashy colors on [MW4 cheat tier lineup](${hub}).`,
+        text: `Start with distance caps and name tags off—those two settings matter more than flashy colors on the [MW4 cheat tier lineup](${hub}).`,
       },
       {
         type: 'h2',
@@ -49,14 +49,14 @@ export const blogPosts: BlogPostFull[] = [
     title: 'Stream-proof overlay checklist for MW4 cheats',
     slug: 'mw4-stream-proof-setup',
     image: '/images/mw4/screenshot-2.webp',
-    desc: 'Stream proof for MW4 cheats: hide capture feeds while overlays stay on your display—OBS checklist so recordings stay clean while ESP and radar remain.',
+    desc: 'Stream proof for MW4 cheats: hide capture feeds while overlays stay on your display—OBS checklist so recordings stay clean while player callouts and radar stay off the tape.',
     date: 'Nov 4, 2026',
     readTime: '5 min read',
     author: 'COD Cheats Editorial',
     body: [
       {
         type: 'p',
-        text: 'Stream-proof mode is meant to keep your broadcast clean while overlays remain visible to you. Always record a local test before going live.',
+        text: 'The capture-safe toggle is meant to keep your broadcast clean while overlays remain visible to you. Always record a local test before going live.',
       },
       {
         type: 'h2',
@@ -65,7 +65,7 @@ export const blogPosts: BlogPostFull[] = [
       {
         type: 'ul',
         items: [
-          'Enable stream-proof in the portal',
+          'Enable anti-capture in the portal',
           'Record 60 seconds with OBS or your usual capture tool',
           'Play back and confirm overlays never appear in the file',
         ],

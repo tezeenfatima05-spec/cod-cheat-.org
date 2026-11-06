@@ -8,7 +8,8 @@ import { ROUTES } from '../utils/path';
 
 const content = t.legalPages.privacy;
 const seo = resolvePageSeo('/privacy/');
-const shareUrl = canonicalUrl('/privacy/');
+const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const shareUrl = canonicalUrl('/privacy/', schemaOrigin);
 ---
 
 <BaseLayout
@@ -21,11 +22,15 @@ const shareUrl = canonicalUrl('/privacy/');
       name: 'Privacy — contact: when you browse or email support (analytics, cookies & data)',
       description: content.description,
       url: '/privacy/',
+      origin: schemaOrigin,
     }),
-    breadcrumbSchema([
-      { name: 'Home', path: '/' },
-      { name: 'Privacy Policy', path: '/privacy/' },
-    ]),
+    breadcrumbSchema(
+      [
+        { name: 'Home', path: '/' },
+        { name: 'Privacy Policy', path: '/privacy/' },
+      ],
+      schemaOrigin,
+    ),
   ]}
 >
   <div class="sr-only" aria-label="Cross-links from privacy">

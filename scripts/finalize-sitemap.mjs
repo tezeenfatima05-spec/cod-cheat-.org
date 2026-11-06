@@ -15,21 +15,11 @@ let raw = fs.readFileSync(source, 'utf8');
 const urlCount = (raw.match(/<url>/g) ?? []).length;
 
 const trim = (v) => (typeof v === 'string' ? v.trim().replace(/\/$/, '') : '');
-/** Force sitemap &lt;loc&gt; host (e.g. *.workers.dev preview) when the build runs outside Cloudflare. */
-const origin = trim(process.env.SITEMAP_PUBLIC_ORIGIN) || getPublicSiteOrigin();
-/** Rewrite <loc> bases if Astro emitted a different deploy host (e.g. first build used prod URL). */
-const hostsToRewrite = [
-  'https://cod-cheat.org',
-  'http://cod-cheat.org',
-  'https://www.cod-cheat.org',
-  'http://www.cod-cheat.org',
-  'https://cod-cheat--org.tazeenrooziroti.workers.dev',
-  'http://cod-cheat--org.tazeenrooziroti.workers.dev',
-];
-for (const h of hostsToRewrite) {
-  if (h !== origin) raw = raw.split(h).join(origin);
-}
-
+const origin =
+  trim(process.env.SITEMAP_PUBLIC_ORIGIN) ||
+  trim(process.env.CF_PAGES_URL) ||
+  trim(process.env.CF_PAGES_BRANCH_URL) ||
+  trim(getPublicSiteOrigin());
 if (urlCount === 0) {
   console.error('finalize-sitemap: sitemap-0.xml contains no URLs.');
   process.exit(1);
@@ -52,9 +42,30 @@ function formatUrlset(xml) {
     .replace(/<\/priority>/g, '</priority>\n');
 }
 
-const formatted = formatUrlset(raw);
+const candidateHosts = [
+  'https://cod-cheat.org',
+  'http://cod-cheat.org',
+  'https://www.cod-cheat.org',
+  'http://www.cod-cheat.org',
+  'https://cod-cheat--org.tazeenrooziroti.workers.dev',
+  'http://cod-cheat--org.tazeenrooziroti.workers.dev',
+  trim(process.env.CF_PAGES_URL),
+  trim(process.env.CF_PAGES_BRANCH_URL),
+  trim(getPublicSiteOrigin()),
+].filter(Boolean);
+
+function rewriteOrigin(xml, targetOrigin) {
+  let out = xml;
+  for (const h of candidateHosts) {
+    if (h && h !== targetOrigin) out = out.split(h).join(targetOrigin);
+  }
+  return out;
+}
+
+const formattedDist = rewriteOrigin(raw, origin);
+const formatted = formatUrlset(formattedDist);
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), formatted, 'utf8');
-/** Also persist under public/ so hosts that serve the repo root (e.g. cod-cheat.org) get a valid sitemap on deploy. */
+
 const publicDir = path.join(process.cwd(), 'public');
 fs.mkdirSync(publicDir, { recursive: true });
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), formatted, 'utf8');
