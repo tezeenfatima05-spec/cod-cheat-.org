@@ -24,9 +24,9 @@ export const en: Translations = {
     status: 'MW4 — PC build online',
     eyebrow: 'PC · Modern Warfare',
     titleLine1: 'COD MW4',
-    titleLine2: 'COD Cheats for PC — Aimbot, Player ESP & Wallhack',
+    titleLine2: 'MW4 cheats for PC — aimbot, player ESP & wallhack',
     subtitle:
-      'cod cheats for pc aimbot player esp wallhack on Windows: aim, ESP, wallhack, trigger, radar, DMZ—check status before every session.',
+      'Lite, Pro, and Elite tiers for Multiplayer and DMZ on Windows—stream-proof options, patch-day updates, and secure access. Always check loader status before you play.',
     ctaPrimary: 'View products',
     ctaDiscord: 'Get access',
     modesLabel: 'Modes',

@@ -50,7 +50,14 @@ const heroPoster = SITE_ASSETS.heroPoster;
         </Badge>
 
         <h1 id="hero-title" class="hero-section__title">
-          <span class="hero-section__title-text block">{heroTitleOverride ?? h.titleLine2}</span>
+          {heroTitleOverride ? (
+            <span class="hero-section__title-text block">{heroTitleOverride}</span>
+          ) : (
+            <>
+              <span class="hero-section__title-kicker block">{h.titleLine1}</span>
+              <span class="hero-section__title-text hero-section__title-text--main block">{h.titleLine2}</span>
+            </>
+          )}
         </h1>
 
         <p class="hero-section__lead">

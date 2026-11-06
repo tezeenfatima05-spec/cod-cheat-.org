@@ -215,13 +215,24 @@ html::-webkit-scrollbar,
 
 .hero-section__title {
   font-family: var(--font-heading);
-  /* Slightly smaller than before — still dominant on large screens */
-  font-size: clamp(2.0625rem, 4.85vw + 0.28rem, 3.35rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  /* Marketing headline — readable sentence case, not shouty all-caps */
+  font-size: clamp(2rem, 4.2vw + 0.35rem, 3.1rem);
   font-weight: 700;
-  line-height: 1.06;
-  letter-spacing: 0.055em;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  font-feature-settings: 'ss01' on;
+}
+
+.hero-section__title-kicker {
+  font-size: 0.42em;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-feature-settings: 'ss01' on, 'case' on;
+  color: color-mix(in oklch, var(--muted-foreground) 88%, var(--foreground) 12%);
 }
 
 .hero-section__title-text {
@@ -234,11 +245,19 @@ html::-webkit-scrollbar,
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 32px color-mix(in oklch, var(--primary) 28%, transparent));
+  filter: drop-shadow(0 0 24px color-mix(in oklch, var(--primary) 22%, transparent));
+}
+
+.hero-section__title-text--main {
+  max-width: min(100%, 28rem);
 }
 
 html:not(.dark) .hero-section__title-text {
   filter: none;
+}
+
+html:not(.dark) .hero-section__title-kicker {
+  color: color-mix(in oklch, var(--muted-foreground) 92%, var(--foreground) 8%);
 }
 
 .hero-section__lead {
