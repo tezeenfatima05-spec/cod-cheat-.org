@@ -32,6 +32,7 @@ function link(text: string, href: string): string {
 
 const elite = link('MW4 Elite', productPath('elite'));
 const lite = link('Lite tier (ESP focus)', ROUTES.products);
+const liteVisualsTier = link('Lite tier (visuals)', ROUTES.products);
 const pro = link('Pro tier (aim + trigger)', ROUTES.products);
 const productsHub = link('COD MW4 products', ROUTES.products);
 const ugc = link('UGC', productPath('ugc'));
@@ -332,6 +333,31 @@ export function getProductFaqs(slug: string, kind: 'tier' | 'utility'): SiteFaqI
   });
 }
 
+/** Same as Guides `blogTopicFaqs`, but wording avoids repeating "ESP" on the distance article. */
+const blogTopicFaqsGuidesEspArticle: SiteFaqItem[] = [
+  {
+    id: 'blog-guide-start',
+    topic: 'blog',
+    icon: 'faqBlogGuideStart',
+    q: 'Should I enable every overlay module at once?',
+    a: a('No. Add boxes first, then snaplines, then optional names—stop when the HUD feels crowded.'),
+  },
+  {
+    id: 'blog-guide-tier',
+    topic: 'blog',
+    icon: 'faqBlogGuideTier',
+    q: 'Which tier matches this guide?',
+    a: `Visual tuning → ${liteVisualsTier}. Aim/trigger topics → ${pro}. Radar + DMZ stacking → ${elite}.`,
+  },
+  {
+    id: 'blog-guide-status',
+    topic: 'blog',
+    icon: 'faqBlogGuideStatus',
+    q: 'Is this guide still valid after a patch?',
+    a: a(`Check the article date and ${SITE_DOMAIN} status before changing live presets.`),
+  },
+];
+
 const blogTopicFaqs: Record<string, SiteFaqItem[]> = {
   Guides: [
     {
@@ -421,7 +447,10 @@ function blogFaqDensityFilter(items: SiteFaqItem[], slug: string): SiteFaqItem[]
 }
 
 export function getBlogFaqs(tag: string, slug: string): SiteFaqItem[] {
-  const topicFaqs = blogTopicFaqs[tag] ?? [];
+  const topicFaqs =
+    tag === 'Guides' && slug === 'mw4-player-esp-distance'
+      ? blogTopicFaqsGuidesEspArticle
+      : (blogTopicFaqs[tag] ?? []);
   const slugHints: SiteFaqItem[] = [];
 
   if (slug.includes('map') || (slug.includes('esp') && slug !== 'mw4-player-esp-distance')) {

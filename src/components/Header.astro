@@ -3,13 +3,8 @@ import { t } from '../i18n';
 import { checkoutPath } from '../config/checkout';
 import { Button } from '@/components/starwind/button';
 import AnimatedThemeSwitch from './AnimatedThemeSwitch.astro';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/starwind/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/starwind/sheet';
+import { sheetTitle } from '@/components/starwind/sheet/variants';
 import Icon from './icons/Icon.astro';
 import SlideRevealButton from './SlideRevealButton.astro';
 
@@ -71,7 +66,7 @@ const purchaseUrl = checkoutPath('mw4');
         </SheetTrigger>
         <SheetContent side="right" class="flex w-[min(100vw-2rem,20rem)] flex-col gap-4">
           <SheetHeader>
-            <SheetTitle>{t.site.name}</SheetTitle>
+            <p class={sheetTitle()}>{t.site.name}</p>
           </SheetHeader>
           <nav class="flex flex-col gap-1" aria-label="Mobile">
             {t.nav.map((link) => (

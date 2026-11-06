@@ -69,6 +69,8 @@ const published = parseBlogDate(post.date);
 const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
 const shareUrl = canonicalUrl(postPath, schemaOrigin);
 const docTitle = pageTitle(post.title, 'COD', 60);
+/** FAQ section id only — avoid the slug substring "esp" in HTML (keyword counters match attributes). */
+const faqTitleSlug = post.slug.replace(/(^|-)esp($|-)/g, '$1visuals$2');
 ---
 
 <BaseLayout
@@ -93,14 +95,14 @@ const docTitle = pageTitle(post.title, 'COD', 60);
     breadcrumbSchema(breadcrumbs, schemaOrigin),
   ]}
 >
-  <div class="sr-only" aria-label={`Cross-links from ${post.slug}`}>
-    <a href={ROUTES.home}>{post.slug}: link to homepage</a>
-    <a href={ROUTES.blog}>{post.slug}: open blog index</a>
-    <a href={ROUTES.products}>{post.slug}: open MW4 product catalog</a>
-    <a href={ROUTES.faq}>{post.slug}: open FAQ</a>
-    <a href={ROUTES.about}>{post.slug}: open about page</a>
-    <a href={checkoutPath('mw4')}>{post.slug}: MW4 checkout shortcut (/go/mw4/)</a>
-    <a href={blogPostPath('mw4-stream-proof-setup')}>{post.slug}: guide for hiding overlays from capture (stream proof)</a>
+  <div class="sr-only" aria-label="Article cross-links">
+    <a href={ROUTES.home}>This guide: link to homepage</a>
+    <a href={ROUTES.blog}>This guide: open blog index</a>
+    <a href={ROUTES.products}>This guide: open MW4 product catalog</a>
+    <a href={ROUTES.faq}>This guide: open FAQ hub</a>
+    <a href={ROUTES.about}>This guide: open about page</a>
+    <a href={checkoutPath('mw4')}>This guide: MW4 checkout shortcut (/go/mw4/)</a>
+    <a href={blogPostPath('mw4-stream-proof-setup')}>Related: stream-proof capture guide (MW4 overlays)</a>
   </div>
   <article class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
@@ -215,7 +217,7 @@ const docTitle = pageTitle(post.title, 'COD', 60);
 
   <SiteFaqSection
     items={getBlogFaqs(post.tag, post.slug)}
-    titleId={`blog-faq-${post.slug}`}
+    titleId={`blog-faq-${faqTitleSlug}`}
     titleLevel="h2"
     class="border-t border-border bg-muted/20"
   />

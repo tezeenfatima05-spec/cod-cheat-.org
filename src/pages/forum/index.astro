@@ -71,7 +71,10 @@ const sourceTimestamp = (path?: string) => {
           <p class="forum-results-count" data-forum-visible-count>{forumPosts.length} guide discussions</p>
 
           <div class="forum-post-list" aria-live="polite">
-            {forumPosts.map((post, index) => (
+            {forumPosts.map((post, index) => {
+              const readCta = ['Read this thread', 'View discussion', 'Open Q&A thread'][index % 3];
+              const commentCta = ['View comment thread', 'See replies', 'Open reply list'][index % 3];
+              return (
               <article class="forum-post-card" data-forum-card data-post-slug={post.slug} data-upvotes={post.upvotes} data-category={categoryKey(post.category)} data-comments={post.commentsCount} data-published={sourceTimestamp(post.sourcePath)} data-order={index}>
                 <div class="forum-vote" aria-label="Discussion voting">
                   <button class="forum-vote__up" type="button" data-vote-up aria-label="Upvote this discussion"><Icon name="chevronDown" size={16} /></button>
@@ -89,12 +92,13 @@ const sourceTimestamp = (path?: string) => {
                   {post.sourceTitle && <p class="forum-source">From the guide: <a href={post.sourcePath}>{post.sourceTitle}</a></p>}
                   <div class="forum-post-actions">
                     {post.flair && <span class={`forum-flair tone-${post.categoryTone}`}>{post.flair}</span>}
-                    <a href={`/forum/${post.slug}/`}><Icon name="messageCircle" size={15} /> {post.commentsCount} comments</a>
-                    <a href={`/forum/${post.slug}/`}><Icon name="arrowRight" size={15} /> Read discussion</a>
+                    <a href={`/forum/${post.slug}/`}><Icon name="messageCircle" size={15} /> {commentCta} ({post.commentsCount})</a>
+                    <a href={`/forum/${post.slug}/`}><Icon name="arrowRight" size={15} /> {readCta}</a>
                   </div>
                 </div>
               </article>
-            ))}
+            );
+            })}
           </div>
           <p class="forum-empty" data-forum-empty hidden>No discussions match. Try another search or topic.</p>
           <nav class="forum-pagination" aria-label="Discussion pages" data-forum-pagination hidden>
@@ -109,7 +113,7 @@ const sourceTimestamp = (path?: string) => {
           <section class="forum-side-card forum-about" id="community-guidelines">
             <div class="forum-side-card__banner"></div>
             <div class="forum-about__content">
-              <div class="forum-about__title"><span class="forum-community-avatar forum-community-avatar--brand"><img src="/images/mw4/logo.webp" alt="COD Cheats logo" width="34" height="34" class="rounded-md object-cover" /></span><h2>{SITE_BRAND}</h2></div>
+              <div class="forum-about__title"><span class="forum-community-avatar forum-community-avatar--brand"><img src="/images/mw4/logo.webp" alt="COD Cheats logo" width="34" height="34" class="rounded-md object-cover" /></span><div class="forum-about__title-text">{SITE_BRAND}</div></div>
               <p>Illustrative discussions paired with MW4 guides—posting is disabled here.</p>
               <div class="forum-stats"><span><b>{forumPosts.length}</b> guide discussions</span><span><b>{forumCategories.length}</b> topics</span></div>
               <a class="forum-join" href="/blog/">Explore all guides</a>

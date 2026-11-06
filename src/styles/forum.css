@@ -42,7 +42,7 @@
 .forum-about__content { padding:0 1rem 1rem; }
 .forum-about__title { display:flex; align-items:center; gap:.55rem; margin-top:-.85rem; }
 .forum-about__title .forum-community-avatar { width:2.6rem; height:2.6rem; border:3px solid var(--card); font-size:1.2rem; }
-.forum-about__title h2 { margin:.85rem 0 0; font-size:.95rem; font-weight:800; letter-spacing:0; }
+.forum-about__title .forum-about__title-text { margin:.85rem 0 0; font-size:.95rem; font-weight:800; letter-spacing:0; }
 .forum-about__content>p { margin:.65rem 0 .9rem; color:var(--muted-foreground); font-size:.75rem; line-height:1.55; }
 .forum-stats { display:flex; gap:1rem; padding:.75rem 0; border-top:1px solid var(--border); color:var(--muted-foreground); font-size:.65rem; }
 .forum-stats span { display:flex; align-items:center; gap:.27rem; }.forum-stats b { color:var(--foreground); }
@@ -208,7 +208,7 @@
 .forum-post-card:hover .forum-post-title,
 .forum-detail-content h1,
 .forum-side-heading,
-.forum-about__title h2 { color:var(--foreground); }
+.forum-about__title .forum-about__title-text { color:var(--foreground); }
 .forum-post-title:hover { text-decoration:underline; text-decoration-color:var(--muted-foreground); text-underline-offset:3px; }
 .forum-flair,.forum-flair.tone-blue,.forum-flair.tone-orange,.forum-flair.tone-green { color:var(--muted-foreground); background:var(--muted); }
 .forum-community-avatar,.forum-community-avatar.tone-purple,.forum-community-avatar.tone-blue,.forum-community-avatar.tone-green,.forum-community-avatar.tone-orange { color:var(--foreground); }

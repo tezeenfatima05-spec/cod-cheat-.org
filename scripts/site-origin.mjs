@@ -6,11 +6,12 @@
  */
 export function getPublicSiteOrigin() {
   const trim = (v) => (typeof v === 'string' ? v.trim().replace(/\/$/, '') : '');
-  const explicit = trim(process.env.PUBLIC_SITE_ORIGIN);
-  if (explicit) return explicit;
-  const cfPages = trim(process.env.CF_PAGES_URL);
-  if (cfPages) return cfPages;
-  const cfBranch = trim(process.env.CF_PAGES_BRANCH_URL);
-  if (cfBranch) return cfBranch;
-  return 'https://cod-cheat.org';
+  /** Same preference order as `scripts/finalize-sitemap.mjs` so canonical/hreflang match `<loc>` URLs. */
+  return (
+    trim(process.env.PUBLIC_SITE_ORIGIN) ||
+    trim(process.env.SITEMAP_PUBLIC_ORIGIN) ||
+    trim(process.env.CF_PAGES_URL) ||
+    trim(process.env.CF_PAGES_BRANCH_URL) ||
+    'https://cod-cheat.org'
+  );
 }
