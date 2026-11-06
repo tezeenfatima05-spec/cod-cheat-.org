@@ -28,6 +28,7 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
   sharePageUrl={shareUrl}
   sharePageTitle={seo.title}
   trimOgLocales
+  heavyHeadTrim
   omitHeadSocialSrLinks
   omitBodySitemapLink
   linkAbsoluteBase={schemaOrigin}
@@ -54,25 +55,31 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
     fetchpriority="high"
   />
   <div class="sr-only" aria-label="Site shortcuts">
-    <a href={`${schemaOrigin}/sitemap.xml`}>Crawlable URL manifest (application/xml)</a>
-    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Compare Lite Pro Elite on the MW4 catalog</a>
-    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Chronological MW4 guides and patch writeups</a>
-    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Demo-only forum thread index</a>
-    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Billing HWID and refund topics (FAQ)</a>
-    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>External partner route: /go/mw4/ checkout</a>
-    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Site editorial scope for MW4 coverage</a>
-    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Analytics cookies and support email policy</a>
-    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Digital license purchase and refund wording</a>
-    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Direct help desk for loaders and orders</a>
-    <a href={canonicalUrl(`${ROUTES.blog}mw4-stream-proof-setup/`, schemaOrigin)}>
-      Stream-overlay OBS capture-safe checklist
+    <a href={`${schemaOrigin}/sitemap.xml`}>Machine-readable URL list (application/xml)</a>
+    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>
+      Side-by-side feature matrix for Lite, Pro, and Elite stacks
     </a>
-    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Lite versus Pro tier comparison writeup</a>
-    <a href={canonicalUrl(blogPostPath('mw4-elite-tier-guide'), schemaOrigin)}>Elite tier radar DMZ stack explainer</a>
-    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>Elite tier product column (full module list)</a>
-    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>Lite tier ESP-first module listing</a>
-    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>Pro tier aim and trigger module listing</a>
-    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>Cosmetic and UGC utility hub listing</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Newest-first archive of patch notes and loader setup notes</a>
+    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Sample thread titles in a non-production discussion shell</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>HWID swaps, portal keys, and refund eligibility Q&amp;A</a>
+    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Internal /go/mw4/ hop before off-site payment</a>
+    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Editorial boundaries for MW4 module coverage here</a>
+    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Cookie use and what happens if you email support</a>
+    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>License grant scope and chargeback handling summary</a>
+    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Where to escalate stuck loaders or missing invoices</a>
+    <a href={canonicalUrl(`${ROUTES.blog}mw4-stream-proof-setup/`, schemaOrigin)}>
+      OBS capture filters that keep HUD overlays off recordings
+    </a>
+    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>
+      When ESP-only is enough versus adding aim smoothing
+    </a>
+    <a href={canonicalUrl(blogPostPath('mw4-elite-tier-guide'), schemaOrigin)}>
+      Full spread: 2D radar width plus DMZ loot layer stacks
+    </a>
+    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>Every overlay class listed on one long-form listing</a>
+    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>Box styles, skeletons, and snapline caps for the entry build</a>
+    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>Aim circle tuning plus hold-to-arm trigger timing notes</a>
+    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>UGC utilities and cosmetic unlock tools grouped together</a>
   </div>
   <HeroSection productsSrHref={canonicalUrl(ROUTES.products, schemaOrigin)} />
   <FeaturesSection />
