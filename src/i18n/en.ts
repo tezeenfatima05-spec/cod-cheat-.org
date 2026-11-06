@@ -26,7 +26,7 @@ export const en: Translations = {
     titleLine1: 'COD MW4',
     titleLine2: 'COD Cheats for PC — Aimbot, Player ESP & Wallhack',
     subtitle:
-      'Aim assist, player ESP, trigger timing, 2D radar, and DMZ loot layers tuned for Multiplayer and Hajin—check status before every session.',
+      'cod cheats for pc aimbot player esp wallhack on Windows: aim assist, player ESP, wallhack-style visuals, trigger timing, 2D radar, and DMZ loot layers for Multiplayer and Hajin—check status before every session.',
     ctaPrimary: 'View products',
     ctaDiscord: 'Get access',
     modesLabel: 'Modes',

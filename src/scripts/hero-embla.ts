@@ -115,9 +115,32 @@ async function initHeroCarousels(root: ParentNode = document) {
   });
 }
 
+function whenHeroInView(cb: () => void) {
+  const wrap = document.querySelector('[data-hero-embla-wrap]');
+  if (!wrap) return;
+  if (typeof IntersectionObserver === 'undefined') {
+    cb();
+    return;
+  }
+  const io = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry?.isIntersecting) return;
+      io.disconnect();
+      cb();
+    },
+    { rootMargin: '120px 0px', threshold: 0 },
+  );
+  io.observe(wrap);
+}
+
 export function setupHeroEmbla() {
   const run = () => {
-    void initHeroCarousels();
+    if (!window.matchMedia(DESKTOP_MQ).matches) return;
+    const schedule =
+      typeof window.requestIdleCallback === 'function'
+        ? (fn: () => void) => window.requestIdleCallback(fn, { timeout: 2200 })
+        : (fn: () => void) => window.setTimeout(fn, 350);
+    whenHeroInView(() => schedule(() => void initHeroCarousels()));
   };
 
   run();

@@ -1,5 +1,3 @@
-import { initBlogIndexFilters } from './blog-index';
-
 function initFonts() {
   const root = document.documentElement;
 
@@ -163,8 +161,9 @@ function initThemeMetaColor() {
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 }
 
-function initBlogPage() {
+async function initBlogPage() {
   if (!document.getElementById('blog-grid')) return;
+  const { initBlogIndexFilters } = await import('./blog-index');
   initBlogIndexFilters();
 }
 
@@ -175,7 +174,7 @@ function bootSite() {
   initInPageScroll();
   initSkipLink();
   initThemeMetaColor();
-  initBlogPage();
+  void initBlogPage().catch(() => {});
 }
 
 if (document.readyState === 'loading') {
@@ -185,5 +184,5 @@ if (document.readyState === 'loading') {
 }
 
 document.addEventListener('astro:page-load', () => {
-  initBlogPage();
+  void initBlogPage().catch(() => {});
 });

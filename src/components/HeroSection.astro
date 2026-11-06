@@ -2,9 +2,11 @@
 import { t } from '../i18n';
 import { ROUTES } from '../utils/path';
 import { SITE_ASSETS } from '../config/site';
+import { HERO_IMAGE_WIDTHS, HERO_IMAGE_SIZES } from '../utils/responsiveImage';
 import { heroSlides } from '../data/products';
 import { compatibilityIcons, heroStatIcons, heroStatusPills } from '../data/sectionIcons';
 import ImageSlider from './ImageSlider.astro';
+import ResponsiveImage from './ResponsiveImage.astro';
 import Icon from './icons/Icon.astro';
 import { Button } from '@/components/starwind/button';
 import { Badge } from '@/components/starwind/badge';
@@ -103,7 +105,22 @@ const heroPoster = SITE_ASSETS.heroPoster;
               </video>
             </div>
           ) : (
-            <ImageSlider images={heroSlides} id="hero-slider" variant="hero" desktopOnly />
+            <>
+              <div class="w-full lg:hidden">
+                <ResponsiveImage
+                  src={heroPoster}
+                  alt="MW4 cheat overlay preview on PC"
+                  width={640}
+                  height={400}
+                  loading="eager"
+                  fetchPriority="high"
+                  sizes="100vw"
+                  widths={HERO_IMAGE_WIDTHS}
+                  class="aspect-[16/10] w-full rounded-xl border border-border/90 bg-card object-cover shadow-lg shadow-black/20"
+                />
+              </div>
+              <ImageSlider images={heroSlides} id="hero-slider" variant="hero" desktopOnly />
+            </>
           )
         }
         <div class="grid w-full grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4 lg:grid-cols-2">
