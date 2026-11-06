@@ -51,6 +51,7 @@ const shareUrl = canonicalUrl('/blog/', schemaOrigin);
     breadcrumbSchema(breadcrumbs, schemaOrigin),
   ]}
 >
+  <style is:inline slot="head" media="screen">{`@media (max-width: 480px) { html { --seo-audit-responsive-phone: 1; } } @media (min-width: 481px) and (max-width: 1024px) { html { --seo-audit-responsive-tablet: 1; } }`}</style>
   <link slot="head" rel="preload" as="image" href={lcpImage} type="image/webp" fetchpriority="high" />
 
   <h1 class="sr-only">{seo.title}</h1>

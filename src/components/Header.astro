@@ -41,7 +41,12 @@ const purchaseUrl = absHref(checkoutPath('mw4'));
     <div
       class="pointer-events-auto relative flex h-14 w-full max-w-6xl items-center justify-between gap-3 rounded-2xl border border-border/40 bg-background/35 px-4 text-foreground shadow-md shadow-black/5 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/25 dark:border-white/10 dark:bg-background/20 dark:shadow-black/25 sm:px-5 lg:h-[3.75rem]"
     >
-    <a href={absHref('/')} class="inline-flex min-w-0 items-center gap-2 font-[family-name:var(--font-heading)] text-lg font-bold tracking-wide" aria-label={t.ui.homeAria}>
+    <a
+      href={absHref('/')}
+      class="inline-flex min-w-0 items-center gap-2 font-[family-name:var(--font-heading)] text-lg font-bold tracking-wide"
+      aria-label="COD Cheats — header home"
+    >
+      <span class="sr-only">Branding header · </span>
       <img src={SITE_ASSETS.logo} alt="COD Cheats" width="32" height="32" class="size-8 shrink-0 rounded-md object-cover" />
       <span class="truncate" aria-hidden="true">COD<span class="text-primary"> Cheats</span></span>
     </a>
@@ -55,6 +60,7 @@ const purchaseUrl = absHref(checkoutPath('mw4'));
           {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
         >
           <Icon name={navIcons[link.label] ?? 'navFeatures'} size={16} />
+          <span class="sr-only">Primary nav · </span>
           {link.label}
         </a>
       ))}
@@ -91,6 +97,7 @@ const purchaseUrl = absHref(checkoutPath('mw4'));
                 {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
               >
                 <Icon name={navIcons[link.label] ?? 'navFeatures'} size={16} />
+                <span class="sr-only">Mobile nav · </span>
                 {link.label}
               </a>
             ))}

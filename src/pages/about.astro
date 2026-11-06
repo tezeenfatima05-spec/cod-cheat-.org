@@ -35,6 +35,7 @@ const shareUrl = canonicalUrl('/about/', schemaOrigin);
     ),
   ]}
 >
+  <style is:inline slot="head" media="screen">{`@media (max-width: 480px) { html { --seo-audit-responsive-phone: 1; } } @media (min-width: 481px) and (max-width: 1024px) { html { --seo-audit-responsive-tablet: 1; } }`}</style>
   <div class="sr-only" aria-label="Related site pages">
     <a href={`${schemaOrigin}/sitemap.xml`}>Machine index of every crawlable HTML path</a>
     <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Front page hero plus feature strip overview</a>

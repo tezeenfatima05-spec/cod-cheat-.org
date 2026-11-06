@@ -34,7 +34,10 @@ function crumbHref(path: string): string {
             {isLast ? (
               <BreadcrumbPage>{item.name}</BreadcrumbPage>
             ) : (
-              <BreadcrumbLink href={crumbHref(item.path)}>{item.name}</BreadcrumbLink>
+              <BreadcrumbLink href={crumbHref(item.path)}>
+                <span class="sr-only">Breadcrumb · </span>
+                {item.name}
+              </BreadcrumbLink>
             )}
           </CrumbItem>
           {!isLast && <BreadcrumbSeparator />}

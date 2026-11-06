@@ -362,7 +362,7 @@ const srCrosslinks: { href: string; label: string }[] = (() => {
   </article>
 
   <SiteFaqSection
-    items={getBlogFaqs(post.tag, post.slug)}
+    items={getBlogFaqs(post.tag, post.slug, schemaOrigin)}
     titleId={`blog-faq-${faqTitleSlug}`}
     titleLevel={post.slug === 'mw4-lite-vs-pro' ? 'h2' : 'h3'}
     class="border-t border-border bg-muted/20"

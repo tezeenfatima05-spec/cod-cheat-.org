@@ -215,9 +215,10 @@ html::-webkit-scrollbar,
 
 .hero-section__title {
   font-family: var(--font-heading);
-  font-size: clamp(2.375rem, 5.8vw + 0.35rem, 3.85rem);
+  /* Slightly smaller than before — still dominant on large screens */
+  font-size: clamp(2.0625rem, 4.85vw + 0.28rem, 3.35rem);
   font-weight: 700;
-  line-height: 1.04;
+  line-height: 1.06;
   letter-spacing: 0.055em;
   text-transform: uppercase;
   font-feature-settings: 'ss01' on, 'case' on;

@@ -21,6 +21,7 @@ const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
 <div class:list={['blog-article__toolbar', className]}>
   <a href={backHref} class="blog-article__toolbar-back shrink-0">
     <Icon name="chevronLeft" size={15} aria-hidden="true" />
+    <span class="sr-only">Article toolbar · </span>
     All articles
   </a>
   <div class="blog-article__toolbar-meta">

@@ -34,7 +34,12 @@ const legalLinks = [
   <div class="mx-auto max-w-6xl px-5">
     <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
       <div class="space-y-4">
-        <a href={absHref('/')} class="inline-flex items-center gap-2.5 font-[family-name:var(--font-heading)] text-lg font-bold" aria-label={t.ui.homeAria}>
+        <a
+          href={absHref('/')}
+          class="inline-flex items-center gap-2.5 font-[family-name:var(--font-heading)] text-lg font-bold"
+          aria-label="COD Cheats — footer home"
+        >
+          <span class="sr-only">Branding footer · </span>
           <img src={SITE_ASSETS.logo} alt="COD Cheats site mark" width="32" height="32" class="size-8 rounded-md object-cover" />
           <span aria-hidden="true">COD<span class="text-primary"> Cheats</span></span>
         </a>
@@ -52,6 +57,7 @@ const legalLinks = [
                 aria-label={link.ariaLabel}
                 {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
               >
+                <span class="sr-only">Footer explore · </span>
                 {link.label}
               </a>
             </li>
@@ -65,6 +71,7 @@ const legalLinks = [
           {resourceLinks.map((link) => (
             <li>
               <a href={absHref(link.href)} class="text-sm text-muted-foreground hover:text-primary" aria-label={link.ariaLabel}>
+                <span class="sr-only">Footer resources · </span>
                 {link.label}
               </a>
             </li>
@@ -77,7 +84,10 @@ const legalLinks = [
         <ul class="mt-3 space-y-2">
           {legalLinks.map((link) => (
             <li>
-              <a href={absHref(link.href)} class="text-sm text-muted-foreground hover:text-primary">{link.label}</a>
+              <a href={absHref(link.href)} class="text-sm text-muted-foreground hover:text-primary">
+                <span class="sr-only">Footer legal · </span>
+                {link.label}
+              </a>
             </li>
           ))}
         </ul>

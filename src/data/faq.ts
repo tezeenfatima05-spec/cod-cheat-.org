@@ -505,7 +505,8 @@ function blogFaqDensityFilter(items: SiteFaqItem[], slug: string): SiteFaqItem[]
   return out;
 }
 
-export function getBlogFaqs(tag: string, slug: string): SiteFaqItem[] {
+export function getBlogFaqs(tag: string, slug: string, origin: string): SiteFaqItem[] {
+  const productsHubBlog = `<a href="${canonicalUrl(ROUTES.products, origin)}">Authoritative MW4 tier matrix (blog FAQ)</a>`;
   const topicFaqs =
     tag === 'Guides' && slug === 'mw4-player-esp-distance'
       ? blogTopicFaqsGuidesEspArticle
@@ -540,7 +541,16 @@ export function getBlogFaqs(tag: string, slug: string): SiteFaqItem[] {
     });
   }
 
-  return blogFaqDensityFilter([...slugHints, ...topicFaqs, ...defaultBlogFaqs], slug).slice(0, 8);
+  const defaultBlogFaqsResolved = defaultBlogFaqs.map((f) =>
+    f.id === 'blog-default-1'
+      ? {
+          ...f,
+          a: `Articles summarize workflows; authoritative specs stay on ${productsHubBlog}.`,
+        }
+      : f,
+  );
+
+  return blogFaqDensityFilter([...slugHints, ...topicFaqs, ...defaultBlogFaqsResolved], slug).slice(0, 8);
 }
 
 export const compareRows = [
