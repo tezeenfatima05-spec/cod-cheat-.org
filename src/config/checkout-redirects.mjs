@@ -9,9 +9,6 @@ export const CHECKOUT_URLS = {
  * /go/mw4/, /go/ugc/, /go/skin-changer/ are static pages with SEO + meta refresh — not listed here.
  */
 export const CHECKOUT_PATH_REDIRECTS = new Map([
-  // Legacy template paths → current MW4 checkout
-  ['/go/dota-2', CHECKOUT_URLS.mw4],
-  ['/go/dota-2/', CHECKOUT_URLS.mw4],
   ['/go/hwid-spoofer', CHECKOUT_URLS.mw4],
   ['/go/hwid-spoofer/', CHECKOUT_URLS.mw4],
 ]);

@@ -10,7 +10,7 @@ process.env.PUBLIC_SITE_ORIGIN = site;
 
 export default defineConfig({
   site,
-  // Dev URL: http://localhost:5555/ — separate from common tooling / other games (override: `PORT=8080 npm run dev`)
+  // Dev URL: http://localhost:5555/ (override: `PORT=8080 npm run dev`)
   server: {
     host: true,
     port: Number(process.env.PORT) || 5555,
@@ -23,11 +23,6 @@ export default defineConfig({
     '/cheats/elite/': '/products/cod-cheats/elite/',
     '/cheats/compare/': '/blog/mw4-lite-vs-pro/',
     '/contact/': '/support/',
-    '/products/dota-2-cheats/': '/products/cod-cheats/',
-    '/products/dota-2-cheats/lite/': '/products/cod-cheats/lite/',
-    '/products/dota-2-cheats/pro/': '/products/cod-cheats/pro/',
-    '/products/dota-2-cheats/elite/': '/products/cod-cheats/elite/',
-    '/products/dota-2-cheats/utilities/': '/products/cod-cheats/utilities/',
     '/products/cod-cheats/hwid-spoofer/': '/products/cod-cheats/',
   },
   compressHTML: true,

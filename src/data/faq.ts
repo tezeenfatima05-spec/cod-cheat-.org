@@ -223,7 +223,7 @@ export const siteFaqs: SiteFaqItem[] = [
   {
     id: 'patch-update',
     topic: 'safety',
-    icon: 'faqVacUpdate',
+    icon: 'faqPatchUpdate',
     q: 'What should I do after a big patch?',
     a: a(`Pause ranked play until ${SITE_DOMAIN} shows the build online, download the latest portal build, and retest in a private lobby.`),
   },
@@ -461,7 +461,7 @@ const blogTopicFaqs: Record<string, SiteFaqItem[]> = {
     {
       id: 'blog-sec-patch',
       topic: 'blog',
-      icon: 'faqBlogSecVac',
+      icon: 'faqBlogSecEnforcement',
       q: 'Does this article guarantee safe play after enforcement waves?',
       a: a('No. Treat enforcement chatter as a stop sign until status clears.'),
     },

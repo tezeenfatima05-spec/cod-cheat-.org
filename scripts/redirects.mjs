@@ -18,14 +18,8 @@ export const PATH_REDIRECTS = new Map([
   ['/cheats/elite/', '/products/cod-cheats/elite/'],
   ['/cheats/compare', '/blog/mw4-lite-vs-pro/'],
   ['/cheats/compare/', '/blog/mw4-lite-vs-pro/'],
-  ['/products/dota-2-cheats/utilities', '/products/cod-cheats/utilities/'],
-  ['/products/dota-2-cheats/utilities/', '/products/cod-cheats/utilities/'],
-  ['/products/dota-2-cheats', '/products/cod-cheats/'],
-  ['/products/dota-2-cheats/', '/products/cod-cheats/'],
   ['/products/cod-cheats/utilities', '/products/cod-cheats/utilities/'],
   ['/products/cod-cheats', '/products/cod-cheats/'],
-  ['/products/dota-2-cheats/account-recovery', '/products/cod-cheats/'],
-  ['/products/dota-2-cheats/account-recovery/', '/products/cod-cheats/'],
 ]);
 
 /** Paths that should not receive a forced trailing slash. */
