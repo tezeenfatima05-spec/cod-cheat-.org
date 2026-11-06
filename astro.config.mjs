@@ -54,6 +54,7 @@ export default defineConfig({
     },
   },
   build: {
-    inlineStylesheets: 'always',
+    // Let Astro externalize larger CSS so HTML parses faster; small critical CSS may still inline.
+    inlineStylesheets: 'auto',
   },
 });
