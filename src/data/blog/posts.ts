@@ -98,7 +98,8 @@ export const blogPosts: BlogPostFull[] = [
   },
   {
     tag: 'Guides',
-    title: 'Lite vs Pro: which COD MW4 tier fits you',
+    title:
+      'Lite vs Pro: ESP-only versus adding smooth aim and trigger modules — which COD MW4 tier fits you',
     slug: 'mw4-lite-vs-pro',
     image: '/images/mw4/screenshot-4.webp',
     metaDesc:
@@ -144,7 +145,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'mw4-2d-radar-zoom',
     image: '/images/mw4/screenshot-6.webp',
     metaDesc:
-      'Radar: when to widen the map for Ground War versus tight MP spawns. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist (stream overlays).',
+      'When to widen the radar for Ground War versus tight MP spawns. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist (stream overlays).',
     desc: 'When to widen the radar for Ground War versus tight MP spawns.',
     date: 'Oct 31, 2026',
     readTime: '5 min read',
@@ -198,7 +199,7 @@ export const blogPosts: BlogPostFull[] = [
   },
   {
     tag: 'Guides',
-    title: 'Elite tier: radar + DMZ + misc stack explained',
+    title: 'Elite tier cheats: radar + DMZ + misc stack explained',
     slug: 'mw4-elite-tier-guide',
     image: '/images/mw4/screenshot-1.webp',
     desc: 'What unlocks when you need every overlay class on PC.',
@@ -254,7 +255,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'anticheat-patch-day-checklist',
     image: '/images/mw4/screenshot-4.webp',
     metaDesc:
-      'Checklist: Pause play, read status, reload conservative profiles, then retest offline. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist (stream overlays).',
+      'Checklist: Pause play, read status, reload conservative profiles, offline retest. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist.',
     desc: 'Pause play, read status, reload conservative profiles, then retest offline.',
     date: 'Oct 26, 2026',
     readTime: '5 min read',
@@ -336,7 +337,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'how-to-buy-cod-mw4-cheats',
     image: '/images/mw4/screenshot-2.webp',
     metaDesc:
-      'buy cod mw4 cheats securely: Portal access, order email hygiene, and avoiding fake loader links. Checkout: /go/mw4/.',
+      'buy cod mw4 cheats securely: Portal access, order email hygiene, avoiding fake loaders. Checkout: /go/mw4/. Use order email for portal.',
     desc: 'Portal access, order email hygiene, and avoiding fake loader links.',
     date: 'Oct 21, 2026',
     readTime: '5 min read',

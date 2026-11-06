@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { t } from '../i18n';
 import { resolvePageSeo, canonicalUrl, resolveDocumentOrigin } from '../config/seo';
-import { ROUTES, blogPostPath } from '../utils/path';
+import { ROUTES, blogPostPath, productPath } from '../utils/path';
 
 const seo = resolvePageSeo('/about/');
 import LegalPage from '../components/LegalPage.astro';
@@ -36,13 +36,18 @@ const shareUrl = canonicalUrl('/about/', schemaOrigin);
   ]}
 >
   <div class="sr-only" aria-label="Related site pages">
-    <a href={`${schemaOrigin}/sitemap.xml`}>Crawl map — XML sitemap for every route</a>
-    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Site entry — COD MW4 homepage</a>
-    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Guides archive — newest posts first</a>
-    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Lite versus Pro — feature tradeoffs</a>
-    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Data practices — privacy statement</a>
-    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Help center — licensing FAQ topics</a>
-    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Contact support — orders and loaders</a>
+    <a href={`${schemaOrigin}/sitemap.xml`}>XML index — every indexable href</a>
+    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Landing — ZADEYO MW4 cheat overview</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Blog roll — newest MW4 guides first</a>
+    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Comparison post — Lite tier vs Pro</a>
+    <a href={canonicalUrl(blogPostPath('anticheat-patch-day-checklist'), schemaOrigin)}>Updates post — anticheat patch-day list</a>
+    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Catalog — tier comparison hub</a>
+    <a href={canonicalUrl(productPath('elite'), schemaOrigin)}>Elite page — DMZ and radar bundle</a>
+    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Forum demo — sample MW4 threads</a>
+    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Privacy — analytics and contact data</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>FAQ hub — refunds and keys</a>
+    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Support — email for loader issues</a>
+    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Terms — purchase and refund policy</a>
   </div>
   <LegalPage
     title={content.title}

@@ -17,7 +17,7 @@ import Icon from '../../components/icons/Icon.astro';
 import { blogTagIcons } from '../../data/sectionIcons';
 import type { IconName } from '../../components/icons/types';
 import { Button } from '@/components/starwind/button';
-import { ROUTES, blogPostPath } from '../../utils/path';
+import { ROUTES, blogPostPath, productPath } from '../../utils/path';
 import { checkoutPath } from '../../config/checkout';
 
 const seo = resolvePageSeo('/blog/');
@@ -56,14 +56,22 @@ const shareUrl = canonicalUrl('/blog/', schemaOrigin);
   <h1 class="sr-only">{seo.title}</h1>
 
   <div class="sr-only" aria-label="Related site entry points">
-    <a href={`${schemaOrigin}/sitemap.xml`}>Sitemap XML — full URL list for crawlers</a>
-    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Homepage — MW4 landing overview</a>
-    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Product catalog — tier lineup</a>
-    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Secure access — partner /go/mw4/ route</a>
-    <a href={canonicalUrl(blogPostPath('mw4-player-esp-distance'), schemaOrigin)}>6v6 ESP distance caps — player overlays</a>
-    <a href={canonicalUrl(blogPostPath('mw4-triggerbot-guide'), schemaOrigin)}>Trigger timing — hold-key MW4 setup</a>
-    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>About — editorial and publishing notes</a>
-    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Forum demo — placeholder threads</a>
+    <a href={`${schemaOrigin}/sitemap.xml`}>Crawler manifest — application/xml sitemap</a>
+    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Root URL — MW4 cheats homepage</a>
+    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Hub page — Lite Pro Elite table</a>
+    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Partner redirect — /go/mw4/ purchase</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Help index — licensing FAQ topics</a>
+    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Support inbox — loader and billing</a>
+    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Privacy doc — cookies and email</a>
+    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Terms doc — digital license rules</a>
+    <a href={canonicalUrl(blogPostPath('mw4-player-esp-distance'), schemaOrigin)}>Featured topic: ESP distance in 6v6</a>
+    <a href={canonicalUrl(blogPostPath('mw4-triggerbot-guide'), schemaOrigin)}>Featured topic: trigger hold-key timing</a>
+    <a href={canonicalUrl(blogPostPath('mw4-2d-radar-zoom'), schemaOrigin)}>Featured topic: Ground War radar zoom</a>
+    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>About URL — editorial publishing scope</a>
+    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Forum URL — demo layout threads</a>
+    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>Elite SKU URL — full stack page</a>
+    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>Lite SKU URL — ESP-first page</a>
+    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>Utilities URL — UGC and extras</a>
   </div>
 
   <div class="sr-only">Featured MW4 story section</div>

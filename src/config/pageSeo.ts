@@ -12,7 +12,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
     title: 'Cod Cheats For Pc Aimbot Player Esp Wallhack – COD Cheats',
     description:
-      'Cod Cheats For Pc Aimbot Player Esp Wallhack: Explore ZADEYO COD cheats for PC featuring aimbot, player ESP, wallhack, enemy tracking, triggerbot, and.',
+      'cod cheats for pc aimbot player esp wallhack: ZADEYO COD cheats on PC—aimbot, player ESP, wallhack, enemy tracking, triggerbot, and tier plans.',
   },
   '/products/cod-cheats/': {
     title: 'COD MW4 Cheats for PC — Aimbot, ESP & Wallhack',
@@ -82,17 +82,17 @@ export const BLOG_PAGE_SEO: Record<string, PageSeoEntry> = {
   '/blog/anticheat-patch-day-checklist/': {
     title: 'Checklist – COD Cheats Editorial When enforcement |',
     description:
-      'Checklist: Pause play, read status, reload conservative profiles, then retest offline. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist (stream overlays).',
+      'Checklist: Pause play, read status, reload conservative profiles, offline retest. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist.',
   },
   '/blog/how-to-buy-cod-mw4-cheats/': {
     title: 'buy cod mw4 cheats securely – portal access & order email',
     description:
-      'buy cod mw4 cheats securely: Portal access, order email hygiene, and avoiding fake loader links. Checkout: /go/mw4/.',
+      'buy cod mw4 cheats securely: Portal access, order email hygiene, avoiding fake loaders. Checkout: /go/mw4/. Use order email for portal.',
   },
   '/blog/mw4-2d-radar-zoom/': {
     title: 'Radar – Articles summarize workflows; authoritative |',
     description:
-      'When to widen the radar for Ground War versus tight MP spawns. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist (stream overlays). All articles.',
+      'When to widen the radar for Ground War versus tight MP spawns. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist (stream overlays).',
   },
   '/blog/mw4-elite-tier-guide/': {
     title: 'Elite tier — radar, DMZ & misc stack for MW4 PC cheats',
