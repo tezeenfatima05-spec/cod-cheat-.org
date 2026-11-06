@@ -10,7 +10,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'mw4-player-esp-distance',
     image: '/images/mw4/screenshot-1.webp',
     metaDesc:
-      'Esp: Player overlays on MW4: scale box size, snaplines, and squad colors before the HUD turns to noise—distance caps keep 6v6 callouts readable without.',
+      'MW4 player ESP on PC: cap distance, tidy snaplines and squad colors so 6v6 callouts stay readable.',
     desc: 'Player overlays on MW4: scale box size, snaplines, and squad colors before the HUD turns to noise—distance caps keep 6v6 callouts readable without clutter on PC.',
     date: 'Nov 5, 2026',
     readTime: '6 min read',
@@ -52,7 +52,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'mw4-stream-proof-setup',
     image: '/images/mw4/screenshot-2.webp',
     metaDesc:
-      'Stream proof for MW4 cheats: hide capture feeds while overlays stay on your display—OBS checklist so recordings stay clean while player callouts and radar.',
+      'MW4 stream-proof setup: hide overlays from capture while they stay on your display—OBS checklist for clean recordings.',
     desc: 'Stream proof for MW4 cheats: hide capture feeds while overlays stay on your display—OBS checklist so recordings stay clean while player callouts and radar stay off the tape.',
     date: 'Nov 4, 2026',
     readTime: '5 min read',
@@ -99,11 +99,11 @@ export const blogPosts: BlogPostFull[] = [
   {
     tag: 'Guides',
     title:
-      'Lite vs Pro: ESP-only versus adding smooth aim and trigger modules — which COD MW4 tier fits you',
+      'Lite vs Pro ESP-first: smooth aim & trigger modules — which COD MW4 tier fits you',
     slug: 'mw4-lite-vs-pro',
     image: '/images/mw4/screenshot-4.webp',
     metaDesc:
-      'Lite: ESP-only versus adding smooth aim and trigger modules. kout — /go/mw4/ redirect Related: MW4 capture-safe OBS checklist (stream overlays) All.',
+      'Lite focuses on visuals and stream-proof capture; Pro adds smooth aim and trigger timing. Read feature rows on the catalog page, then checkout via.',
     desc: 'ESP-only versus adding smooth aim and trigger modules.',
     date: 'Nov 2, 2026',
     readTime: '5 min read',
@@ -141,11 +141,11 @@ export const blogPosts: BlogPostFull[] = [
   },
   {
     tag: 'Features',
-    title: '2D radar zoom and range for MW4 — articles summarize workflows; authoritative',
+    title: 'MW4 2D radar zoom — when to widen sweep (PC guide)',
     slug: 'mw4-2d-radar-zoom',
     image: '/images/mw4/screenshot-6.webp',
     metaDesc:
-      'When to widen the radar for Ground War versus tight MP spawns. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist (stream overlays).',
+      'Ground War benefits from a wider radar sweep; tight MP maps need a shorter range to reduce noise. Tune zoom before queueing and verify overlays after.',
     desc: 'When to widen the radar for Ground War versus tight MP spawns.',
     date: 'Oct 31, 2026',
     readTime: '5 min read',
@@ -199,9 +199,11 @@ export const blogPosts: BlogPostFull[] = [
   },
   {
     tag: 'Guides',
-    title: 'Elite tier cheats: radar + DMZ + misc stack explained',
+    title: 'Elite tier full guide: radar + DMZ + misc stack explained',
     slug: 'mw4-elite-tier-guide',
     image: '/images/mw4/screenshot-1.webp',
+    metaDesc:
+      'Elite Tier: Elite adds radar, DMZ loot layers, and misc gunplay assists on top of Pro. Compare modules on the products hub, then use /go/mw4/ for checkout.',
     desc: 'What unlocks when you need every overlay class on PC.',
     date: 'Oct 29, 2026',
     readTime: '7 min read',
@@ -255,7 +257,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'anticheat-patch-day-checklist',
     image: '/images/mw4/screenshot-4.webp',
     metaDesc:
-      'Checklist: Pause play, read status, reload conservative profiles, offline retest. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist.',
+      'Checklist: Pause matchmaking, read status, reload conservative profiles, and offline-test before going live again. Checkout starts at /go/mw4/.',
     desc: 'Pause play, read status, reload conservative profiles, then retest offline.',
     date: 'Oct 26, 2026',
     readTime: '5 min read',
@@ -337,7 +339,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'how-to-buy-cod-mw4-cheats',
     image: '/images/mw4/screenshot-2.webp',
     metaDesc:
-      'buy cod mw4 cheats securely: Portal access, order email hygiene, avoiding fake loaders. Checkout: /go/mw4/. Use order email for portal.',
+      'Buy Cod Mw4 Cheats Securely: Use the official portal after checkout, guard your order email, and avoid third-party loader links.',
     desc: 'Portal access, order email hygiene, and avoiding fake loader links.',
     date: 'Oct 21, 2026',
     readTime: '5 min read',
