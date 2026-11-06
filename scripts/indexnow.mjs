@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { getDistRoot } from './dist-root.mjs';
 
-const root = process.cwd();
-const dist = path.join(root, 'dist');
+const dist = getDistRoot();
 const key = process.env.INDEXNOW_KEY?.trim();
 const host = process.env.INDEXNOW_HOST?.trim() || 'cod-cheat.org';
 
@@ -13,7 +13,7 @@ if (!key) {
 
 const sitemapPath = path.join(dist, 'sitemap.xml');
 if (!fs.existsSync(sitemapPath)) {
-  console.warn('IndexNow: dist/sitemap.xml missing — skipping ping.');
+  console.warn(`IndexNow: ${path.relative(process.cwd(), sitemapPath)} missing — skipping ping.`);
   process.exit(0);
 }
 

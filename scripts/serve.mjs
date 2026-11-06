@@ -4,9 +4,10 @@ import path from 'node:path';
 import zlib from 'node:zlib';
 import { resolvePathRedirect } from './redirects.mjs';
 import { resolveCheckoutPathRedirect } from '../src/config/checkout-redirects.mjs';
+import { getDistRoot } from './dist-root.mjs';
 
 const CANONICAL_HOST = 'cod-cheat.org';
-const distDir = path.resolve('dist');
+const distDir = getDistRoot();
 const port = Number(process.env.PORT) || 3000;
 
 const MIME = {
@@ -40,7 +41,7 @@ const COMPRESSIBLE = new Set([
 ]);
 
 if (!fs.existsSync(distDir)) {
-  console.error('Missing dist/ folder. Run npm run build before starting the server.');
+  console.error(`Missing build output (${distDir}). Run npm run build before starting the server.`);
   process.exit(1);
 }
 
