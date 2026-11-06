@@ -2,9 +2,15 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { sitemapSerialize } from './src/config/sitemap.ts';
+import { getPublicSiteOrigin } from './scripts/site-origin.mjs';
+
+const site = getPublicSiteOrigin();
+if (!process.env.PUBLIC_SITE_ORIGIN) {
+  process.env.PUBLIC_SITE_ORIGIN = site;
+}
 
 export default defineConfig({
-  site: 'https://cod-cheat.org',
+  site,
   // Dev URL: http://localhost:5555/ — separate from common tooling / other games (override: `PORT=8080 npm run dev`)
   server: {
     host: true,

@@ -289,28 +289,28 @@ export const en: Translations = {
     items: [
       {
         tag: 'Guides',
-        title: 'MW4 player ESP: distance caps that keep 6v6 readable',
+        title: 'MW4 cheats player ESP: distance caps that keep 6v6 readable',
         slug: 'mw4-player-esp-distance',
         image: '/images/mw4/screenshot-1.webp',
-        desc: 'How to tune box scale, snaplines, and squad colors before the HUD turns to noise.',
+        desc: 'Esp on MW4: scale box size, snaplines, and squad colors before the HUD turns to noise—distance caps keep 6v6 esp overlays readable without clutter on PC.',
         date: 'Nov 5, 2026',
         readTime: '6 min read',
       },
       {
         tag: 'Setup',
-        title: 'Stream-proof overlay checklist for MW4',
+        title: 'Stream-proof overlay checklist for MW4 cheats',
         slug: 'mw4-stream-proof-setup',
         image: '/images/mw4/screenshot-2.webp',
-        desc: 'Hide capture feeds while keeping overlays on-screen for play.',
+        desc: 'Stream proof for MW4 cheats: hide capture feeds while overlays stay on your display—OBS checklist so recordings stay clean while ESP and radar remain visible in game.',
         date: 'Nov 4, 2026',
         readTime: '5 min read',
       },
       {
         tag: 'Features',
-        title: 'Triggerbot delay and hold-key workflow',
+        title: 'Triggerbot delay and hold key for MW4 cheats',
         slug: 'mw4-triggerbot-guide',
         image: '/images/mw4/screenshot-3.webp',
-        desc: 'Match trigger timing to your sensitivity so sprays stay believable.',
+        desc: 'Triggerbot delay and hold key for MW4: match timing to sensitivity so sprays stay believable—use a short delay plus hold key gating so bursts stay intentional on PC.',
         date: 'Nov 3, 2026',
         readTime: '6 min read',
       },
@@ -612,7 +612,7 @@ export const en: Translations = {
         {
           heading: 'Who we are',
           paragraphs: [
-            'COD Cheats is an informational site for PC players evaluating Modern Warfare-style modules: aim assist, ESP, radar, DMZ loot overlays, and related utilities.',
+            'This site is an informational resource for PC players evaluating Modern Warfare-style modules: aim assist, ESP, radar, DMZ loot overlays, and related utilities.',
             'Game names are used for identification only.',
           ],
         },
@@ -621,6 +621,7 @@ export const en: Translations = {
           paragraphs: [
             'Tier pages explain differences between Lite, Pro, and Elite bundles. The blog expands on tuning, DMZ-specific layers, and patch-day behavior.',
             'Checkout happens through external secure flows—we do not store card numbers on this domain.',
+            'Editorial standards keep claims conservative: we describe published module groups and link to secure checkout rather than promising undetectable play.',
           ],
         },
         {
@@ -639,12 +640,14 @@ export const en: Translations = {
           heading: 'Information we collect',
           paragraphs: [
             'We may collect basic analytics (pages viewed, device type, browser) when measurement tools are enabled. Checkout is handled off-site.',
+            'Contact form or email content is stored only as long as needed to answer your request, then removed or archived per routine mailbox policy.',
           ],
         },
         {
           heading: 'How we use data',
           paragraphs: [
             'Analytics help us fix broken links and prioritize guides. Support tickets retain the content you send until the issue resolves.',
+            'We do not sell personal data. Aggregated traffic metrics may be exported to internal spreadsheets without identifying individuals.',
           ],
         },
         {

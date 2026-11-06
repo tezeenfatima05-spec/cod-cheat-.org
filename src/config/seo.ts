@@ -2,7 +2,15 @@ import { t } from '../i18n';
 import { SITE_ASSETS, SITE_DOMAIN as INDEXNOW_HOST_NAME } from './site';
 import { getPageSeoEntry } from './pageSeo';
 
-export const SITE_ORIGIN = `https://${t.site.domain}`;
+/**
+ * Canonical origin for OG URLs, hreflang, and JSON-LD — mirrors `site` in astro.config.mjs
+ * (`import.meta.env.SITE` is set from that value at build time).
+ */
+export const SITE_ORIGIN = (
+  typeof import.meta.env.SITE === 'string'
+    ? import.meta.env.SITE.replace(/\/$/, '')
+    : (import.meta.env.PUBLIC_SITE_ORIGIN?.replace(/\/$/, '') ?? `https://${t.site.domain}`)
+) as string;
 
 export const DEFAULT_OG_IMAGE = SITE_ASSETS.ogImage;
 

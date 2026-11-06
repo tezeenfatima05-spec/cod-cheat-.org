@@ -1,10 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { getDistRoot } from './dist-root.mjs';
+import { getPublicSiteOrigin } from './site-origin.mjs';
 
 const dist = getDistRoot();
 const key = process.env.INDEXNOW_KEY?.trim();
-const host = process.env.INDEXNOW_HOST?.trim() || 'cod-cheat.org';
+const origin = getPublicSiteOrigin();
+const host = process.env.INDEXNOW_HOST?.trim() || new URL(origin).hostname;
 
 if (!key) {
   console.log('IndexNow: skipped (INDEXNOW_KEY not set).');

@@ -10,9 +10,9 @@ export interface PageSeoEntry {
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'COD MW4 Cheats — Aimbot, ESP, Wallhack & Radar | ZADEYO',
+    title: 'Cod cheat — MW4 aimbot, ESP & wallhack | ZADEYO',
     description:
-      'Explore COD MW4 cheats for PC: aimbot, player ESP, triggerbot, 2D radar, DMZ loot overlay, no recoil, and stream-proof options—built for Modern Warfare on Windows.',
+      'Cod cheat tools for MW4 on PC: aimbot, player ESP, triggerbot, 2D radar, DMZ loot, no recoil, stream-proof options—built for Modern Warfare on Windows.',
   },
   '/products/cod-cheats/': {
     title: 'COD MW4 Cheats for PC — Aimbot, ESP & Wallhack',
@@ -30,18 +30,19 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Overview of account and cosmetic utilities that pair with COD cheats—see each card for scope and checkout.',
   },
   '/blog/': {
-    title: 'COD MW4 Guides & Setup',
+    title: 'Cod guides & setup — MW4 ESP, radar, DMZ & patch-day notes PC',
     description:
-      'Setup tips, mode-specific tuning, and patch-day notes for COD cheats on PC—aim, ESP, radar, and DMZ.',
+      'Cod guides for MW4 on PC: setup and patch-day notes—aim tuning, ESP, 2D radar, DMZ loot layers, stream-proof capture options, and hardware checks.',
   },
   '/forum/': {
-    title: 'COD MW4 Community Forum',
-    description: 'Demo threads on setup, features, and troubleshooting for COD MW4 cheats—sample content for layout.',
+    title: 'Community forum — COD MW4 setup, ESP & DMZ Q&A (demo)',
+    description:
+      'Community space (demo): sample threads on COD MW4 cheat setup, stream proof, ESP tuning, DMZ loot, patch-day habits, and troubleshooting for layout review.',
   },
   '/faq/': {
-    title: 'FAQ | COD MW4 Cheats & Checkout',
+    title: 'Cheats FAQ — COD MW4 tiers, ESP, checkout & guides | PC',
     description:
-      'Answers on tiers, features, PC requirements, and secure checkout for COD MW4 cheats at cod-cheat.org.',
+      'Cheats FAQ for COD MW4 on PC: Lite vs Pro vs Elite, ESP and aim modules, PC needs, secure checkout steps, blog setup guides, and where to get support.',
   },
   '/terms/': {
     title: 'Terms & Conditions | COD Cheats',
@@ -49,14 +50,14 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Purchase terms, license use, and refund policy for products linked from cod-cheat.org.',
   },
   '/privacy/': {
-    title: 'Privacy Policy | COD Cheats',
+    title: 'Privacy policy — analytics, cookies & contact data | COD site',
     description:
-      'How cod-cheat.org uses analytics, cookies, and contact data when you browse or request support.',
+      'Privacy practices at cod-cheat.org: analytics, cookies, and contact data when you browse or email support. This privacy overview supplements the full policy below.',
   },
   '/about/': {
-    title: 'About COD Cheats',
+    title: 'Cod cheats — about MW4 tiers, guides & site publishing | PC',
     description:
-      'What this site publishes: COD MW4 cheat tiers, guides, and status-focused resources at cod-cheat.org.',
+      'Cod cheats on this site means MW4 module coverage only: tier comparisons, PC setup guides, blog resources, and status notes—editorial about pages, not a second home.',
   },
   '/support/': {
     title: 'Support | COD Cheats',

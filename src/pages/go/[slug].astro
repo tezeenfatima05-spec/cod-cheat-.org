@@ -1,0 +1,28 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { CHECKOUT, CHECKOUT_SLUG_TO_PRODUCT } from '../../config/checkout';
+
+export const prerender = true;
+
+export const getStaticPaths: GetStaticPaths = () =>
+  Object.keys(CHECKOUT_SLUG_TO_PRODUCT).map((slug) => ({ params: { slug } }));
+
+const { slug } = Astro.params;
+const product = CHECKOUT_SLUG_TO_PRODUCT[slug!];
+const destination = product ? CHECKOUT[product] : '/';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    <link rel="canonical" href={destination} />
+    <meta name="robots" content="noindex, follow" />
+    <script is:inline set:html={`location.replace(${JSON.stringify(destination)})`} />
+  </head>
+  <body>
+    <p><a href={destination}>Continue</a></p>
+  </body>
+</html>

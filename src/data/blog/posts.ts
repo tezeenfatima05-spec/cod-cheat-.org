@@ -6,10 +6,10 @@ const hub = PRODUCT_BASE;
 export const blogPosts: BlogPostFull[] = [
   {
     tag: 'Guides',
-    title: 'MW4 player ESP: distance caps that keep 6v6 readable',
+    title: 'MW4 cheats player ESP: distance caps that keep 6v6 readable',
     slug: 'mw4-player-esp-distance',
     image: '/images/mw4/screenshot-1.webp',
-    desc: 'How to tune box scale, snaplines, and squad colors before the HUD turns to noise.',
+    desc: 'Esp on MW4: scale box size, snaplines, and squad colors before the HUD turns to noise—distance caps keep 6v6 esp overlays readable without clutter on PC.',
     date: 'Nov 5, 2026',
     readTime: '6 min read',
     featured: true,
@@ -45,10 +45,10 @@ export const blogPosts: BlogPostFull[] = [
   },
   {
     tag: 'Setup',
-    title: 'Stream-proof overlay checklist for MW4',
+    title: 'Stream-proof overlay checklist for MW4 cheats',
     slug: 'mw4-stream-proof-setup',
     image: '/images/mw4/screenshot-2.webp',
-    desc: 'Hide capture feeds while keeping overlays on-screen for play.',
+    desc: 'Stream proof for MW4 cheats: hide capture feeds while overlays stay on your display—OBS checklist so recordings stay clean while ESP and radar remain visible in game.',
     date: 'Nov 4, 2026',
     readTime: '5 min read',
     author: 'COD Cheats Editorial',
@@ -73,10 +73,10 @@ export const blogPosts: BlogPostFull[] = [
   },
   {
     tag: 'Features',
-    title: 'Triggerbot delay and hold-key workflow',
+    title: 'Triggerbot delay and hold key for MW4 cheats',
     slug: 'mw4-triggerbot-guide',
     image: '/images/mw4/screenshot-3.webp',
-    desc: 'Match trigger timing to your sensitivity so sprays stay believable.',
+    desc: 'Triggerbot delay and hold key for MW4: match timing to sensitivity so sprays stay believable—use a short delay plus hold key gating so bursts stay intentional on PC.',
     date: 'Nov 3, 2026',
     readTime: '6 min read',
     author: 'COD Cheats Editorial',

@@ -200,6 +200,7 @@ const published = parseBlogDate(post.date);
   <SiteFaqSection
     items={getBlogFaqs(post.tag, post.slug)}
     titleId={`blog-faq-${post.slug}`}
+    titleLevel="h2"
     class="border-t border-border bg-muted/20"
   />
 </BaseLayout>

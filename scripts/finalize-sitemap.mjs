@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { getDistRoot } from './dist-root.mjs';
+import { getPublicSiteOrigin } from './site-origin.mjs';
 
 const dist = getDistRoot();
 const source = path.join(dist, 'sitemap-0.xml');
@@ -10,8 +11,15 @@ if (!fs.existsSync(source)) {
   process.exit(1);
 }
 
-const raw = fs.readFileSync(source, 'utf8');
+let raw = fs.readFileSync(source, 'utf8');
 const urlCount = (raw.match(/<url>/g) ?? []).length;
+
+const origin = getPublicSiteOrigin();
+/** Rewrite <loc> bases if Astro emitted a different deploy host (e.g. first build used prod URL). */
+const hostsToRewrite = ['https://cod-cheat.org', 'http://cod-cheat.org'];
+for (const h of hostsToRewrite) {
+  if (h !== origin) raw = raw.split(h).join(origin);
+}
 
 if (urlCount === 0) {
   console.error('finalize-sitemap: sitemap-0.xml contains no URLs.');
@@ -41,7 +49,7 @@ fs.writeFileSync(path.join(dist, 'sitemap.xml'), formatted, 'utf8');
 const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://cod-cheat.org/sitemap.xml</loc>
+    <loc>${origin}/sitemap.xml</loc>
     <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
   </sitemap>
 </sitemapindex>
