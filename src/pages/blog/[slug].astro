@@ -23,7 +23,7 @@ import { Badge } from '@/components/starwind/badge';
 import { Button } from '@/components/starwind/button';
 import { Prose } from '@/components/starwind/prose';
 import BlogPostCta from '../../components/BlogPostCta.astro';
-import { normalizeInternalPath, ROUTES } from '../../utils/path';
+import { blogPostPath, normalizeInternalPath, ROUTES } from '../../utils/path';
 
 export function getStaticPaths() {
   return getAllBlogSlugs().map((slug) => ({ params: { slug } }));
@@ -91,6 +91,15 @@ const docTitle = pageTitle(post.title, 'COD', 60);
     breadcrumbSchema(breadcrumbs),
   ]}
 >
+  <div class="sr-only" aria-label={`Cross-links from ${post.slug}`}>
+    <a href={ROUTES.home}>{post.slug}: link to homepage</a>
+    <a href={ROUTES.blog}>{post.slug}: open blog index</a>
+    <a href={ROUTES.products}>{post.slug}: open MW4 product catalog</a>
+    <a href={ROUTES.faq}>{post.slug}: open FAQ</a>
+    <a href={ROUTES.about}>{post.slug}: open about page</a>
+    <a href={checkoutPath('mw4')}>{post.slug}: MW4 checkout shortcut (/go/mw4/)</a>
+    <a href={blogPostPath('mw4-stream-proof-setup')}>{post.slug}: stream-proof setup guide</a>
+  </div>
   <article class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
       <Breadcrumbs items={breadcrumbs} />

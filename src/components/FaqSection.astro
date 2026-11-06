@@ -2,6 +2,7 @@
 import type { SiteFaqItem, FaqTopic } from '../data/faq';
 import SectionHeader from './SectionHeader.astro';
 import Icon from './icons/Icon.astro';
+import AccordionPrimitive from '@starwind-ui/astro/accordion';
 import {
   Accordion,
   AccordionContent,
@@ -100,12 +101,14 @@ const filters = filterTopics ?? (['all', 'plans', 'esp', 'scripts', 'safety', 'p
       {items.map((faq, i) => (
         <div data-faq-topic={faq.topic}>
           <AccordionItem value={`faq-${i}`}>
-            <AccordionTrigger class="text-left">
-              <span class="flex items-center gap-2">
-                <Icon name={faq.icon} size={16} class="shrink-0" />
-                <span>{faq.q}</span>
-              </span>
-            </AccordionTrigger>
+            <AccordionPrimitive.Header class="m-0 w-full">
+              <AccordionTrigger class="text-left">
+                <span class="flex items-center gap-2">
+                  <Icon name={faq.icon} size={16} class="shrink-0" />
+                  <span>{faq.q}</span>
+                </span>
+              </AccordionTrigger>
+            </AccordionPrimitive.Header>
             <AccordionContent>
               <div class="prose prose-sm dark:prose-invert max-w-none text-muted-foreground" set:html={faq.aHtml ?? faq.a} />
             </AccordionContent>

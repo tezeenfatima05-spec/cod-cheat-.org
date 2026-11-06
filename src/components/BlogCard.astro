@@ -23,10 +23,20 @@ interface Props {
   layout?: 'default' | 'featured';
   class?: string;
   readButtonLabel?: string;
+  /** Descriptive alt for card thumbnail (meaningful images); default decorative. */
+  imageAlt?: string;
 }
 
-const { post, index = 0, eager = false, showDate = false, layout = 'default', class: className, readButtonLabel } =
-  Astro.props;
+const {
+  post,
+  index = 0,
+  eager = false,
+  showDate = false,
+  layout = 'default',
+  class: className,
+  readButtonLabel,
+  imageAlt = '',
+} = Astro.props;
 const footerCta = readButtonLabel ?? `${t.blog.read} · ${post.slug}`;
 const isFeatured = layout === 'featured';
 const href = blogPostPath(post.slug);
@@ -60,7 +70,7 @@ const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
   >
     <ResponsiveImage
       src={post.image}
-      alt=""
+      alt={imageAlt}
       width={isFeatured ? 960 : 640}
       height={isFeatured ? 540 : 360}
       widths={isFeatured ? undefined : CARD_IMAGE_WIDTHS}

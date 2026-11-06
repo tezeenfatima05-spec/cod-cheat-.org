@@ -54,6 +54,10 @@ function formatUrlset(xml) {
 
 const formatted = formatUrlset(raw);
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), formatted, 'utf8');
+/** Also persist under public/ so hosts that serve the repo root (e.g. cod-cheat.org) get a valid sitemap on deploy. */
+const publicDir = path.join(process.cwd(), 'public');
+fs.mkdirSync(publicDir, { recursive: true });
+fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), formatted, 'utf8');
 
 const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -64,6 +68,7 @@ const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
 </sitemapindex>
 `;
 fs.writeFileSync(path.join(dist, 'sitemap-index.xml'), indexXml, 'utf8');
+fs.writeFileSync(path.join(publicDir, 'sitemap-index.xml'), indexXml, 'utf8');
 fs.writeFileSync(path.join(dist, 'sitemap-0.xml'), formatted, 'utf8');
 
 console.log(`Sitemap finalized: ${urlCount} URLs → ${path.relative(process.cwd(), path.join(dist, 'sitemap.xml'))}`);

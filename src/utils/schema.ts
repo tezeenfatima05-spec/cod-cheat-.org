@@ -21,14 +21,31 @@ export function breadcrumbSchema(items: BreadcrumbItem[]) {
 }
 
 export function websiteSchema() {
+  const siteUrl = `${SITE_ORIGIN}/`;
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${siteUrl}#website`,
     name: SITE_BRAND,
-    url: `${SITE_ORIGIN}/`,
+    url: siteUrl,
     inLanguage: 'en-US',
     description:
       'COD MW4 cheats for PC—aim assist, player ESP, trigger timing, radar, DMZ loot overlays, and stream-proof options.',
+  };
+}
+
+/** Self-referencing WebPage for the homepage (matches document `<title>` / canonical). */
+export function homeWebPageSchema(input: { name: string; description: string }) {
+  const pageUrl = canonicalUrl('/');
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    name: input.name,
+    description: input.description,
+    url: pageUrl,
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
   };
 }
 
@@ -57,34 +74,30 @@ export function organizationSchema() {
 }
 
 export function collectionPageSchema(input: { name: string; description: string; url: string }) {
+  const pageUrl = canonicalUrl(input.url);
   return {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
+    '@id': `${pageUrl}#webpage`,
     name: input.name,
     description: input.description,
-    url: canonicalUrl(input.url),
+    url: pageUrl,
     inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: SITE_BRAND,
-      url: `${SITE_ORIGIN}/`,
-    },
+    isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
   };
 }
 
 export function webPageSchema(input: { name: string; description: string; url: string }) {
+  const pageUrl = canonicalUrl(input.url);
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
     name: input.name,
     description: input.description,
-    url: canonicalUrl(input.url),
+    url: pageUrl,
     inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: SITE_BRAND,
-      url: `${SITE_ORIGIN}/`,
-    },
+    isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
   };
 }
 
@@ -225,7 +238,7 @@ export function articleSchema(input: {
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': canonicalUrl(input.url),
+      '@id': `${canonicalUrl(input.url)}#webpage`,
     },
   };
 }

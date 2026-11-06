@@ -9,7 +9,7 @@ import { t } from '../i18n';
 import { resolvePageSeo, canonicalUrl } from '../config/seo';
 import { ROUTES } from '../utils/path';
 import { checkoutPath } from '../config/checkout';
-import { faqPageSchema, organizationSchema, websiteSchema } from '../utils/schema';
+import { faqPageSchema, homeWebPageSchema, organizationSchema, websiteSchema } from '../utils/schema';
 import { getLandingFaqs } from '../data/faq';
 import { webpSrc } from '../utils/responsiveImage';
 import { SITE_ASSETS } from '../config/site';
@@ -25,7 +25,18 @@ const shareUrl = canonicalUrl('/');
   description={seo.description}
   sharePageUrl={shareUrl}
   sharePageTitle={seo.title}
-  jsonLd={[websiteSchema(), organizationSchema(), faqPageSchema(homeFaqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') })))]}
+  jsonLd={[
+    websiteSchema(),
+    organizationSchema(),
+    homeWebPageSchema({ name: seo.title, description: seo.description }),
+    faqPageSchema(
+      homeFaqs.map((f, i) => ({
+        num: String(i + 1).padStart(2, '0'),
+        q: f.q,
+        a: f.a.replace(/<[^>]+>/g, ''),
+      })),
+    ),
+  ]}
 >
   <link
     slot="head"
@@ -37,15 +48,15 @@ const shareUrl = canonicalUrl('/');
     fetchpriority="high"
   />
   <div class="sr-only" aria-label="Site shortcuts">
-    <a href={ROUTES.products}>MW4 cheat tiers and product hub</a>
-    <a href={ROUTES.blog}>MW4 guides and patch notes index</a>
-    <a href={ROUTES.forum}>Demo community threads index</a>
-    <a href={ROUTES.faq}>FAQ on checkout and module tiers</a>
-    <a href={checkoutPath('mw4')}>Short checkout path /go/mw4/</a>
-    <a href={ROUTES.about}>Editorial about page for MW4 tiers</a>
-    <a href={ROUTES.privacy}>Privacy and analytics overview</a>
-    <a href={ROUTES.terms}>Terms and purchase rules</a>
-    <a href={`${ROUTES.blog}mw4-stream-proof-setup/`}>Stream-proof setup article index entry</a>
+    <a href={ROUTES.products}>MW4 PC cheat tiers (catalog hub)</a>
+    <a href={ROUTES.blog}>Blog: MW4 guides and patch notes</a>
+    <a href={ROUTES.forum}>Forum demo (sample threads)</a>
+    <a href={ROUTES.faq}>Help: checkout and module tiers FAQ</a>
+    <a href={checkoutPath('mw4')}>Fast checkout: /go/mw4/</a>
+    <a href={ROUTES.about}>About: editorial MW4 tier notes</a>
+    <a href={ROUTES.privacy}>Privacy policy (analytics scope)</a>
+    <a href={ROUTES.terms}>Terms of service (purchase rules)</a>
+    <a href={`${ROUTES.blog}mw4-stream-proof-setup/`}>Guide: stream-proof capture setup</a>
   </div>
   <HeroSection />
   <FeaturesSection />

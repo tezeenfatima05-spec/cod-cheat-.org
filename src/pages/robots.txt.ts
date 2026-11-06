@@ -1,11 +1,12 @@
 import type { APIRoute } from 'astro';
+import { getPublicSiteOrigin } from '../../scripts/site-origin.mjs';
 
 export const prerender = true;
 
-const defaultOrigin = 'https://cod-cheat.org';
+const trim = (v: string | undefined) => (typeof v === 'string' ? v.trim().replace(/\/$/, '') : '');
 
 export const GET: APIRoute = ({ site }) => {
-  const origin = (site?.toString().replace(/\/$/, '') || defaultOrigin) as string;
+  const origin = (trim(site?.toString()) || getPublicSiteOrigin()) as string;
   const body = `User-agent: *
 Allow: /
 

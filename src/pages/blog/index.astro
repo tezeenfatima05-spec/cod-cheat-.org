@@ -52,18 +52,18 @@ const shareUrl = canonicalUrl('/blog/');
   <link slot="head" rel="preload" as="image" href={lcpImage} type="image/webp" fetchpriority="high" />
 
   <div class="sr-only" aria-label="Related site entry points">
-    <a href={ROUTES.home}>Homepage cod cheats overview</a>
-    <a href={ROUTES.products}>MW4 cheat products hub</a>
-    <a href={blogPostPath('mw4-player-esp-distance')}>Player ESP distance guide</a>
-    <a href={blogPostPath('mw4-triggerbot-guide')}>Triggerbot timing guide</a>
-    <a href={ROUTES.about}>About publishing and tiers</a>
-    <a href={ROUTES.forum}>Forum demo hub</a>
+    <a href={ROUTES.home}>Blog listing: site homepage</a>
+    <a href={ROUTES.products}>Blog listing: MW4 products catalog</a>
+    <a href={blogPostPath('mw4-player-esp-distance')}>Blog listing: player ESP distance article</a>
+    <a href={blogPostPath('mw4-triggerbot-guide')}>Blog listing: triggerbot guide article</a>
+    <a href={ROUTES.about}>Blog listing: about this site</a>
+    <a href={ROUTES.forum}>Blog listing: demo forum index</a>
   </div>
 
   <section class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
       <Breadcrumbs items={breadcrumbs} />
-      {featured && <BlogCard post={featured} index={0} eager showDate layout="featured" />}
+      {featured && <BlogCard post={featured} index={0} eager showDate layout="featured" imageAlt={featured.title} />}
     </div>
   </section>
 
@@ -123,7 +123,7 @@ const shareUrl = canonicalUrl('/blog/');
         data-blog-empty-message={t.blog.emptyFilter}
       >
         {gridPosts.map((post, index) => (
-          <BlogCard post={post} index={index} showDate />
+          <BlogCard post={post} index={index} showDate imageAlt={post.title} />
         ))}
       </div>
 

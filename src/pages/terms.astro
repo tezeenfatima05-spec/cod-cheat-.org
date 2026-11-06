@@ -1,17 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { t } from '../i18n';
-import { resolvePageSeo } from '../config/seo';
+import { resolvePageSeo, canonicalUrl } from '../config/seo';
 import LegalPage from '../components/LegalPage.astro';
 import { breadcrumbSchema, webPageSchema } from '../utils/schema';
+import { ROUTES } from '../utils/path';
 
 const content = t.legalPages.terms;
 const seo = resolvePageSeo('/terms/');
+const shareUrl = canonicalUrl('/terms/');
 ---
 
 <BaseLayout
   title={seo.title}
   description={seo.description}
+  sharePageUrl={shareUrl}
+  sharePageTitle={seo.title}
   jsonLd={[
     webPageSchema({
       name: content.title,
@@ -24,6 +28,12 @@ const seo = resolvePageSeo('/terms/');
     ]),
   ]}
 >
+  <div class="sr-only" aria-label="Cross-links from terms">
+    <a href={ROUTES.home}>Terms: site homepage</a>
+    <a href={ROUTES.privacy}>Terms: privacy policy</a>
+    <a href={ROUTES.about}>Terms: about page</a>
+    <a href={ROUTES.support}>Terms: support</a>
+  </div>
   <LegalPage
     title={content.title}
     description={content.description}
