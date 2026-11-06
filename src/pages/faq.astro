@@ -8,6 +8,7 @@ import { breadcrumbSchema, faqPageSchema, webPageSchema } from '../utils/schema'
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import SiteFaqSection from '../components/SiteFaqSection.astro';
 import SectionHeader from '../components/SectionHeader.astro';
+import { ROUTES, blogPostPath } from '../utils/path';
 
 const seo = resolvePageSeo('/faq/');
 const breadcrumbs = [
@@ -34,6 +35,13 @@ const shareUrl = canonicalUrl('/faq/');
     breadcrumbSchema(breadcrumbs),
   ]}
 >
+  <div class="sr-only" aria-label="Cross-links from FAQ">
+    <a href={ROUTES.home}>Return to homepage cod cheats</a>
+    <a href={ROUTES.blog}>Browse MW4 blog guides</a>
+    <a href={blogPostPath('mw4-cod-cheats-guide')}>COD MW4 cheats overview post</a>
+    <a href={ROUTES.forum}>Forum demo discussions</a>
+    <a href={ROUTES.privacy}>How privacy applies here</a>
+  </div>
   <section class="border-b border-border bg-muted/10 py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
       <Breadcrumbs items={breadcrumbs} />

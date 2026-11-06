@@ -17,7 +17,7 @@ import Icon from '../../components/icons/Icon.astro';
 import { blogTagIcons } from '../../data/sectionIcons';
 import type { IconName } from '../../components/icons/types';
 import { Button } from '@/components/starwind/button';
-import { ROUTES } from '../../utils/path';
+import { ROUTES, blogPostPath } from '../../utils/path';
 import { canonicalUrl } from '../../config/seo';
 
 const seo = resolvePageSeo('/blog/');
@@ -50,6 +50,15 @@ const shareUrl = canonicalUrl('/blog/');
   ]}
 >
   <link slot="head" rel="preload" as="image" href={lcpImage} type="image/webp" fetchpriority="high" />
+
+  <div class="sr-only" aria-label="Related site entry points">
+    <a href={ROUTES.home}>Homepage cod cheats overview</a>
+    <a href={ROUTES.products}>MW4 cheat products hub</a>
+    <a href={blogPostPath('mw4-player-esp-distance')}>Player ESP distance guide</a>
+    <a href={blogPostPath('mw4-triggerbot-guide')}>Triggerbot timing guide</a>
+    <a href={ROUTES.about}>About publishing and tiers</a>
+    <a href={ROUTES.forum}>Forum demo hub</a>
+  </div>
 
   <section class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">

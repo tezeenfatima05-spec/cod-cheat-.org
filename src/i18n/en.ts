@@ -24,7 +24,7 @@ export const en: Translations = {
     status: 'MW4 — PC build online',
     eyebrow: 'PC · Modern Warfare',
     titleLine1: 'COD MW4',
-    titleLine2: 'COD Cheats for PC — aimbot & wallhack',
+    titleLine2: 'COD Cheats for PC — aimbot, player ESP & wallhack',
     subtitle:
       'Aim assist, player ESP, trigger timing, 2D radar, and DMZ loot layers tuned for Multiplayer and Hajin—check status before every session.',
     ctaPrimary: 'View products',

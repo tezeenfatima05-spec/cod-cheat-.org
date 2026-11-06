@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { t } from '../i18n';
 import { resolvePageSeo, canonicalUrl } from '../config/seo';
+import { ROUTES, blogPostPath } from '../utils/path';
 
 const seo = resolvePageSeo('/about/');
 import LegalPage from '../components/LegalPage.astro';
@@ -29,6 +30,14 @@ const shareUrl = canonicalUrl('/about/');
     ]),
   ]}
 >
+  <div class="sr-only" aria-label="Cross-links from about">
+    <a href={ROUTES.home}>Home — cod cheats landing</a>
+    <a href={ROUTES.blog}>Blog index for MW4 guides</a>
+    <a href={blogPostPath('mw4-lite-vs-pro')}>Lite vs Pro tier article</a>
+    <a href={ROUTES.privacy}>Privacy policy summary</a>
+    <a href={ROUTES.faq}>FAQ for checkout questions</a>
+    <a href={ROUTES.support}>Support contact route</a>
+  </div>
   <LegalPage
     title={content.title}
     pageTitle="About COD Cheats — tiers, guides, site publishing"

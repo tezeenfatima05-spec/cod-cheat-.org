@@ -9,6 +9,7 @@ import { resolvePageSeo } from '../../config/seo';
 import { SITE_BRAND } from '../../config/site';
 import { breadcrumbSchema, collectionPageSchema } from '../../utils/schema';
 import { canonicalUrl } from '../../config/seo';
+import { ROUTES } from '../../utils/path';
 
 const seo = resolvePageSeo('/forum/');
 const breadcrumbs = [{ name: 'Home', path: '/' }, { name: 'Forum', path: '/forum/' }];
@@ -26,6 +27,13 @@ const sourceTimestamp = (path?: string) => {
   collectionPageSchema({ name: `${SITE_BRAND} forum (demo)`, description: seo.description, url: '/forum/' }),
   breadcrumbSchema(breadcrumbs),
 ]}>
+  <div class="sr-only" aria-label="Cross-links from forum">
+    <a href={ROUTES.home}>Main site entry</a>
+    <a href={ROUTES.blog}>MW4 written guides collection</a>
+    <a href={ROUTES.faq}>FAQ for tier and loader topics</a>
+    <a href={ROUTES.about}>About this demo forum</a>
+    <a href={ROUTES.products}>Product tier lineup</a>
+  </div>
   <section class="forum-page py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
       <Breadcrumbs items={breadcrumbs} />

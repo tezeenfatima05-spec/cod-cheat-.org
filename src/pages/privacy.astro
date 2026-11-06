@@ -4,6 +4,7 @@ import { t } from '../i18n';
 import { resolvePageSeo, canonicalUrl } from '../config/seo';
 import LegalPage from '../components/LegalPage.astro';
 import { breadcrumbSchema, webPageSchema } from '../utils/schema';
+import { ROUTES } from '../utils/path';
 
 const content = t.legalPages.privacy;
 const seo = resolvePageSeo('/privacy/');
@@ -27,6 +28,13 @@ const shareUrl = canonicalUrl('/privacy/');
     ]),
   ]}
 >
+  <div class="sr-only" aria-label="Cross-links from privacy">
+    <a href={ROUTES.home}>Site homepage</a>
+    <a href={ROUTES.terms}>Terms of purchase</a>
+    <a href={ROUTES.about}>About editorial scope</a>
+    <a href={ROUTES.support}>Support and contact routing</a>
+    <a href={ROUTES.faq}>FAQ reference for data questions</a>
+  </div>
   <LegalPage
     title={content.title}
     pageTitle="Privacy — contact: when you browse or email support (analytics, cookies & data)"
