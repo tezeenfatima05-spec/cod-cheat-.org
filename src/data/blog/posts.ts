@@ -252,7 +252,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'anticheat-patch-day-checklist',
     image: '/images/mw4/screenshot-4.webp',
     metaDesc:
-      'Checklist: Pause play, read status, reload conservative profiles, then retest offline. edirect Related: MW4 capture-safe OBS checklist (stream overlays).',
+      'Checklist: Pause play, read status, reload conservative profiles, then retest offline. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist (stream overlays).',
     desc: 'Pause play, read status, reload conservative profiles, then retest offline.',
     date: 'Oct 26, 2026',
     readTime: '5 min read',
@@ -334,7 +334,7 @@ export const blogPosts: BlogPostFull[] = [
     slug: 'how-to-buy-cod-mw4-cheats',
     image: '/images/mw4/screenshot-2.webp',
     metaDesc:
-      'buy cod mw4 cheats securely: Portal access, order email hygiene, and avoiding fake loader links. Checkout: /go/mw4/. Related: MW4 capture-safe OBS checklist.',
+      'buy cod mw4 cheats securely: Portal access, order email hygiene, and avoiding fake loader links. Checkout: /go/mw4/.',
     desc: 'Portal access, order email hygiene, and avoiding fake loader links.',
     date: 'Oct 21, 2026',
     readTime: '5 min read',

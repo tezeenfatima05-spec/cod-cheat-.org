@@ -102,7 +102,7 @@ export const BLOG_PAGE_SEO: Record<string, PageSeoEntry> = {
   '/blog/mw4-lite-vs-pro/': {
     title: 'Lite – ESP-only versus adding smooth aim and trigger modules',
     description:
-      'Lite: ESP-only versus adding smooth aim and trigger modules. Checkout — /go/mw4/ redirect. Related: MW4 capture-safe OBS checklist (stream overlays).',
+      'Lite: ESP-only versus adding smooth aim and trigger modules. Checkout — /go/mw4/ redirect Related: MW4 capture-safe OBS checklist (stream overlays) All.',
   },
 };
 
