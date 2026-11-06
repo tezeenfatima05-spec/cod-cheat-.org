@@ -120,15 +120,16 @@ const srCrosslinks: { href: string; label: string }[] = (() => {
   }
   const bySlug: Record<string, { href: string; label: string }[]> = {
     'mw4-lite-vs-pro': [
-      { href: sitemap, label: 'XML sitemap — crawl-friendly URL index' },
-      { href: home, label: 'Landing page — MW4 tier snapshot' },
-      { href: blogIdx, label: 'Blog roll — more tier guides' },
-      { href: products, label: 'Feature matrix — catalog hub' },
-      { href: faq, label: 'Licensing questions — FAQ index' },
-      { href: about, label: 'Publishing notes — how guides are written' },
-      { href: checkout, label: 'Secure purchase path — /go/mw4/' },
-      { href: companionGuideHref, label: companionGuideLabel },
-      { href: elite, label: 'Elite overview — radar + DMZ stack' },
+      { href: sitemap, label: 'Index file — public routes in sitemap.xml' },
+      { href: home, label: 'MW4 landing — root catalog snapshot' },
+      { href: blogIdx, label: 'Chronological guides — blog landing' },
+      { href: products, label: 'SKU matrix — compare MW4 module columns' },
+      { href: faq, label: 'Refund policy — keys in FAQ topics' },
+      { href: about, label: 'Writer scope — disclaimers on guides' },
+      { href: support, label: 'Ticket queue — loader email help' },
+      { href: checkout, label: 'Partner handoff — paid /go/mw4/ route' },
+      { href: companionGuideHref, label: 'OBS capture steps — stream overlays companion' },
+      { href: elite, label: 'Elite feature page — full radar + DMZ' },
     ],
     'anticheat-patch-day-checklist': [
       { href: sitemap, label: 'Sitemap.xml — full route manifest' },
@@ -346,7 +347,7 @@ const srCrosslinks: { href: string; label: string }[] = (() => {
   <SiteFaqSection
     items={getBlogFaqs(post.tag, post.slug)}
     titleId={`blog-faq-${faqTitleSlug}`}
-    titleLevel="h3"
+    titleLevel={post.slug === 'mw4-lite-vs-pro' ? 'h2' : 'h3'}
     class="border-t border-border bg-muted/20"
   />
 </BaseLayout>

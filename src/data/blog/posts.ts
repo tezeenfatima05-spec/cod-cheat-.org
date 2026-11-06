@@ -101,6 +101,8 @@ export const blogPosts: BlogPostFull[] = [
     title: 'Lite vs Pro: which COD MW4 tier fits you',
     slug: 'mw4-lite-vs-pro',
     image: '/images/mw4/screenshot-4.webp',
+    metaDesc:
+      'Lite: ESP-only versus adding smooth aim and trigger modules. kout — /go/mw4/ redirect Related: MW4 capture-safe OBS checklist (stream overlays) All.',
     desc: 'ESP-only versus adding smooth aim and trigger modules.',
     date: 'Nov 2, 2026',
     readTime: '5 min read',
