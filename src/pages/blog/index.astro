@@ -53,6 +53,8 @@ const shareUrl = canonicalUrl('/blog/', schemaOrigin);
 >
   <link slot="head" rel="preload" as="image" href={lcpImage} type="image/webp" fetchpriority="high" />
 
+  <h1 class="sr-only">{seo.title}</h1>
+
   <div class="sr-only" aria-label="Related site entry points">
     <a href={`${schemaOrigin}/sitemap.xml`}>Sitemap XML — full URL list for crawlers</a>
     <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Homepage — MW4 landing overview</a>
