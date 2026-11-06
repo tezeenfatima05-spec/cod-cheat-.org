@@ -4,6 +4,7 @@ import { CHECKOUT, CHECKOUT_SLUG_TO_PRODUCT } from '../../config/checkout';
 import {
   absoluteAssetUrl,
   canonicalUrl,
+  resolveDocumentOrigin,
   DEFAULT_OG_IMAGE_HEIGHT,
   DEFAULT_OG_IMAGE_WIDTH,
 } from '../../config/seo';
@@ -20,7 +21,7 @@ const product = CHECKOUT_SLUG_TO_PRODUCT[slug!];
 const destination = product ? CHECKOUT[product] : '/';
 
 const selfPath = `/go/${slug}/`;
-const siteOriginTrim = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const siteOriginTrim = resolveDocumentOrigin(Astro.site);
 const selfCanonical = canonicalUrl(selfPath, siteOriginTrim);
 
 const isMw4 = slug === 'mw4';
@@ -37,7 +38,7 @@ const xShare = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareU
 const facebookShare = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
 
 const ogImagePath = SITE_ASSETS.ogImage;
-const ogImageUrl = absoluteAssetUrl(ogImagePath);
+const ogImageUrl = absoluteAssetUrl(ogImagePath, siteOriginTrim);
 
 const jsonLd = {
   '@context': 'https://schema.org',

@@ -1,9 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getAllFaqs } from '../data/faq';
-import { resolvePageSeo } from '../config/seo';
+import { resolvePageSeo, resolveDocumentOrigin, canonicalUrl } from '../config/seo';
 import { SITE_DOMAIN } from '../config/site';
-import { canonicalUrl } from '../config/seo';
 import { breadcrumbSchema, faqPageSchema, webPageSchema } from '../utils/schema';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import SiteFaqSection from '../components/SiteFaqSection.astro';
@@ -17,7 +16,7 @@ const breadcrumbs = [
 ];
 
 const faqs = getAllFaqs();
-const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const schemaOrigin = resolveDocumentOrigin(Astro.site);
 const shareUrl = canonicalUrl('/faq/', schemaOrigin);
 ---
 
@@ -38,11 +37,11 @@ const shareUrl = canonicalUrl('/faq/', schemaOrigin);
   ]}
 >
   <div class="sr-only" aria-label="More site resources">
-    <a href={ROUTES.home}>Home — COD Cheats landing</a>
-    <a href={ROUTES.blog}>Blog — setup and patch articles</a>
-    <a href={blogPostPath('mw4-cod-cheats-guide')}>MW4 cheats — full guide post</a>
-    <a href={ROUTES.forum}>Forum demo — thread samples</a>
-    <a href={ROUTES.privacy}>Statement — browsing data and cookies</a>
+    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Landing — MW4 cheat hub intro</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Archive — hardware and patch posts</a>
+    <a href={canonicalUrl(blogPostPath('mw4-cod-cheats-guide'), schemaOrigin)}>Feature map — modules and tiers</a>
+    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Demo threads — setup Q&amp;A samples</a>
+    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Cookie and data disclosure</a>
   </div>
   <section class="border-b border-border bg-muted/10 py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">

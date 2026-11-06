@@ -8,10 +8,10 @@ export function getPublicSiteOrigin() {
   const trim = (v) => (typeof v === 'string' ? v.trim().replace(/\/$/, '') : '');
   /** Same preference order as `scripts/finalize-sitemap.mjs` so canonical/hreflang match `<loc>` URLs. */
   return (
-    trim(process.env.PUBLIC_SITE_ORIGIN) ||
-    trim(process.env.SITEMAP_PUBLIC_ORIGIN) ||
     trim(process.env.CF_PAGES_URL) ||
     trim(process.env.CF_PAGES_BRANCH_URL) ||
+    trim(process.env.PUBLIC_SITE_ORIGIN) ||
+    trim(process.env.SITEMAP_PUBLIC_ORIGIN) ||
     'https://cod-cheat.org'
   );
 }

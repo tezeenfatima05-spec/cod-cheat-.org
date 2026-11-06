@@ -33,6 +33,31 @@ export function getOrganizationSameAs(): string[] {
 
 export const INDEXNOW_KEY = import.meta.env.INDEXNOW_KEY as string | undefined;
 
+const trimOrigin = (v: unknown) => (typeof v === 'string' ? v.trim().replace(/\/$/, '') : '');
+
+function nodeEnv(key: string): string {
+  try {
+    return trimOrigin(typeof process !== 'undefined' && process.env ? process.env[key] : '');
+  } catch {
+    return '';
+  }
+}
+
+/**
+ * Canonical / hreflang origin: prefer Cloudflare / deploy URLs over a stale PUBLIC_SITE_ORIGIN,
+ * then `site` from astro.config, so crawlers on *.workers.dev get self-canonicals that match the live host.
+ */
+export function resolveDocumentOrigin(site: URL | string | undefined): string {
+  return (
+    nodeEnv('CF_PAGES_URL') ||
+    nodeEnv('CF_PAGES_BRANCH_URL') ||
+    trimOrigin(import.meta.env.PUBLIC_SITE_ORIGIN) ||
+    trimOrigin(import.meta.env.SITEMAP_PUBLIC_ORIGIN) ||
+    (site ? String(site).replace(/\/$/, '') : '') ||
+    SITE_ORIGIN
+  );
+}
+
 export function canonicalUrl(pathname: string, origin?: string): string {
   let path = pathname || '/';
   if (!path.startsWith('/')) path = `/${path}`;
@@ -41,10 +66,12 @@ export function canonicalUrl(pathname: string, origin?: string): string {
   return `${base}${path}`;
 }
 
-export function absoluteAssetUrl(path: string): string {
+/** Absolute URL for same-origin assets (OG/Twitter images, JSON-LD). Prefer `documentOrigin` so previews match canonical host. */
+export function absoluteAssetUrl(path: string, documentOrigin?: string): string {
   if (path.startsWith('http://') || path.startsWith('https://')) return path;
   const normalized = path.startsWith('/') ? path : `/${path}`;
-  return `${SITE_ORIGIN}${normalized}`;
+  const base = (documentOrigin ?? SITE_ORIGIN).replace(/\/$/, '');
+  return `${base}${normalized}`;
 }
 
 export function resolvePageSeo(pathname: string): { title: string; description: string } {

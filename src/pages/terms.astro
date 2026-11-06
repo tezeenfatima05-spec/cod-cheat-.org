@@ -1,14 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { t } from '../i18n';
-import { resolvePageSeo, canonicalUrl } from '../config/seo';
+import { resolvePageSeo, canonicalUrl, resolveDocumentOrigin } from '../config/seo';
 import LegalPage from '../components/LegalPage.astro';
 import { breadcrumbSchema, webPageSchema } from '../utils/schema';
 import { ROUTES } from '../utils/path';
 
 const content = t.legalPages.terms;
 const seo = resolvePageSeo('/terms/');
-const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const schemaOrigin = resolveDocumentOrigin(Astro.site);
 const shareUrl = canonicalUrl('/terms/', schemaOrigin);
 ---
 

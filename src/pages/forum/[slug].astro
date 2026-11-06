@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Icon from '../../components/icons/Icon.astro';
 import { forumPosts, getForumPost } from '../../data/forum';
-import { pageTitle } from '../../config/seo';
+import { pageTitle, resolveDocumentOrigin } from '../../config/seo';
 import { breadcrumbSchema, discussionForumPostingSchema } from '../../utils/schema';
 import { SITE_BRAND } from '../../config/site';
 
@@ -15,7 +15,7 @@ export function getStaticPaths() {
 const post = getForumPost(Astro.params.slug!);
 if (!post) return Astro.redirect('/forum/');
 const path = `/forum/${post.slug}/`;
-const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const schemaOrigin = resolveDocumentOrigin(Astro.site);
 const breadcrumbs = [{ name: 'Home', path: '/' }, { name: 'Forum', path: '/forum/' }, { name: post.category, path: '/forum/' }, { name: post.title, path }];
 const relatedPosts = [
   ...forumPosts.filter((item) => item.slug !== post.slug && item.category === post.category),

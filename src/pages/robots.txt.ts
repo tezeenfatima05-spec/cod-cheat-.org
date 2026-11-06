@@ -1,23 +1,14 @@
 import type { APIRoute } from 'astro';
-import { getPublicSiteOrigin } from '../../scripts/site-origin.mjs';
-import { SITE_URL } from '../config/site';
+import { resolveDocumentOrigin } from '../config/seo';
 
 export const prerender = true;
 
-const trim = (v: string | undefined) => (typeof v === 'string' ? v.trim().replace(/\/$/, '') : '');
-
 export const GET: APIRoute = ({ site }) => {
-  const origin = (trim(site?.toString()) || getPublicSiteOrigin()) as string;
-  const legacy = trim(SITE_URL);
-  const sitemapLines =
-    legacy && legacy !== origin
-      ? `Sitemap: ${origin}/sitemap.xml
-Sitemap: ${legacy}/sitemap.xml`
-      : `Sitemap: ${origin}/sitemap.xml`;
+  const origin = resolveDocumentOrigin(site);
   const body = `User-agent: *
 Allow: /
 
-${sitemapLines}
+Sitemap: ${origin}/sitemap.xml
 
 # RSS: ${origin}/rss.xml
 `;

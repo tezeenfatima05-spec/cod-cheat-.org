@@ -15,10 +15,12 @@ let raw = fs.readFileSync(source, 'utf8');
 const urlCount = (raw.match(/<url>/g) ?? []).length;
 
 const trim = (v) => (typeof v === 'string' ? v.trim().replace(/\/$/, '') : '');
+/** Prefer Cloudflare deploy host so `<loc>` matches live canonical (Workers) over a stale PUBLIC_SITE_ORIGIN. */
 const origin =
-  trim(process.env.SITEMAP_PUBLIC_ORIGIN) ||
   trim(process.env.CF_PAGES_URL) ||
   trim(process.env.CF_PAGES_BRANCH_URL) ||
+  trim(process.env.PUBLIC_SITE_ORIGIN) ||
+  trim(process.env.SITEMAP_PUBLIC_ORIGIN) ||
   trim(getPublicSiteOrigin());
 if (urlCount === 0) {
   console.error('finalize-sitemap: sitemap-0.xml contains no URLs.');

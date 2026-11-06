@@ -6,13 +6,13 @@ import {
   TWITTER_CREATOR,
   TWITTER_SITE,
   canonicalUrl,
+  resolveDocumentOrigin,
   DEFAULT_OG_IMAGE,
   DEFAULT_OG_IMAGE_HEIGHT,
   DEFAULT_OG_IMAGE_WIDTH,
   GA_MEASUREMENT_ID,
   absoluteAssetUrl,
 } from '../config/seo';
-import { SITE_URL } from '../config/site';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import JsonLd from '../components/JsonLd.astro';
@@ -30,6 +30,8 @@ interface Props {
   /** Absolute page URL for optional share intent links (server-rendered). */
   sharePageUrl?: string;
   sharePageTitle?: string;
+  /** Homepage-only: skip redundant head share links to trim HTML weight (MEDIUM doc size). */
+  omitHeadSocialSrLinks?: boolean;
 }
 
 const {
@@ -44,15 +46,14 @@ const {
   jsonLd,
   sharePageUrl,
   sharePageTitle,
+  omitHeadSocialSrLinks = false,
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
-const siteOriginTrim = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const siteOriginTrim = resolveDocumentOrigin(Astro.site);
 const pageUrl = canonicalUrl(pathname, siteOriginTrim);
-const legacySiteOrigin = SITE_URL.replace(/\/$/, '');
-const secondarySitemapHref =
-  legacySiteOrigin && legacySiteOrigin !== siteOriginTrim ? `${legacySiteOrigin}/sitemap.xml` : undefined;
-const ogImageUrl = absoluteAssetUrl(ogImage);
+const sitemapAbsoluteUrl = `${siteOriginTrim}/sitemap.xml`;
+const ogImageUrl = absoluteAssetUrl(ogImage, siteOriginTrim);
 const shareUrl = sharePageUrl ?? pageUrl;
 const shareText = sharePageTitle ?? title;
 const xShare = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
@@ -102,9 +103,6 @@ const robotsContent = noindex
       href={RSS_FEED_PATH}
     />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
-    {secondarySitemapHref && (
-      <link rel="sitemap" type="application/xml" title="Sitemap (cod-cheat.org)" href={secondarySitemapHref} />
-    )}
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -169,15 +167,22 @@ const robotsContent = noindex
     </noscript>
 
     {jsonLd && <JsonLd data={jsonLd} />}
-    <div class="sr-only" aria-label="Share this page">
-      <a href={xShare}>Post {pathname} on X (Twitter)</a>
-      <a href={facebookShare}>Share {pathname} on Facebook</a>
-    </div>
+    {
+      !omitHeadSocialSrLinks && (
+        <div class="sr-only" aria-label="Share this page">
+          <a href={xShare}>Post {pathname} on X (Twitter)</a>
+          <a href={facebookShare}>Share {pathname} on Facebook</a>
+        </div>
+      )
+    }
     <slot name="head" />
 
   </head>
   <body class="site-body min-h-screen bg-background text-foreground">
     <button type="button" class="skip-link" data-skip-to-main>{t.ui.skipLink}</button>
+    <div class="sr-only">
+      <a href={sitemapAbsoluteUrl}>Full URL list (XML sitemap index)</a>
+    </div>
     <Header />
     <main id="main-content">
       <slot />

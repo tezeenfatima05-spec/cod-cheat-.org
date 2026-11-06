@@ -5,7 +5,7 @@ You verify the domain at your DNS provider—no HTML meta tags in the repo.
 ## Setup (once)
 
 1. Open [Google Search Console](https://search.google.com/search-console) and add the **domain** property for `cod-cheat.org` if it is not already there.
-2. Under **Sitemaps**, submit: `https://cod-cheat.org/sitemap.xml`
+2. Under **Sitemaps**, submit the **live deployment** URL (example): `https://cod-cheat--org.tazeenrooziroti.workers.dev/sitemap.xml` — use the same host Search Console is verifying. Do **not** submit `https://cod-cheat.org/sitemap.xml` unless that host serves HTTP 200 + `application/xml` for that path.
 3. Repeat in [Bing Webmaster Tools](https://www.bing.com/webmasters) if you use Bing.
 
 ## Monthly tune (15 minutes)

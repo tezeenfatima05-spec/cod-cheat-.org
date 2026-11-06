@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { t } from '../i18n';
-import { resolvePageSeo, canonicalUrl } from '../config/seo';
+import { resolvePageSeo, canonicalUrl, resolveDocumentOrigin } from '../config/seo';
 import { ROUTES, blogPostPath } from '../utils/path';
 
 const seo = resolvePageSeo('/about/');
@@ -9,7 +9,7 @@ import LegalPage from '../components/LegalPage.astro';
 import { breadcrumbSchema, organizationSchema, webPageSchema } from '../utils/schema';
 
 const content = t.legalPages.about;
-const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const schemaOrigin = resolveDocumentOrigin(Astro.site);
 const shareUrl = canonicalUrl('/about/', schemaOrigin);
 ---
 
@@ -36,12 +36,12 @@ const shareUrl = canonicalUrl('/about/', schemaOrigin);
   ]}
 >
   <div class="sr-only" aria-label="Related site pages">
-    <a href={ROUTES.home}>Site homepage overview</a>
-    <a href={ROUTES.blog}>Blog — MW4 guides listing</a>
-    <a href={blogPostPath('mw4-lite-vs-pro')}>Article — Lite vs Pro tier comparison</a>
-    <a href={ROUTES.privacy}>Policy — analytics and messages</a>
-    <a href={ROUTES.faq}>Help center FAQ</a>
-    <a href={ROUTES.support}>Support — loader and orders</a>
+    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Front door — landing overview</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>MW4 article index (all tags)</a>
+    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Tier compare — Lite vs Pro writeup</a>
+    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Privacy notice — cookies and email</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>FAQ index — products and checkout</a>
+    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Support desk — loader and billing</a>
   </div>
   <LegalPage
     title={content.title}

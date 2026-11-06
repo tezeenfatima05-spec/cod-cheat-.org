@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getAllProductSlugs, getProductPage, productHub } from '../../../data/products';
-import { pageTitle } from '../../../config/seo';
+import { pageTitle, resolveDocumentOrigin } from '../../../config/seo';
 import { breadcrumbSchema, productSchema } from '../../../utils/schema';
 import ProductDetail from '../../../components/ProductDetail.astro';
 
@@ -22,7 +22,7 @@ const breadcrumbs = [
   { name: 'Products', path: productHub.path },
   { name: product.title, path: pagePath },
 ];
-const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const schemaOrigin = resolveDocumentOrigin(Astro.site);
 ---
 
 <BaseLayout

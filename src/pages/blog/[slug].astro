@@ -3,7 +3,7 @@ import '../../styles/blog-pages.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { t } from '../../i18n';
 import { getAllBlogSlugs, getBlogPost, getRelatedBlogPosts } from '../../data/blog';
-import { pageTitle, canonicalUrl } from '../../config/seo';
+import { pageTitle, canonicalUrl, resolveDocumentOrigin } from '../../config/seo';
 import {
   articleSchema,
   breadcrumbSchema,
@@ -66,12 +66,21 @@ function slugify(text: string): string {
     .replace(/^-|-$/g, '');
 }
 const published = parseBlogDate(post.date);
-const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const schemaOrigin = resolveDocumentOrigin(Astro.site);
 const shareUrl = canonicalUrl(postPath, schemaOrigin);
 const docTitle = pageTitle(post.title, 'COD', 60);
 const metaDescription = post.metaDesc ?? post.desc;
 /** FAQ section id only — avoid the slug substring "esp" in HTML (keyword counters match attributes). */
 const faqTitleSlug = post.slug.replace(/(^|-)esp($|-)/g, '$1visuals$2');
+const companionStreamSlug = 'mw4-stream-proof-setup';
+const companionEspSlug = 'mw4-player-esp-distance';
+const companionGuidePath =
+  post.slug === companionStreamSlug ? blogPostPath(companionEspSlug) : blogPostPath(companionStreamSlug);
+const companionGuideHref = canonicalUrl(companionGuidePath, schemaOrigin);
+const companionGuideLabel =
+  post.slug === companionStreamSlug
+    ? 'Related: player distance guide (clean 6v6 HUD)'
+    : 'Related: MW4 capture-safe OBS checklist (stream overlays)';
 ---
 
 <BaseLayout
@@ -97,13 +106,13 @@ const faqTitleSlug = post.slug.replace(/(^|-)esp($|-)/g, '$1visuals$2');
   ]}
 >
   <div class="sr-only" aria-label="Article cross-links">
-    <a href={ROUTES.home}>Return to site root (home)</a>
-    <a href={ROUTES.blog}>Browse MW4 guides — blog index</a>
-    <a href={ROUTES.products}>COD MW4 cheats — product catalog</a>
-    <a href={ROUTES.faq}>Site FAQs — common questions</a>
-    <a href={ROUTES.about}>About this project</a>
-    <a href={checkoutPath('mw4')}>Checkout route for MW4 access (/go/mw4/)</a>
-    <a href={blogPostPath('mw4-stream-proof-setup')}>Stream-proof OBS checklist for MW4 overlays</a>
+    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Site root — homepage</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>All posts — chronological list</a>
+    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Tier catalog — Lite / Pro / Elite</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Support FAQ — licensing and pay</a>
+    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Project notes — how we write</a>
+    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Paid checkout — /go/mw4/ redirect</a>
+    <a href={companionGuideHref}>{companionGuideLabel}</a>
   </div>
   <article class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">

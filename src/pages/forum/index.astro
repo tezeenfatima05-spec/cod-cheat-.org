@@ -8,13 +8,13 @@ import { blogPosts, getBlogPostTimestamp } from '../../data/blog';
 import { resolvePageSeo } from '../../config/seo';
 import { SITE_BRAND } from '../../config/site';
 import { breadcrumbSchema, collectionPageSchema } from '../../utils/schema';
-import { canonicalUrl } from '../../config/seo';
+import { canonicalUrl, resolveDocumentOrigin } from '../../config/seo';
 import { ROUTES } from '../../utils/path';
 
 const seo = resolvePageSeo('/forum/');
 const breadcrumbs = [{ name: 'Home', path: '/' }, { name: 'Forum', path: '/forum/' }];
 const categoryKey = (name: string) => name.toLowerCase().replace(/[^a-z0-9]/g, '');
-const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const schemaOrigin = resolveDocumentOrigin(Astro.site);
 const shareUrl = canonicalUrl('/forum/', schemaOrigin);
 
 const sourceTimestamp = (path?: string) => {
@@ -29,11 +29,11 @@ const sourceTimestamp = (path?: string) => {
   breadcrumbSchema(breadcrumbs, schemaOrigin),
 ]}>
   <div class="sr-only" aria-label="Related hubs">
-    <a href={ROUTES.home}>Site homepage</a>
-    <a href={ROUTES.blog}>MW4 guides — blog</a>
-    <a href={ROUTES.faq}>Help — FAQ</a>
-    <a href={ROUTES.about}>Editorial — about</a>
-    <a href={ROUTES.products}>Products — catalog</a>
+    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Root URL — cheat landing</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Long-form guides — read next</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Tier &amp; checkout questions</a>
+    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Site background — editorial</a>
+    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Shop tiers — compare modules</a>
   </div>
   <section class="forum-page py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">

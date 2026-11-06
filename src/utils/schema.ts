@@ -64,7 +64,7 @@ export function organizationSchema(origin?: string) {
     '@type': 'Organization',
     name: SITE_BRAND,
     url: `${base}/`,
-    logo: absoluteAssetUrl(SITE_ASSETS.logo),
+    logo: absoluteAssetUrl(SITE_ASSETS.logo, origin),
     email: SUPPORT_EMAIL,
     ...(sameAs.length > 0 ? { sameAs } : {}),
     contactPoint: [
@@ -184,7 +184,7 @@ export function productSchema(input: {
       '@type': 'Brand',
       name: SITE_BRAND,
     },
-    ...(input.image ? { image: absoluteAssetUrl(input.image) } : {}),
+    ...(input.image ? { image: absoluteAssetUrl(input.image, input.origin) } : {}),
     offers: {
       '@type': 'Offer',
       url: offerUrl(input.offerUrl, input.origin),
@@ -232,7 +232,7 @@ export function articleSchema(input: {
     headline: input.name,
     description: input.description,
     url: canonicalUrl(input.url, input.origin),
-    image: absoluteAssetUrl(input.image),
+    image: absoluteAssetUrl(input.image, input.origin),
     datePublished: input.datePublished,
     dateModified: input.dateModified ?? input.datePublished,
     inLanguage: 'en-US',
@@ -245,7 +245,7 @@ export function articleSchema(input: {
       name: SITE_BRAND,
       logo: {
         '@type': 'ImageObject',
-        url: absoluteAssetUrl(SITE_ASSETS.logo),
+        url: absoluteAssetUrl(SITE_ASSETS.logo, input.origin),
       },
     },
     mainEntityOfPage: {

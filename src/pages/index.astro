@@ -6,7 +6,7 @@ import WhySetupSection from '../components/WhySetupSection.astro';
 import ProductsSection from '../components/ProductsSection.astro';
 import ContentSections from '../components/ContentSections.astro';
 import { t } from '../i18n';
-import { resolvePageSeo, canonicalUrl } from '../config/seo';
+import { resolvePageSeo, canonicalUrl, resolveDocumentOrigin } from '../config/seo';
 import { ROUTES } from '../utils/path';
 import { checkoutPath } from '../config/checkout';
 import { faqPageSchema, homeWebPageSchema, organizationSchema, websiteSchema } from '../utils/schema';
@@ -17,7 +17,7 @@ import { SITE_ASSETS } from '../config/site';
 const seo = resolvePageSeo('/');
 const homeFaqs = getLandingFaqs();
 const heroLcpImage = webpSrc(SITE_ASSETS.heroPoster, 512);
-const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const schemaOrigin = resolveDocumentOrigin(Astro.site);
 const shareUrl = canonicalUrl('/', schemaOrigin);
 ---
 
@@ -26,6 +26,7 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
   description={seo.description}
   sharePageUrl={shareUrl}
   sharePageTitle={seo.title}
+  omitHeadSocialSrLinks
   jsonLd={[
     websiteSchema(schemaOrigin),
     organizationSchema(schemaOrigin),
@@ -49,15 +50,17 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
     fetchpriority="high"
   />
   <div class="sr-only" aria-label="Site shortcuts">
-    <a href={ROUTES.products}>MW4 PC tiers — products hub</a>
-    <a href={ROUTES.blog}>MW4 guides — blog archive</a>
-    <a href={ROUTES.forum}>Demo forum — sample Q&amp;A threads</a>
-    <a href={ROUTES.faq}>FAQ — checkout and tier questions</a>
-    <a href={checkoutPath('mw4')}>Short link — /go/mw4/ checkout route</a>
-    <a href={ROUTES.about}>About — how we publish guides</a>
-    <a href={ROUTES.privacy}>Data &amp; cookies — policy page</a>
-    <a href={ROUTES.terms}>Legal — terms of service</a>
-    <a href={`${ROUTES.blog}mw4-stream-proof-setup/`}>MW4 stream-proof — OBS capture guide</a>
+    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Product lineup — compare MW4 PC cheat tiers</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Editorial archive — MW4 setup and patch writeups</a>
+    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Sample community threads (demo forum)</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Help center — tiers, loader, and checkout</a>
+    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Redirect hub — paid access (/go/mw4/)</a>
+    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Editorial scope — how guides are written</a>
+    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Privacy statement — analytics and email</a>
+    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Terms of purchase — license and refunds</a>
+    <a href={canonicalUrl(`${ROUTES.blog}mw4-stream-proof-setup/`, schemaOrigin)}>
+      OBS capture modes — stream overlay walkthrough
+    </a>
   </div>
   <HeroSection />
   <FeaturesSection />

@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { t } from '../i18n';
-import { resolvePageSeo } from '../config/seo';
+import { resolvePageSeo, resolveDocumentOrigin } from '../config/seo';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import ContactSupportSection from '../components/ContactSupportSection.astro';
 import { breadcrumbSchema, webPageSchema } from '../utils/schema';
 
 const seo = resolvePageSeo('/support/');
-const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const schemaOrigin = resolveDocumentOrigin(Astro.site);
 ---
 
 <BaseLayout

@@ -7,7 +7,7 @@ import {
   getNonFeaturedBlogPosts,
 } from '../../data/blog';
 import { t } from '../../i18n';
-import { resolvePageSeo } from '../../config/seo';
+import { resolvePageSeo, canonicalUrl, resolveDocumentOrigin } from '../../config/seo';
 import { breadcrumbSchema, collectionPageSchema } from '../../utils/schema';
 import { CARD_IMAGE_WIDTHS, webpSrc } from '../../utils/responsiveImage';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
@@ -18,7 +18,6 @@ import { blogTagIcons } from '../../data/sectionIcons';
 import type { IconName } from '../../components/icons/types';
 import { Button } from '@/components/starwind/button';
 import { ROUTES, blogPostPath } from '../../utils/path';
-import { canonicalUrl } from '../../config/seo';
 
 const seo = resolvePageSeo('/blog/');
 const breadcrumbs = [
@@ -32,7 +31,7 @@ const tags = getBlogTags();
 const lcpImage = webpSrc(featured?.image ?? blogPosts[0]!.image, CARD_IMAGE_WIDTHS[0]);
 
 const tagIcon = (tag: string): IconName => blogTagIcons[tag] ?? 'tag';
-const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const schemaOrigin = resolveDocumentOrigin(Astro.site);
 const shareUrl = canonicalUrl('/blog/', schemaOrigin);
 ---
 
@@ -54,12 +53,12 @@ const shareUrl = canonicalUrl('/blog/', schemaOrigin);
   <link slot="head" rel="preload" as="image" href={lcpImage} type="image/webp" fetchpriority="high" />
 
   <div class="sr-only" aria-label="Related site entry points">
-    <a href={ROUTES.home}>Home — COD Cheats front page</a>
-    <a href={ROUTES.products}>Catalog — MW4 cheat tiers</a>
-    <a href={blogPostPath('mw4-player-esp-distance')}>Guide — player distance and HUD clutter</a>
-    <a href={blogPostPath('mw4-triggerbot-guide')}>Guide — trigger timing and hold key</a>
-    <a href={ROUTES.about}>About — editorial scope</a>
-    <a href={ROUTES.forum}>Forum — demo discussions</a>
+    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Start here — site home</a>
+    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Paid tiers — Lite, Pro, Elite</a>
+    <a href={canonicalUrl(blogPostPath('mw4-player-esp-distance'), schemaOrigin)}>ESP distance — keep 6v6 readable</a>
+    <a href={canonicalUrl(blogPostPath('mw4-triggerbot-guide'), schemaOrigin)}>Trigger delay — hold key tuning</a>
+    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Who we are — guide publishing</a>
+    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Sample forum — mirror threads</a>
   </div>
 
   <h2 class="sr-only">Featured MW4 article</h2>

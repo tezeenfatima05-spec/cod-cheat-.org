@@ -2,7 +2,7 @@
 import '../../../styles/product-cheat-page.css';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { productHub, productPages } from '../../../data/products';
-import { resolvePageSeo } from '../../../config/seo';
+import { resolvePageSeo, resolveDocumentOrigin } from '../../../config/seo';
 import { breadcrumbSchema, itemListSchema, webPageSchema } from '../../../utils/schema';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import { productPath } from '../../../utils/path';
@@ -30,7 +30,7 @@ const utilityUseCases: Record<string, string> = {
   ugc: 'Structured appeal and account recovery workflows when access is restricted.',
   'unlock-all': 'Local blueprint and operator preview before you commit loadouts in-game.',
 };
-const schemaOrigin = Astro.site ? String(Astro.site).replace(/\/$/, '') : undefined;
+const schemaOrigin = resolveDocumentOrigin(Astro.site);
 ---
 
 <BaseLayout
