@@ -141,6 +141,8 @@ export const blogPosts: BlogPostFull[] = [
     title: '2D radar zoom and range for MW4',
     slug: 'mw4-2d-radar-zoom',
     image: '/images/mw4/screenshot-6.webp',
+    metaDesc:
+      'When to widen the radar for Ground War versus tight MP spawns. ut — /go/mw4/ redirect Related: MW4 capture-safe OBS checklist (stream overlays) All.',
     desc: 'When to widen the radar for Ground War versus tight MP spawns.',
     date: 'Oct 31, 2026',
     readTime: '5 min read',
@@ -149,6 +151,26 @@ export const blogPosts: BlogPostFull[] = [
       {
         type: 'p',
         text: 'Ground War benefits from a wider radar window; Gunfight-sized maps need tighter zoom so blips are not stacked on top of each other.',
+      },
+      {
+        type: 'p',
+        text: 'Treat zoom as a filter, not a billboard. If the full map is on screen, back off one notch until distant fights read as texture, not static.',
+      },
+      {
+        type: 'p',
+        text: 'Rotate two presets: wide for vehicle noise in big modes, narrow for room-to-room clarity when spawns sit on top of each other.',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Match zoom to your FOV—higher FOV can use slightly tighter zoom',
+          'Delay marker bloom until after the first circle so the HUD does not jitter',
+          'Pair with ESP distance caps so the map and overlays never argue',
+        ],
+      },
+      {
+        type: 'p',
+        text: 'After edits, load a private lobby, walk the tallest sightlines, and confirm blips separate before you queue ranked.',
       },
     ],
   },
@@ -229,6 +251,8 @@ export const blogPosts: BlogPostFull[] = [
     title: 'Anti-cheat wave response checklist',
     slug: 'anticheat-patch-day-checklist',
     image: '/images/mw4/screenshot-4.webp',
+    metaDesc:
+      'Checklist: Pause play, read status, reload conservative profiles, then retest offline. edirect Related: MW4 capture-safe OBS checklist (stream overlays).',
     desc: 'Pause play, read status, reload conservative profiles, then retest offline.',
     date: 'Oct 26, 2026',
     readTime: '5 min read',
@@ -309,6 +333,8 @@ export const blogPosts: BlogPostFull[] = [
     title: 'How to buy COD MW4 cheats securely',
     slug: 'how-to-buy-cod-mw4-cheats',
     image: '/images/mw4/screenshot-2.webp',
+    metaDesc:
+      'Buy Cod Mw4 Cheats Securely: Portal access, order email hygiene, and avoiding fake loader links. go/mw4/ redirect Related: MW4 capture-safe OBS checklist.',
     desc: 'Portal access, order email hygiene, and avoiding fake loader links.',
     date: 'Oct 21, 2026',
     readTime: '5 min read',

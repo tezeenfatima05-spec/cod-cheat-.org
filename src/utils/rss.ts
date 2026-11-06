@@ -1,5 +1,6 @@
 import { blogPosts } from '../data/blog';
 import { RSS_FEED_PATH, SITE_ORIGIN, absoluteAssetUrl, canonicalUrl } from '../config/seo';
+import { getBlogPageSeoEntry } from '../config/pageSeo';
 import { SITE_BRAND } from '../config/site';
 import { parseBlogDate } from './schema';
 import { blogPostPath } from './path';
@@ -18,6 +19,7 @@ export function buildRssFeed(): string {
   const items = blogPosts
     .map((post) => {
       const link = canonicalUrl(blogPostPath(post.slug));
+      const blogSeo = getBlogPageSeoEntry(blogPostPath(post.slug));
       const pubDate = new Date(parseBlogDate(post.date)).toUTCString();
       const enclosureType = /\.webp$/i.test(post.image) ? 'image/webp' : 'image/png';
       return `
@@ -25,7 +27,7 @@ export function buildRssFeed(): string {
       <title>${escapeXml(post.title)}</title>
       <link>${link}</link>
       <guid isPermaLink="true">${link}</guid>
-      <description>${escapeXml(post.metaDesc ?? post.desc)}</description>
+      <description>${escapeXml(blogSeo?.description ?? post.metaDesc ?? post.desc)}</description>
       <pubDate>${pubDate}</pubDate>
       <enclosure url="${escapeXml(absoluteAssetUrl(post.image))}" type="${enclosureType}" />
     </item>`;

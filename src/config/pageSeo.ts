@@ -10,7 +10,7 @@ export interface PageSeoEntry {
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'cod cheats for pc aimbot player esp wallhack –',
+    title: 'Cod cheats – MW4 PC cheat catalog (hero CTA destination)',
     description:
       'cod cheats for pc aimbot player esp wallhack: Cod cheats for MW4 on PC: aimbot, player ESP, triggerbot, 2D radar, DMZ loot, no recoil, and stream-proof.',
   },
@@ -75,4 +75,27 @@ export function normalizeSeoPath(pathname: string): string {
 
 export function getPageSeoEntry(pathname: string): PageSeoEntry | undefined {
   return PAGE_SEO[normalizeSeoPath(pathname)];
+}
+
+/** Blog article routes — document title + meta only (visible H1 stays `post.title` from data). */
+export const BLOG_PAGE_SEO: Record<string, PageSeoEntry> = {
+  '/blog/anticheat-patch-day-checklist/': {
+    title: 'Checklist – COD Cheats Editorial When enforcement | COD',
+    description:
+      'Checklist: Pause play, read status, reload conservative profiles, then retest offline. edirect Related: MW4 capture-safe OBS checklist (stream overlays).',
+  },
+  '/blog/how-to-buy-cod-mw4-cheats/': {
+    title: 'Buy Cod Mw4 Cheats Securely – Questions about this page',
+    description:
+      'Buy Cod Mw4 Cheats Securely: Portal access, order email hygiene, and avoiding fake loader links. go/mw4/ redirect Related: MW4 capture-safe OBS checklist.',
+  },
+  '/blog/mw4-2d-radar-zoom/': {
+    title: 'Radar – Articles summarize workflows; authoritative | COD',
+    description:
+      'When to widen the radar for Ground War versus tight MP spawns. ut — /go/mw4/ redirect Related: MW4 capture-safe OBS checklist (stream overlays) All.',
+  },
+};
+
+export function getBlogPageSeoEntry(pathname: string): PageSeoEntry | undefined {
+  return BLOG_PAGE_SEO[normalizeSeoPath(pathname)];
 }
