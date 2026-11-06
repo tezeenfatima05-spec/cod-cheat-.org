@@ -8,10 +8,13 @@ import { blogPosts, getBlogPostTimestamp } from '../../data/blog';
 import { resolvePageSeo } from '../../config/seo';
 import { SITE_BRAND } from '../../config/site';
 import { breadcrumbSchema, collectionPageSchema } from '../../utils/schema';
+import { canonicalUrl } from '../../config/seo';
 
 const seo = resolvePageSeo('/forum/');
 const breadcrumbs = [{ name: 'Home', path: '/' }, { name: 'Forum', path: '/forum/' }];
 const categoryKey = (name: string) => name.toLowerCase().replace(/[^a-z0-9]/g, '');
+const shareUrl = canonicalUrl('/forum/');
+
 const sourceTimestamp = (path?: string) => {
   const slug = path?.split('/').filter(Boolean).at(-1);
   const article = blogPosts.find((item) => item.slug === slug);
@@ -19,7 +22,7 @@ const sourceTimestamp = (path?: string) => {
 };
 ---
 
-<BaseLayout title={seo.title} description={seo.description} jsonLd={[
+<BaseLayout title={seo.title} description={seo.description} sharePageUrl={shareUrl} sharePageTitle={seo.title} jsonLd={[
   collectionPageSchema({ name: `${SITE_BRAND} forum (demo)`, description: seo.description, url: '/forum/' }),
   breadcrumbSchema(breadcrumbs),
 ]}>
@@ -29,7 +32,7 @@ const sourceTimestamp = (path?: string) => {
       <header class="forum-hero">
         <div>
           <p class="section-header__eyebrow">COD MW4 forum (demo)</p>
-          <h1>Community forum Q&amp;A (sample)</h1>
+          <h1>Community forum Q&amp;A — demo MW4 setup (sample)</h1>
           <p class="forum-hero__copy">Demo threads that mirror MW4 guides—ESP tuning, DMZ loot, patch-day habits, and hardware topics.</p>
         </div>
         <a class="forum-create" href="/blog/"><Icon name="messageCircle" size={17} /> Explore the guides</a>

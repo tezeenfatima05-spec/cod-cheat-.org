@@ -22,10 +22,12 @@ interface Props {
   /** Full-width split hero on blog index — same card UI as grid cards */
   layout?: 'default' | 'featured';
   class?: string;
+  readButtonLabel?: string;
 }
 
-const { post, index = 0, eager = false, showDate = false, layout = 'default', class: className } =
+const { post, index = 0, eager = false, showDate = false, layout = 'default', class: className, readButtonLabel } =
   Astro.props;
+const footerCta = readButtonLabel ?? `${t.blog.read} · ${post.slug}`;
 const isFeatured = layout === 'featured';
 const href = blogPostPath(post.slug);
 const timestamp = getBlogPostTimestamp(post.date);
@@ -144,7 +146,7 @@ const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
         <span>{post.readTime}</span>
       </p>
       <Button as="a" href={href} variant="outline" size="sm" class="blog-card__read shrink-0">
-        {t.blog.read}
+        {footerCta}
         <Icon name="arrowRight" size={16} />
       </Button>
     </CardFooter>

@@ -6,7 +6,7 @@ import WhySetupSection from '../components/WhySetupSection.astro';
 import ProductsSection from '../components/ProductsSection.astro';
 import ContentSections from '../components/ContentSections.astro';
 import { t } from '../i18n';
-import { resolvePageSeo } from '../config/seo';
+import { resolvePageSeo, canonicalUrl } from '../config/seo';
 import { faqPageSchema, organizationSchema, websiteSchema } from '../utils/schema';
 import { getLandingFaqs } from '../data/faq';
 import { webpSrc } from '../utils/responsiveImage';
@@ -15,11 +15,14 @@ import { SITE_ASSETS } from '../config/site';
 const seo = resolvePageSeo('/');
 const homeFaqs = getLandingFaqs();
 const heroLcpImage = webpSrc(SITE_ASSETS.heroPoster, 512);
+const shareUrl = canonicalUrl('/');
 ---
 
 <BaseLayout
   title={seo.title}
   description={seo.description}
+  sharePageUrl={shareUrl}
+  sharePageTitle={seo.title}
   jsonLd={[websiteSchema(), organizationSchema(), faqPageSchema(homeFaqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') })))]}
 >
   <link

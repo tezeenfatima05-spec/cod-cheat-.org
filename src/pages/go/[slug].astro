@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import { CHECKOUT, CHECKOUT_SLUG_TO_PRODUCT } from '../../config/checkout';
+import { canonicalUrl } from '../../config/seo';
 
 export const prerender = true;
 
@@ -10,19 +11,56 @@ export const getStaticPaths: GetStaticPaths = () =>
 const { slug } = Astro.params;
 const product = CHECKOUT_SLUG_TO_PRODUCT[slug!];
 const destination = product ? CHECKOUT[product] : '/';
+
+const selfPath = `/go/${slug}/`;
+const selfCanonical = canonicalUrl(selfPath);
+
+const isMw4 = slug === 'mw4';
+const docTitle = isMw4
+  ? 'Go Tazeen To 2fproducts 2fmw4 – Redirecting from /go/mw4/ to'
+  : `Redirecting to checkout (${slug})`;
+const metaDesc = isMw4
+  ? 'Go Tazeen To 2fproducts 2fmw4: Redirecting from /go/mw4/ to https://zadeyo.com/go/TAZEEN?to=%2Fproducts%2Fmw4'
+  : `This page forwards you to the secure checkout for ${slug?.replace(/-/g, ' ') ?? 'the selected product'}.`;
+const h1Text = isMw4 ? 'Go Tazeen To 2fproducts 2fmw4' : `Continue to ${product ?? 'checkout'}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: docTitle,
+  description: metaDesc,
+  url: selfCanonical,
+  inLanguage: 'en-US',
+};
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Redirecting…</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{docTitle}</title>
+    <meta name="description" content={metaDesc} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={selfCanonical} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <meta http-equiv="refresh" content={`0;url=${destination}`} />
-    <link rel="canonical" href={destination} />
-    <meta name="robots" content="noindex, follow" />
     <script is:inline set:html={`location.replace(${JSON.stringify(destination)})`} />
   </head>
   <body>
-    <p><a href={destination}>Continue</a></p>
+    <h1>{h1Text}</h1>
+    <p>
+      You are leaving this site for a hosted checkout page. Most browsers follow the redirect immediately; if not,
+      use the link below.
+    </p>
+    <p>
+      <a href={destination}>Continue to checkout</a>
+    </p>
+    {isMw4 && (
+      <p>
+        This shortcut exists so in-product links can stay short while the destination URL carries the full product path
+        on the partner site.
+      </p>
+    )}
   </body>
 </html>

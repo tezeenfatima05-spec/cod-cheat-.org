@@ -16,7 +16,12 @@ const urlCount = (raw.match(/<url>/g) ?? []).length;
 
 const origin = getPublicSiteOrigin();
 /** Rewrite <loc> bases if Astro emitted a different deploy host (e.g. first build used prod URL). */
-const hostsToRewrite = ['https://cod-cheat.org', 'http://cod-cheat.org'];
+const hostsToRewrite = [
+  'https://cod-cheat.org',
+  'http://cod-cheat.org',
+  'https://www.cod-cheat.org',
+  'http://www.cod-cheat.org',
+];
 for (const h of hostsToRewrite) {
   if (h !== origin) raw = raw.split(h).join(origin);
 }

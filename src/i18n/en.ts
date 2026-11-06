@@ -24,7 +24,7 @@ export const en: Translations = {
     status: 'MW4 — PC build online',
     eyebrow: 'PC · Modern Warfare',
     titleLine1: 'COD MW4',
-    titleLine2: 'COD Cheats for PC',
+    titleLine2: 'COD Cheats for PC — aimbot, wallhack | ZADEYO',
     subtitle:
       'Aim assist, player ESP, trigger timing, 2D radar, and DMZ loot layers tuned for Multiplayer and Hajin—check status before every session.',
     ctaPrimary: 'View products',
@@ -289,7 +289,7 @@ export const en: Translations = {
     items: [
       {
         tag: 'Guides',
-        title: 'MW4 cheats player ESP: distance caps that keep 6v6 readable',
+        title: 'MW4 player ESP: distance caps that keep 6v6 readable',
         slug: 'mw4-player-esp-distance',
         image: '/images/mw4/screenshot-1.webp',
         desc: 'Esp on MW4: scale box size, snaplines, and squad colors before the HUD turns to noise—distance caps keep 6v6 esp overlays readable without clutter on PC.',
@@ -301,7 +301,7 @@ export const en: Translations = {
         title: 'Stream-proof overlay checklist for MW4 cheats',
         slug: 'mw4-stream-proof-setup',
         image: '/images/mw4/screenshot-2.webp',
-        desc: 'Stream proof for MW4 cheats: hide capture feeds while overlays stay on your display—OBS checklist so recordings stay clean while ESP and radar remain visible in game.',
+        desc: 'Stream proof for MW4 cheats: hide capture feeds while overlays stay on your display—OBS checklist so recordings stay clean while ESP and radar remain.',
         date: 'Nov 4, 2026',
         readTime: '5 min read',
       },
@@ -310,7 +310,7 @@ export const en: Translations = {
         title: 'Triggerbot delay and hold key for MW4 cheats',
         slug: 'mw4-triggerbot-guide',
         image: '/images/mw4/screenshot-3.webp',
-        desc: 'Triggerbot delay and hold key for MW4: match timing to sensitivity so sprays stay believable—use a short delay plus hold key gating so bursts stay intentional on PC.',
+        desc: 'Triggerbot delay and hold key for MW4: match timing to sensitivity so sprays stay believable—use a short delay plus hold key gating so bursts stay.',
         date: 'Nov 3, 2026',
         readTime: '6 min read',
       },
@@ -607,12 +607,13 @@ export const en: Translations = {
   legalPages: {
     about: {
       title: 'About COD Cheats',
-      description: `${SITE_DOMAIN} publishes COD MW4 cheat tier comparisons, guides, and setup resources for PC players.`,
+      description: `${SITE_DOMAIN} publishes COD MW4 cheat tier comparisons, guides, and site resources for PC players.`,
       sections: [
         {
           heading: 'Who we are',
           paragraphs: [
             'This site is an informational resource for PC players evaluating Modern Warfare-style modules: aim assist, ESP, radar, DMZ loot overlays, and related utilities.',
+            'Editorial pages summarize published module groups and where checkout happens; they are not a replacement for the partner portal.',
             'Game names are used for identification only.',
           ],
         },
@@ -620,6 +621,7 @@ export const en: Translations = {
           heading: 'What we publish',
           paragraphs: [
             'Tier pages explain differences between Lite, Pro, and Elite bundles. The blog expands on tuning, DMZ-specific layers, and patch-day behavior.',
+            'Publishing focuses on stable guides—when a post references a module, it points to the product page instead of repeating checkout URLs in the body.',
             'Checkout happens through external secure flows—we do not store card numbers on this domain.',
             'Editorial standards keep claims conservative: we describe published module groups and link to secure checkout rather than promising undetectable play.',
           ],
@@ -634,12 +636,13 @@ export const en: Translations = {
     },
     privacy: {
       title: 'Privacy Policy',
-      description: `How ${SITE_DOMAIN} handles analytics, cookies, and contact data when you browse or email us.`,
+      description: `How ${SITE_DOMAIN} handles analytics, cookies, and contact data when you browse this site or email us.`,
       sections: [
         {
           heading: 'Information we collect',
           paragraphs: [
             'We may collect basic analytics (pages viewed, device type, browser) when measurement tools are enabled. Checkout is handled off-site.',
+            'Server logs may retain request paths and status codes briefly for reliability; we do not use them to profile individual play sessions.',
             'Contact form or email content is stored only as long as needed to answer your request, then removed or archived per routine mailbox policy.',
           ],
         },
@@ -648,6 +651,7 @@ export const en: Translations = {
           paragraphs: [
             'Analytics help us fix broken links and prioritize guides. Support tickets retain the content you send until the issue resolves.',
             'We do not sell personal data. Aggregated traffic metrics may be exported to internal spreadsheets without identifying individuals.',
+            'When you email support, we may reference your message alongside order context supplied by the payment partner—never card numbers, which this site never sees.',
           ],
         },
         {

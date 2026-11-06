@@ -6,7 +6,7 @@ const hub = PRODUCT_BASE;
 export const blogPosts: BlogPostFull[] = [
   {
     tag: 'Guides',
-    title: 'MW4 cheats player ESP: distance caps that keep 6v6 readable',
+    title: 'MW4 player ESP: distance caps that keep 6v6 readable',
     slug: 'mw4-player-esp-distance',
     image: '/images/mw4/screenshot-1.webp',
     desc: 'Esp on MW4: scale box size, snaplines, and squad colors before the HUD turns to noise—distance caps keep 6v6 esp overlays readable without clutter on PC.',
@@ -17,7 +17,7 @@ export const blogPosts: BlogPostFull[] = [
     body: [
       {
         type: 'p',
-        text: `Start with distance caps and name tags off—those two settings matter more than flashy colors on [product tiers](${hub}).`,
+        text: `Start with distance caps and name tags off—those two settings matter more than flashy colors on [MW4 cheat tier lineup](${hub}).`,
       },
       {
         type: 'h2',
@@ -40,6 +40,7 @@ export const blogPosts: BlogPostFull[] = [
         title: 'Compare tiers',
         text: 'See which modules ship on Lite versus Pro versus Elite.',
         href: hub,
+        ctaLabel: 'View tier table',
       },
     ],
   },
@@ -48,7 +49,7 @@ export const blogPosts: BlogPostFull[] = [
     title: 'Stream-proof overlay checklist for MW4 cheats',
     slug: 'mw4-stream-proof-setup',
     image: '/images/mw4/screenshot-2.webp',
-    desc: 'Stream proof for MW4 cheats: hide capture feeds while overlays stay on your display—OBS checklist so recordings stay clean while ESP and radar remain visible in game.',
+    desc: 'Stream proof for MW4 cheats: hide capture feeds while overlays stay on your display—OBS checklist so recordings stay clean while ESP and radar remain.',
     date: 'Nov 4, 2026',
     readTime: '5 min read',
     author: 'COD Cheats Editorial',
@@ -76,7 +77,7 @@ export const blogPosts: BlogPostFull[] = [
     title: 'Triggerbot delay and hold key for MW4 cheats',
     slug: 'mw4-triggerbot-guide',
     image: '/images/mw4/screenshot-3.webp',
-    desc: 'Triggerbot delay and hold key for MW4: match timing to sensitivity so sprays stay believable—use a short delay plus hold key gating so bursts stay intentional on PC.',
+    desc: 'Triggerbot delay and hold key for MW4: match timing to sensitivity so sprays stay believable—use a short delay plus hold key gating so bursts stay.',
     date: 'Nov 3, 2026',
     readTime: '6 min read',
     author: 'COD Cheats Editorial',
@@ -107,7 +108,7 @@ export const blogPosts: BlogPostFull[] = [
       },
       {
         type: 'p',
-        text: `If you only need callouts and spacing, stay Lite. If you want help finishing duels, upgrade after reading the [feature map](${hub}).`,
+        text: `If you only need callouts and spacing, stay Lite. If you want help finishing duels, upgrade after reading the [COD MW4 module feature map](${hub}).`,
       },
     ],
   },
@@ -179,7 +180,7 @@ export const blogPosts: BlogPostFull[] = [
     body: [
       {
         type: 'p',
-        text: `Elite bundles everything in Pro with radar zoom, DMZ loot, no recoil/spread toggles, and custom crosshair support. Read the feature matrix on [products](${hub}) before buying.`,
+        text: `Elite bundles everything in Pro with radar zoom, DMZ loot, no recoil/spread toggles, and custom crosshair support. Read the feature matrix on [COD MW4 cheats product page](${hub}) before buying.`,
       },
     ],
   },
@@ -295,7 +296,7 @@ export const blogPosts: BlogPostFull[] = [
     body: [
       {
         type: 'p',
-        text: `Lite covers visuals and stream-proof paths. Pro adds smooth aim and trigger automation. Elite folds radar, DMZ loot, no recoil/spread, and custom crosshair into the same stack. Details live on [products](${hub}).`,
+        text: `Lite covers visuals and stream-proof paths. Pro adds smooth aim and trigger automation. Elite folds radar, DMZ loot, no recoil/spread, and custom crosshair into the same stack. Details live on [Lite vs Pro vs Elite comparison](${hub}).`,
       },
     ],
   },

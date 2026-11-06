@@ -16,8 +16,14 @@ function pathnameFromUrl(url: string): string {
 export function sitemapSerialize(item: SitemapItem): SitemapItem | undefined {
   const path = pathnameFromUrl(item.url);
 
-  if (path.includes('/404') || path.startsWith('/go/') || path.includes('/rss.xml')) {
+  if (path.includes('/404') || path.includes('/rss.xml')) {
     return undefined;
+  }
+
+  if (path.startsWith('/go/')) {
+    item.priority = 0.3;
+    item.changefreq = 'monthly';
+    return item;
   }
 
   item.lastmod = buildDate;

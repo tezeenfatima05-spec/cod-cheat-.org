@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getAllFaqs } from '../data/faq';
 import { resolvePageSeo } from '../config/seo';
 import { SITE_DOMAIN } from '../config/site';
+import { canonicalUrl } from '../config/seo';
 import { breadcrumbSchema, faqPageSchema, webPageSchema } from '../utils/schema';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import SiteFaqSection from '../components/SiteFaqSection.astro';
@@ -15,11 +16,14 @@ const breadcrumbs = [
 ];
 
 const faqs = getAllFaqs();
+const shareUrl = canonicalUrl('/faq/');
 ---
 
 <BaseLayout
   title={seo.title}
   description={seo.description}
+  sharePageUrl={shareUrl}
+  sharePageTitle={seo.title}
   jsonLd={[
     webPageSchema({
       name: 'Cheats FAQ — COD MW4 tiers, guides & checkout',
@@ -36,7 +40,7 @@ const faqs = getAllFaqs();
       <div class="mt-6">
         <SectionHeader
           eyebrow="Help center"
-          title="FAQ for cheats, products, checkout & guides"
+          title="FAQ for cheats, products, checkout, guides & tiers"
           desc="Everything about Lite, Pro, Elite tiers, utilities, safety and blog topics—in one place."
           titleId="faq-page-title"
         />

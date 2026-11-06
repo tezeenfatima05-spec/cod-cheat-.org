@@ -18,6 +18,7 @@ import { blogTagIcons } from '../../data/sectionIcons';
 import type { IconName } from '../../components/icons/types';
 import { Button } from '@/components/starwind/button';
 import { ROUTES } from '../../utils/path';
+import { canonicalUrl } from '../../config/seo';
 
 const seo = resolvePageSeo('/blog/');
 const breadcrumbs = [
@@ -31,11 +32,14 @@ const tags = getBlogTags();
 const lcpImage = webpSrc(featured?.image ?? blogPosts[0]!.image, CARD_IMAGE_WIDTHS[0]);
 
 const tagIcon = (tag: string): IconName => blogTagIcons[tag] ?? 'tag';
+const shareUrl = canonicalUrl('/blog/');
 ---
 
 <BaseLayout
   title={seo.title}
   description={seo.description}
+  sharePageUrl={shareUrl}
+  sharePageTitle={seo.title}
   jsonLd={[
     collectionPageSchema({
       name: t.blog.title,
@@ -59,7 +63,7 @@ const tagIcon = (tag: string): IconName => blogTagIcons[tag] ?? 'tag';
       <header class="section-header max-w-2xl">
         <p class="section-header__eyebrow">{t.blog.eyebrow}</p>
         <h1 id="blog-latest-title" class="section-header__title">
-          {t.blog.latestTitle} — Cod
+          Latest articles — Cod guides, setup, radar & patch notes
         </h1>
         <p class="section-header__subtitle">{t.blog.latestSubtitle}</p>
       </header>

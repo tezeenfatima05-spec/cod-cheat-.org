@@ -10,9 +10,9 @@ export interface PageSeoEntry {
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'Cod cheat — MW4 aimbot, ESP & wallhack | ZADEYO',
+    title: 'Cod cheats — MW4 aimbot, ESP & wallhack | ZADEYO',
     description:
-      'Cod cheat tools for MW4 on PC: aimbot, player ESP, triggerbot, 2D radar, DMZ loot, no recoil, stream-proof options—built for Modern Warfare on Windows.',
+      'Cod cheats for MW4 on PC: aimbot, player ESP, triggerbot, 2D radar, DMZ loot, no recoil, and stream-proof options—built for Modern Warfare on Windows.',
   },
   '/products/cod-cheats/': {
     title: 'COD MW4 Cheats for PC — Aimbot, ESP & Wallhack',
@@ -30,14 +30,14 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Overview of account and cosmetic utilities that pair with COD cheats—see each card for scope and checkout.',
   },
   '/blog/': {
-    title: 'Cod guides & setup — MW4 ESP, radar, DMZ & patch-day notes PC',
+    title: 'cod guides & setup — radar, ESP, DMZ & patch notes (PC)',
     description:
       'Cod guides for MW4 on PC: setup and patch-day notes—aim tuning, ESP, 2D radar, DMZ loot layers, stream-proof capture options, and hardware checks.',
   },
   '/forum/': {
     title: 'Community forum — COD MW4 setup, ESP & DMZ Q&A (demo)',
     description:
-      'Community space (demo): sample threads on COD MW4 cheat setup, stream proof, ESP tuning, DMZ loot, patch-day habits, and troubleshooting for layout review.',
+      'Community space (demo): sample threads on COD MW4 cheat setup, stream proof, ESP tuning, DMZ loot, patch-day habits, and troubleshooting for layout.',
   },
   '/faq/': {
     title: 'Cheats FAQ — COD MW4 tiers, ESP, checkout & guides | PC',
@@ -50,14 +50,14 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Purchase terms, license use, and refund policy for products linked from cod-cheat.org.',
   },
   '/privacy/': {
-    title: 'Privacy policy — analytics, cookies & contact data | COD site',
+    title: 'Privacy – and contact data when you browse or email support',
     description:
-      'Privacy practices at cod-cheat.org: analytics, cookies, and contact data when you browse or email support. This privacy overview supplements the full policy below.',
+      'Privacy practices at cod-cheat.org: analytics, cookies, and contact data when you browse or email support. This privacy overview supplements the full.',
   },
   '/about/': {
     title: 'Cod cheats — about MW4 tiers, guides & site publishing | PC',
     description:
-      'Cod cheats on this site means MW4 module coverage only: tier comparisons, PC setup guides, blog resources, and status notes—editorial about pages, not a second home.',
+      'Cod cheats on this site means MW4 module coverage only: tier comparisons, PC setup guides, blog resources, and status notes—editorial about pages, not a hub.',
   },
   '/support/': {
     title: 'Support | COD Cheats',

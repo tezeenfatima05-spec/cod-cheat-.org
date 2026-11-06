@@ -3,7 +3,7 @@ import '../../styles/blog-pages.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { t } from '../../i18n';
 import { getAllBlogSlugs, getBlogPost, getRelatedBlogPosts } from '../../data/blog';
-import { pageTitle } from '../../config/seo';
+import { pageTitle, canonicalUrl } from '../../config/seo';
 import {
   articleSchema,
   breadcrumbSchema,
@@ -66,11 +66,15 @@ function slugify(text: string): string {
     .replace(/^-|-$/g, '');
 }
 const published = parseBlogDate(post.date);
+const shareUrl = canonicalUrl(postPath);
+const docTitle = pageTitle(post.title, 'COD', 60);
 ---
 
 <BaseLayout
-  title={pageTitle(post.title)}
+  title={docTitle}
   description={post.desc}
+  sharePageUrl={shareUrl}
+  sharePageTitle={docTitle}
   ogType="article"
   ogImage={post.image}
   ogImageAlt={post.title}
@@ -172,6 +176,7 @@ const published = parseBlogDate(post.date);
                     title={block.title}
                     html={linkify(block.text)}
                     href={resolveCheckoutHref(block.href)}
+                    ctaLabel={'ctaLabel' in block ? block.ctaLabel : undefined}
                   />
                 );
               }
@@ -181,14 +186,14 @@ const published = parseBlogDate(post.date);
 
           <nav class="blog-article__actions" aria-label="Continue reading">
             <Button as="a" href={checkoutPath('mw4')} variant="primary" aria-label={t.ui.checkoutAria}>
-              Get access
+              Open MW4 access route
               <Icon name="arrowRight" size={17} />
             </Button>
             <Button as="a" href={ROUTES.products} variant="outline">
-              View products
+              Browse COD MW4 product lineup
             </Button>
             <Button as="a" href={ROUTES.blog} variant="outline">
-              More articles
+              See more blog guides
               <Icon name="arrowRight" size={17} />
             </Button>
           </nav>
