@@ -17,7 +17,7 @@ const shareUrl = canonicalUrl('/privacy/');
   sharePageTitle={seo.title}
   jsonLd={[
     webPageSchema({
-      name: 'Privacy — analytics, cookies, contact data & this site',
+      name: 'Privacy — when you browse or email support (analytics, cookies & data)',
       description: content.description,
       url: '/privacy/',
     }),
@@ -29,9 +29,11 @@ const shareUrl = canonicalUrl('/privacy/');
 >
   <LegalPage
     title={content.title}
-    pageTitle="Privacy — analytics, cookies, contact data & this site"
+    pageTitle="Privacy — when you browse or email support (analytics, cookies & data)"
     description={content.description}
     breadcrumbLabel="Privacy Policy"
     sections={content.sections}
+    supportLinkLabel="Reach support about privacy"
+    homeLinkLabel="Back to homepage overview"
   />
 </BaseLayout>

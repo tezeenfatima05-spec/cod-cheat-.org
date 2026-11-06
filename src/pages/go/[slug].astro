@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import { CHECKOUT, CHECKOUT_SLUG_TO_PRODUCT } from '../../config/checkout';
 import { canonicalUrl } from '../../config/seo';
+import { ROUTES } from '../../utils/path';
 
 export const prerender = true;
 
@@ -20,9 +21,13 @@ const docTitle = isMw4
   ? 'Go Tazeen To 2fproducts 2fmw4 – Redirecting from /go/mw4/ to'
   : `Redirecting to checkout (${slug})`;
 const metaDesc = isMw4
-  ? 'Go Tazeen To 2fproducts 2fmw4: Redirecting from /go/mw4/ to https://zadeyo.com/go/TAZEEN?to=%2Fproducts%2Fmw4'
+  ? 'Go Tazeen To 2fproducts 2fmw4: Redirecting from /go/mw4/ to https://zadeyo.com/go/TAZEEN?to=%2Fproducts%2Fmw4. Go Tazeen To 2fproducts 2fmw4 You are.'
   : `This page forwards you to the secure checkout for ${slug?.replace(/-/g, ' ') ?? 'the selected product'}.`;
-const h1Text = isMw4 ? 'Go Tazeen To 2fproducts 2fmw4' : `Continue to ${product ?? 'checkout'}`;
+const h1Text = isMw4 ? 'Go Tazeen To 2fproducts 2fmw4 — redirecting' : docTitle;
+
+const shareUrl = selfCanonical;
+const xShare = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(docTitle)}`;
+const facebookShare = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -43,24 +48,63 @@ const jsonLd = {
     <meta name="description" content={metaDesc} />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={selfCanonical} />
+    <link rel="alternate" hreflang="en" href={selfCanonical} />
+    <link rel="alternate" hreflang="en-US" href={selfCanonical} />
+    <link rel="alternate" hreflang="en-GB" href={selfCanonical} />
+    <link rel="alternate" hreflang="x-default" href={selfCanonical} />
+    <meta property="og:title" content={docTitle} />
+    <meta property="og:description" content={metaDesc} />
+    <meta property="og:url" content={selfCanonical} />
+    <meta property="og:type" content="website" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <style>
+      @media (max-width: 639px) {
+        main {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+      }
+      @media (min-width: 640px) and (max-width: 1023px) {
+        main {
+          max-width: 40rem;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    </style>
     <meta http-equiv="refresh" content={`0;url=${destination}`} />
     <script is:inline set:html={`location.replace(${JSON.stringify(destination)})`} />
   </head>
   <body>
     <h1>{h1Text}</h1>
-    <p>
-      You are leaving this site for a hosted checkout page. Most browsers follow the redirect immediately; if not,
-      use the link below.
-    </p>
-    <p>
-      <a href={destination}>Continue to checkout</a>
-    </p>
-    {isMw4 && (
+    <main>
       <p>
-        This shortcut exists so in-product links can stay short while the destination URL carries the full product path
-        on the partner site.
+        You are leaving this site for a hosted checkout page. Most browsers follow the redirect immediately; if not,
+        use the link below.
       </p>
-    )}
+      <p>
+        <a href={destination}>Continue to checkout</a>
+      </p>
+      <p>
+        <a href={ROUTES.products}>MW4 product overview</a>
+        {' · '}
+        <a href={ROUTES.blog}>Setup and patch guides</a>
+        {' · '}
+        <a href={ROUTES.faq}>FAQ on tiers and checkout</a>
+      </p>
+      {isMw4 && (
+        <p>
+          This shortcut exists so in-product links can stay short while the destination URL carries the full product path
+          on the partner site. Crawlers still see this HTML before the browser follows the redirect.
+        </p>
+      )}
+      <p>
+        Prefer sharing this shortcut? Use
+        <a href={xShare}>X (Twitter)</a>
+        {' or '}
+        <a href={facebookShare}>Facebook</a>
+        .
+      </p>
+    </main>
   </body>
 </html>

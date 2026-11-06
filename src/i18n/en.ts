@@ -614,7 +614,9 @@ export const en: Translations = {
           paragraphs: [
             'This site is an informational resource for PC players evaluating Modern Warfare-style modules: aim assist, ESP, radar, DMZ loot overlays, and related utilities.',
             'Editorial pages summarize published module groups and where checkout happens; they are not a replacement for the partner portal.',
+            'Publishing here means concise writeups: we point to product pages for feature tables instead of mirroring the full catalog on every article.',
             'Game names are used for identification only.',
+            'Update cadence follows major patches—we refresh tier summaries when module groups shift after COD title updates.',
           ],
         },
         {
@@ -652,6 +654,7 @@ export const en: Translations = {
             'Analytics help us fix broken links and prioritize guides. Support tickets retain the content you send until the issue resolves.',
             'We do not sell personal data. Aggregated traffic metrics may be exported to internal spreadsheets without identifying individuals.',
             'When you email support, we may reference your message alongside order context supplied by the payment partner—never card numbers, which this site never sees.',
+            'You may browse without accounts: this domain does not require login to read guides; only outbound checkout collects payment details on the partner host.',
           ],
         },
         {

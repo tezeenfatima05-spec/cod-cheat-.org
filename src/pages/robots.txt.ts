@@ -9,8 +9,6 @@ export const GET: APIRoute = ({ site }) => {
   const body = `User-agent: *
 Allow: /
 
-Disallow: /go/
-
 Sitemap: ${origin}/sitemap.xml
 
 # RSS: ${origin}/rss.xml

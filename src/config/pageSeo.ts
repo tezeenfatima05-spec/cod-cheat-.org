@@ -10,7 +10,7 @@ export interface PageSeoEntry {
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'Cod cheats — MW4 aimbot, ESP & wallhack | COD Cheats',
+    title: 'Cod cheats — MW4 aimbot, ESP & wallhack for PC',
     description:
       'Cod cheats for MW4 on PC: aimbot, player ESP, triggerbot, 2D radar, DMZ loot, no recoil, and stream-proof options—built for Modern Warfare on Windows.',
   },
@@ -57,7 +57,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/about/': {
     title: 'Cod cheats — about MW4 tiers, guides & site publishing | PC',
     description:
-      'Cod cheats on this site means MW4 module coverage only: tier comparisons, PC setup guides, blog resources, and status notes—editorial about pages, not a hub.',
+      'Cod cheats on this site means MW4 module coverage only: tier comparisons, PC setup guides, blog resources, and status notes—editorial about pages, not a.',
   },
   '/support/': {
     title: 'Support | COD Cheats',

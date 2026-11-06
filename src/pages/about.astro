@@ -19,7 +19,7 @@ const shareUrl = canonicalUrl('/about/');
   jsonLd={[
     organizationSchema(),
     webPageSchema({
-      name: 'About COD Cheats — Tiers',
+      name: 'About COD Cheats — tiers, guides, site publishing',
       description: content.description,
       url: '/about/',
     }),
@@ -31,9 +31,11 @@ const shareUrl = canonicalUrl('/about/');
 >
   <LegalPage
     title={content.title}
-    pageTitle="About COD Cheats — Tiers"
+    pageTitle="About COD Cheats — tiers, guides, site publishing"
     description={content.description}
     breadcrumbLabel="About"
     sections={content.sections}
+    supportLinkLabel="Email support from this page"
+    homeLinkLabel="Return to the homepage"
   />
 </BaseLayout>

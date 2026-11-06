@@ -12,9 +12,15 @@ interface Props {
   description: string;
   breadcrumbLabel: string;
   sections: { heading: string; paragraphs: string[] }[];
+  /** Override default footer link labels when anchor text must be unique per page */
+  supportLinkLabel?: string;
+  homeLinkLabel?: string;
 }
 
-const { title, pageTitle, description, breadcrumbLabel, sections } = Astro.props;
+const { title, pageTitle, description, breadcrumbLabel, sections, supportLinkLabel, homeLinkLabel } =
+  Astro.props;
+const supportLabel = supportLinkLabel ?? 'Contact support';
+const homeLabel = homeLinkLabel ?? 'Back to home';
 const heading = pageTitle ?? title;
 ---
 
@@ -46,10 +52,10 @@ const heading = pageTitle ?? title;
 
     <div class="mt-12 flex flex-wrap justify-center gap-3 border-t border-border pt-8">
       <Button as="a" href={ROUTES.support} variant="primary" size="sm">
-        Contact support
+        {supportLabel}
         <Icon name="mail" size={16} />
       </Button>
-      <Button as="a" href={ROUTES.home} variant="outline" size="sm">Back to home</Button>
+      <Button as="a" href={ROUTES.home} variant="outline" size="sm">{homeLabel}</Button>
     </div>
   </div>
 </article>
