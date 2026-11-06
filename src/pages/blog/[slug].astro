@@ -92,6 +92,113 @@ const companionGuideLabel =
 
 const articleSchemaName =
   post.slug === 'how-to-buy-cod-mw4-cheats' ? docTitle : post.title;
+
+const srCrosslinks: { href: string; label: string }[] = (() => {
+  const home = canonicalUrl(ROUTES.home, schemaOrigin);
+  const blogIdx = canonicalUrl(ROUTES.blog, schemaOrigin);
+  const products = canonicalUrl(ROUTES.products, schemaOrigin);
+  const faq = canonicalUrl(ROUTES.faq, schemaOrigin);
+  const about = canonicalUrl(ROUTES.about, schemaOrigin);
+  const support = canonicalUrl(ROUTES.support, schemaOrigin);
+  const checkout = canonicalUrl(checkoutPath('mw4'), schemaOrigin);
+  const forum = canonicalUrl(ROUTES.forum, schemaOrigin);
+  const sitemap = `${schemaOrigin}/sitemap.xml`;
+  const elite = canonicalUrl(ROUTES.productsElite, schemaOrigin);
+
+  if (post.slug === 'how-to-buy-cod-mw4-cheats') {
+    return [
+      { href: sitemap, label: 'Sitemap listing — every public URL' },
+      { href: home, label: 'COD MW4 cheat hub (site root)' },
+      { href: blogIdx, label: 'Guides archive — newest entries' },
+      { href: products, label: 'Tier comparison — Lite, Pro, Elite' },
+      { href: faq, label: 'Billing FAQ — refunds and keys' },
+      { href: about, label: 'About — editorial disclaimers' },
+      { href: support, label: 'Email support — orders and portals' },
+      { href: checkout, label: 'Partner checkout — /go/mw4/ handoff' },
+      { href: companionGuideHref, label: 'Stream-proof OBS — related article' },
+    ];
+  }
+  const bySlug: Record<string, { href: string; label: string }[]> = {
+    'mw4-lite-vs-pro': [
+      { href: sitemap, label: 'XML sitemap — crawl-friendly URL index' },
+      { href: home, label: 'Landing page — MW4 tier snapshot' },
+      { href: blogIdx, label: 'Blog roll — more tier guides' },
+      { href: products, label: 'Feature matrix — catalog hub' },
+      { href: faq, label: 'Licensing questions — FAQ index' },
+      { href: about, label: 'Publishing notes — how guides are written' },
+      { href: checkout, label: 'Secure purchase path — /go/mw4/' },
+      { href: companionGuideHref, label: companionGuideLabel },
+      { href: elite, label: 'Elite overview — radar + DMZ stack' },
+    ],
+    'anticheat-patch-day-checklist': [
+      { href: sitemap, label: 'Sitemap.xml — full route manifest' },
+      { href: home, label: 'Home — enforcement updates banner' },
+      { href: blogIdx, label: 'Editorial posts — patch-day notes' },
+      { href: forum, label: 'Demo forum — community threads' },
+      { href: products, label: 'Product lineup — safe defaults by tier' },
+      { href: faq, label: 'Safety FAQ — risk and bans' },
+      { href: support, label: 'Help queue — loader issues' },
+      { href: checkout, label: 'Portal access — /go/mw4/ route' },
+      { href: companionGuideHref, label: companionGuideLabel },
+    ],
+    'mw4-elite-tier-guide': [
+      { href: sitemap, label: 'Public sitemap — every blog URL' },
+      { href: home, label: 'Site root — cheat catalog entry' },
+      { href: blogIdx, label: 'Article index — chronological feed' },
+      { href: elite, label: 'Elite SKU — full module list' },
+      { href: products, label: 'All tiers — Lite through Elite' },
+      { href: faq, label: 'Plans FAQ — what ships where' },
+      { href: forum, label: 'Forum sample — layout only' },
+      { href: checkout, label: 'Paid access — partner redirect' },
+      { href: companionGuideHref, label: companionGuideLabel },
+    ],
+    'mw4-2d-radar-zoom': [
+      { href: sitemap, label: 'Crawl map — href in sitemap.xml' },
+      { href: home, label: 'Homepage — MW4 hero destination' },
+      { href: blogIdx, label: 'Guides index — radar and ESP' },
+      { href: products, label: 'Catalog — articles summarize workflows; authoritative specs' },
+      { href: faq, label: 'ESP vs radar — short answers' },
+      { href: about, label: 'Editorial — authoritative module wording' },
+      { href: support, label: 'Tuning help — support inbox' },
+      { href: checkout, label: 'Checkout route — /go/mw4/' },
+      { href: companionGuideHref, label: companionGuideLabel },
+    ],
+    'mw4-stream-proof-setup': [
+      { href: sitemap, label: 'Sitemap — stream-proof article URL listed' },
+      { href: home, label: 'Front page — broadcast safety tip callout' },
+      { href: blogIdx, label: 'Setup guides — next recommended reads' },
+      { href: products, label: 'Tier pages — capture toggles per plan' },
+      { href: faq, label: 'Streaming risk — quick FAQ blurb' },
+      { href: forum, label: 'Forum mirror — OBS chatter samples' },
+      { href: checkout, label: 'Access purchase — /go/mw4/' },
+      { href: companionGuideHref, label: companionGuideLabel },
+      { href: support, label: 'Capture fails — contact support' },
+    ],
+    'mw4-player-esp-distance': [
+      { href: sitemap, label: 'URL inventory — sitemap.xml entry' },
+      { href: home, label: 'Home — ESP hero module teaser' },
+      { href: blogIdx, label: 'More HUD tuning — related guides' },
+      { href: products, label: 'Lite lane — visuals-only stack' },
+      { href: faq, label: 'ESP primer — boxes vs snaplines' },
+      { href: about, label: 'Method — how distance tests are run' },
+      { href: checkout, label: 'Purchase — secure /go/mw4/' },
+      { href: companionGuideHref, label: companionGuideLabel },
+      { href: elite, label: 'Elite add-ons — radar pairing idea' },
+    ],
+  };
+  return (
+    bySlug[post.slug] ?? [
+      { href: sitemap, label: 'Sitemap index — machine URL list' },
+      { href: home, label: 'Site home — COD MW4 overview' },
+      { href: blogIdx, label: 'Blog — all published guides' },
+      { href: products, label: 'Products — tiered cheat lineup' },
+      { href: faq, label: 'FAQ — billing and risk' },
+      { href: about, label: 'About — editorial scope' },
+      { href: checkout, label: 'Checkout — /go/mw4/' },
+      { href: companionGuideHref, label: companionGuideLabel },
+    ]
+  );
+})();
 ---
 
 <BaseLayout
@@ -118,27 +225,9 @@ const articleSchemaName =
   ]}
 >
   <div class="sr-only" aria-label="Article cross-links">
-    {post.slug === 'how-to-buy-cod-mw4-cheats' ? (
-      <>
-        <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>MW4 cheat hub (site root)</a>
-        <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Blog index — newest guides first</a>
-        <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Catalog — Lite, Pro, Elite tier pages</a>
-        <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>FAQ — licenses, refunds, support email</a>
-        <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>About — editorial scope for MW4 posts</a>
-        <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Secure access — /go/mw4/ checkout handoff</a>
-        <a href={companionGuideHref}>Stream-proof OBS steps (related guide)</a>
-      </>
-    ) : (
-      <>
-        <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Site root — homepage</a>
-        <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>All posts — chronological list</a>
-        <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Tier catalog — Lite / Pro / Elite</a>
-        <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Support FAQ — licensing and pay</a>
-        <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Project notes — how we write</a>
-        <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Paid checkout — /go/mw4/ redirect</a>
-        <a href={companionGuideHref}>{companionGuideLabel}</a>
-      </>
-    )}
+    {srCrosslinks.map((link) => (
+      <a href={link.href}>{link.label}</a>
+    ))}
   </div>
   <article class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">

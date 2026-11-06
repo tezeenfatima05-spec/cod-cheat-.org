@@ -80,19 +80,29 @@ export function getPageSeoEntry(pathname: string): PageSeoEntry | undefined {
 /** Blog article routes — document title + meta only (visible H1 stays `post.title` from data). */
 export const BLOG_PAGE_SEO: Record<string, PageSeoEntry> = {
   '/blog/anticheat-patch-day-checklist/': {
-    title: 'Checklist – COD Cheats Editorial When enforcement | COD',
+    title: 'Checklist – COD Cheats Editorial When enforcement |',
     description:
-      'Checklist: Pause play, read status, reload conservative profiles, then retest offline. edirect Related: MW4 capture-safe OBS checklist (stream overlays).',
+      'Checklist: Pause play, read status, reload conservative profiles, then retest offline. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist (stream overlays).',
   },
   '/blog/how-to-buy-cod-mw4-cheats/': {
     title: 'buy cod mw4 cheats securely – portal access & order email',
     description:
-      'buy cod mw4 cheats securely: Portal access, order email hygiene, and avoiding fake loader links. Checkout: /go/mw4/. Related: MW4 capture-safe OBS checklist.',
+      'buy cod mw4 cheats securely: Portal access, order email hygiene, and avoiding fake loader links. Checkout: /go/mw4/.',
   },
   '/blog/mw4-2d-radar-zoom/': {
-    title: 'Radar – Articles summarize workflows; authoritative | COD',
+    title: 'Radar – Articles summarize workflows; authoritative |',
     description:
-      'When to widen the radar for Ground War versus tight MP spawns. ut — /go/mw4/ redirect Related: MW4 capture-safe OBS checklist (stream overlays) All.',
+      'When to widen the radar for Ground War versus tight MP spawns. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist (stream overlays). All articles.',
+  },
+  '/blog/mw4-elite-tier-guide/': {
+    title: 'Elite tier — radar, DMZ & misc stack for MW4 PC cheats',
+    description:
+      'Elite Tier: What unlocks when you need every overlay class on PC. /go/mw4/ redirect Related: MW4 capture-safe OBS checklist (stream overlays) All articles.',
+  },
+  '/blog/mw4-lite-vs-pro/': {
+    title: 'Lite – ESP-only versus adding smooth aim and trigger modules',
+    description:
+      'Lite: ESP-only versus adding smooth aim and trigger modules. Checkout — /go/mw4/ redirect. Related: MW4 capture-safe OBS checklist (stream overlays).',
   },
 };
 

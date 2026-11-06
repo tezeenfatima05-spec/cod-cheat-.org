@@ -18,6 +18,7 @@ import { blogTagIcons } from '../../data/sectionIcons';
 import type { IconName } from '../../components/icons/types';
 import { Button } from '@/components/starwind/button';
 import { ROUTES, blogPostPath } from '../../utils/path';
+import { checkoutPath } from '../../config/checkout';
 
 const seo = resolvePageSeo('/blog/');
 const breadcrumbs = [
@@ -53,15 +54,17 @@ const shareUrl = canonicalUrl('/blog/', schemaOrigin);
   <link slot="head" rel="preload" as="image" href={lcpImage} type="image/webp" fetchpriority="high" />
 
   <div class="sr-only" aria-label="Related site entry points">
-    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Start here — site home</a>
-    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Paid tiers — Lite, Pro, Elite</a>
-    <a href={canonicalUrl(blogPostPath('mw4-player-esp-distance'), schemaOrigin)}>ESP distance — keep 6v6 readable</a>
-    <a href={canonicalUrl(blogPostPath('mw4-triggerbot-guide'), schemaOrigin)}>Trigger delay — hold key tuning</a>
-    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Who we are — guide publishing</a>
-    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Sample forum — mirror threads</a>
+    <a href={`${schemaOrigin}/sitemap.xml`}>Sitemap XML — full URL list for crawlers</a>
+    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Homepage — MW4 landing overview</a>
+    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Product catalog — tier lineup</a>
+    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Secure access — partner /go/mw4/ route</a>
+    <a href={canonicalUrl(blogPostPath('mw4-player-esp-distance'), schemaOrigin)}>6v6 ESP distance caps — player overlays</a>
+    <a href={canonicalUrl(blogPostPath('mw4-triggerbot-guide'), schemaOrigin)}>Trigger timing — hold-key MW4 setup</a>
+    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>About — editorial and publishing notes</a>
+    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Forum demo — placeholder threads</a>
   </div>
 
-  <h2 class="sr-only">Featured MW4 story</h2>
+  <div class="sr-only">Featured MW4 story section</div>
   <section class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
       <Breadcrumbs items={breadcrumbs} absoluteBase={schemaOrigin} />
@@ -79,14 +82,14 @@ const shareUrl = canonicalUrl('/blog/', schemaOrigin);
     </div>
   </section>
 
-  <h2 class="sr-only">Article archive — filter and grid</h2>
+  <div class="sr-only">Article archive — filter and grid</div>
   <section class="border-y border-border bg-muted/20 py-12 md:py-16" aria-labelledby="blog-latest-title">
     <div class="mx-auto max-w-6xl px-5">
       <header class="section-header max-w-2xl">
         <p class="section-header__eyebrow">{t.blog.eyebrow}</p>
-        <h1 id="blog-latest-title" class="section-header__title">
+        <h2 id="blog-latest-title" class="section-header__title">
           Latest articles — Cod guides, setup, radar & patch notes
-        </h1>
+        </h2>
         <p class="section-header__subtitle">{t.blog.latestSubtitle}</p>
       </header>
 

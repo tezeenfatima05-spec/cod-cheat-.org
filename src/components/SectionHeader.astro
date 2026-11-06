@@ -5,12 +5,13 @@ interface Props {
   desc?: string;
   titleId?: string;
   /** FAQ page uses an outer <h1>; inner section title should be <h2> to avoid duplicate H1s. */
-  titleLevel?: 'h1' | 'h2';
+  titleLevel?: 'h1' | 'h2' | 'h3';
   centered?: boolean;
   wide?: boolean;
 }
 
 const { eyebrow, title, desc, titleId, titleLevel = 'h1', centered = false, wide = false } = Astro.props;
+const TitleTag = titleLevel === 'h3' ? 'h3' : titleLevel === 'h2' ? 'h2' : 'h1';
 ---
 
 <header
@@ -21,12 +22,6 @@ const { eyebrow, title, desc, titleId, titleLevel = 'h1', centered = false, wide
   ]}
 >
   <p class="section-header__eyebrow">{eyebrow}</p>
-  {
-    titleLevel === 'h2' ? (
-      <h2 id={titleId} class="section-header__title">{title}</h2>
-    ) : (
-      <h1 id={titleId} class="section-header__title">{title}</h1>
-    )
-  }
+  <TitleTag id={titleId} class="section-header__title">{title}</TitleTag>
   {desc ? <p class="section-header__subtitle">{desc}</p> : null}
 </header>

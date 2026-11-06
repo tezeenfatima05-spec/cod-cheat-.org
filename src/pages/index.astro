@@ -54,26 +54,29 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
     fetchpriority="high"
   />
   <div class="sr-only" aria-label="Site shortcuts">
-    <a href={`${schemaOrigin}/sitemap.xml`}>Full XML sitemap — every indexable path</a>
-    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Compare MW4 PC cheat tiers on the catalog hub</a>
-    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Read setup guides and patch-day writeups</a>
-    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Open demo forum threads (layout sample)</a>
-    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Loader, licensing, and checkout Q&amp;A</a>
-    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Hand off to the secure /go/mw4/ route</a>
-    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>See how this site publishes MW4 coverage</a>
-    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Cookies, analytics, and contact data</a>
-    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Purchase license terms and refund rules</a>
+    <a href={`${schemaOrigin}/sitemap.xml`}>Machine-readable sitemap index (XML)</a>
+    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>MW4 PC cheat tier comparison hub</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Patch-day setup guides — blog index</a>
+    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Demo forum — sample discussion layout</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Loader and checkout questions — FAQ hub</a>
+    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Partner checkout handoff — /go/mw4/</a>
+    <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Editorial scope — how MW4 posts are written</a>
+    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Privacy policy — cookies and contact email</a>
+    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>License terms — refunds and usage</a>
     <a href={canonicalUrl(`${ROUTES.blog}mw4-stream-proof-setup/`, schemaOrigin)}>
-      Stream-proof OBS checklist for overlays
+      MW4 stream-proof guide — OBS capture steps
     </a>
-    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Lite versus Pro tier tradeoffs (guide)</a>
-    <a href={canonicalUrl(blogPostPath('mw4-elite-tier-guide'), schemaOrigin)}>Elite stack: radar, DMZ, misc modules</a>
-    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>Shop Elite — full feature lineup page</a>
-    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>Lite SKU — ESP-first module details</a>
-    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>Pro SKU — aim plus trigger add-ons</a>
-    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>Utilities index — UGC and paired tools</a>
+    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Lite vs Pro — tier comparison article</a>
+    <a href={canonicalUrl(blogPostPath('mw4-elite-tier-guide'), schemaOrigin)}>Elite tier guide — radar and DMZ stack</a>
+    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>Elite product page — module matrix</a>
+    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>Lite product page — visuals-first stack</a>
+    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>Pro product page — aim and trigger stack</a>
+    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>Utilities hub — skin preview and UGC tools</a>
   </div>
-  <HeroSection productsSrHref={canonicalUrl(ROUTES.products, schemaOrigin)} />
+  <HeroSection
+    productsSrHref={canonicalUrl(ROUTES.products, schemaOrigin)}
+    heroTitleOverride="COD Cheats for PC — aimbot, player ESP & wallhack — catalog hero destination"
+  />
   <FeaturesSection />
   <ProductsSection linkBase={schemaOrigin} />
   <WhySetupSection />

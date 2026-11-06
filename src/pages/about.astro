@@ -36,12 +36,13 @@ const shareUrl = canonicalUrl('/about/', schemaOrigin);
   ]}
 >
   <div class="sr-only" aria-label="Related site pages">
-    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Front door — landing overview</a>
-    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>MW4 article index (all tags)</a>
-    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Tier compare — Lite vs Pro writeup</a>
-    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Privacy notice — cookies and email</a>
-    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>FAQ index — products and checkout</a>
-    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Support desk — loader and billing</a>
+    <a href={`${schemaOrigin}/sitemap.xml`}>Crawl map — XML sitemap for every route</a>
+    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Site entry — COD MW4 homepage</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Guides archive — newest posts first</a>
+    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Lite versus Pro — feature tradeoffs</a>
+    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Data practices — privacy statement</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Help center — licensing FAQ topics</a>
+    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Contact support — orders and loaders</a>
   </div>
   <LegalPage
     title={content.title}

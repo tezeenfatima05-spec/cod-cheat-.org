@@ -138,11 +138,11 @@ export const blogPosts: BlogPostFull[] = [
   },
   {
     tag: 'Features',
-    title: '2D radar zoom and range for MW4',
+    title: '2D radar zoom and range for MW4 — articles summarize workflows; authoritative',
     slug: 'mw4-2d-radar-zoom',
     image: '/images/mw4/screenshot-6.webp',
     metaDesc:
-      'When to widen the radar for Ground War versus tight MP spawns. ut — /go/mw4/ redirect Related: MW4 capture-safe OBS checklist (stream overlays) All.',
+      'Radar: when to widen the map for Ground War versus tight MP spawns. Checkout — /go/mw4/. Related: MW4 capture-safe OBS checklist (stream overlays).',
     desc: 'When to widen the radar for Ground War versus tight MP spawns.',
     date: 'Oct 31, 2026',
     readTime: '5 min read',
@@ -248,7 +248,7 @@ export const blogPosts: BlogPostFull[] = [
   },
   {
     tag: 'Updates',
-    title: 'Anti-cheat wave response checklist',
+    title: 'Anti-cheat wave response checklist — COD cheats editorial when enforcement waves hit',
     slug: 'anticheat-patch-day-checklist',
     image: '/images/mw4/screenshot-4.webp',
     metaDesc:
@@ -330,7 +330,7 @@ export const blogPosts: BlogPostFull[] = [
   },
   {
     tag: 'Guides',
-    title: 'How to buy COD MW4 cheats securely',
+    title: 'How to buy COD MW4 cheats securely — portal access & order email',
     slug: 'how-to-buy-cod-mw4-cheats',
     image: '/images/mw4/screenshot-2.webp',
     metaDesc:
