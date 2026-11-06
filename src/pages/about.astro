@@ -36,18 +36,18 @@ const shareUrl = canonicalUrl('/about/', schemaOrigin);
   ]}
 >
   <div class="sr-only" aria-label="Related site pages">
-    <a href={`${schemaOrigin}/sitemap.xml`}>XML index — every indexable href</a>
-    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Landing — ZADEYO MW4 cheat overview</a>
-    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Blog roll — newest MW4 guides first</a>
-    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Comparison post — Lite tier vs Pro</a>
-    <a href={canonicalUrl(blogPostPath('anticheat-patch-day-checklist'), schemaOrigin)}>Updates post — anticheat patch-day list</a>
-    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Catalog — tier comparison hub</a>
-    <a href={canonicalUrl(productPath('elite'), schemaOrigin)}>Elite page — DMZ and radar bundle</a>
-    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Forum demo — sample MW4 threads</a>
-    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Privacy — analytics and contact data</a>
-    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>FAQ hub — refunds and keys</a>
-    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Support — email for loader issues</a>
-    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Terms — purchase and refund policy</a>
+    <a href={`${schemaOrigin}/sitemap.xml`}>XML sitemap listing all indexable paths</a>
+    <a href={canonicalUrl(ROUTES.home, schemaOrigin)}>Homepage MW4 cheat positioning summary</a>
+    <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Blog index (newest MW4 guides at top)</a>
+    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Lite vs Pro tier comparison article</a>
+    <a href={canonicalUrl(blogPostPath('anticheat-patch-day-checklist'), schemaOrigin)}>Anticheat patch-day checklist article</a>
+    <a href={canonicalUrl(ROUTES.products, schemaOrigin)}>Product hub with tier comparison table</a>
+    <a href={canonicalUrl(productPath('elite'), schemaOrigin)}>Elite SKU page (DMZ plus radar bundle)</a>
+    <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Forum demo with sample MW4 threads</a>
+    <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Privacy overview on analytics and contact data</a>
+    <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>FAQ index covering refunds and license keys</a>
+    <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Support contact for loaders and orders</a>
+    <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Terms covering purchases and refund policy</a>
   </div>
   <LegalPage
     title={content.title}

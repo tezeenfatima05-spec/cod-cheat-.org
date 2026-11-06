@@ -28,6 +28,7 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
   sharePageUrl={shareUrl}
   sharePageTitle={seo.title}
   trimOgLocales
+  omitHeadSocialSrLinks
   omitBodySitemapLink
   linkAbsoluteBase={schemaOrigin}
   jsonLd={[
@@ -64,14 +65,14 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
     <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Digital license purchase and refund wording</a>
     <a href={canonicalUrl(ROUTES.support, schemaOrigin)}>Direct help desk for loaders and orders</a>
     <a href={canonicalUrl(`${ROUTES.blog}mw4-stream-proof-setup/`, schemaOrigin)}>
-      Stream-overlay OBS checklist (capture-safe)
+      Stream-overlay OBS capture-safe checklist
     </a>
-    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Article: Lite tier vs Pro modules</a>
-    <a href={canonicalUrl(blogPostPath('mw4-elite-tier-guide'), schemaOrigin)}>Article: Elite radar plus DMZ bundle</a>
-    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>SKU detail: Elite full feature column</a>
-    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>SKU detail: Lite ESP-first modules</a>
-    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>SKU detail: Pro aim and trigger add-ons</a>
-    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>Cosmetic and UGC utility index page</a>
+    <a href={canonicalUrl(blogPostPath('mw4-lite-vs-pro'), schemaOrigin)}>Lite versus Pro tier comparison writeup</a>
+    <a href={canonicalUrl(blogPostPath('mw4-elite-tier-guide'), schemaOrigin)}>Elite tier radar DMZ stack explainer</a>
+    <a href={canonicalUrl(ROUTES.productsElite, schemaOrigin)}>Elite tier product column (full module list)</a>
+    <a href={canonicalUrl(productPath('lite'), schemaOrigin)}>Lite tier ESP-first module listing</a>
+    <a href={canonicalUrl(productPath('pro'), schemaOrigin)}>Pro tier aim and trigger module listing</a>
+    <a href={canonicalUrl(ROUTES.productsUtilities, schemaOrigin)}>Cosmetic and UGC utility hub listing</a>
   </div>
   <HeroSection productsSrHref={canonicalUrl(ROUTES.products, schemaOrigin)} />
   <FeaturesSection />
