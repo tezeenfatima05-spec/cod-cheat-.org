@@ -292,7 +292,7 @@ export function getHomeLandingFaqs(origin: string): SiteFaqItem[] {
       topic: 'setup',
       icon: 'faqStatus',
       q: 'Where do I check COD MW4 cheat status?',
-      a: `Read the live banner on <a href="${productsHub}">MW4 product hub — live status callout</a> and your portal before launching—especially after a game or anti-cheat update.`,
+      a: `Read the live banner on <a href="${productsHub}">status strip above the tier cards on the catalog hub</a> and your portal before launching—especially after a game or anti-cheat update.`,
     },
     {
       id: 'after-buy',
@@ -331,7 +331,7 @@ export function getHomeLandingFaqs(origin: string): SiteFaqItem[] {
       topic: 'products',
       icon: 'faqProductsPage',
       q: 'Where are products and utilities listed?',
-      a: `<a href="${productsHub}">Main MW4 product catalog hub</a> covers Lite, Pro, and Elite tiers; the <a href="${eliteHub}">Elite tier feature roundup</a> expands the full stack. Utilities: <a href="${ugcHref}">UGC appeals workflow page</a> and <a href="${skinHref}">Skin changer preview route</a>, with checkout via our partner.`,
+      a: `<a href="${productsHub}">All tier SKUs listed in one index</a> covers Lite, Pro, and Elite; the <a href="${eliteHub}">flagship module roundup</a> expands the full stack. Utilities: <a href="${ugcHref}">UGC appeals workflow page</a> and <a href="${skinHref}">Skin changer preview route</a>, with checkout via our partner.`,
     },
   ];
 }
