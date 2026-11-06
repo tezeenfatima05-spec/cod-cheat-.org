@@ -15,9 +15,25 @@ interface Props {
   /** Override default footer link labels when anchor text must be unique per page */
   supportLinkLabel?: string;
   homeLinkLabel?: string;
+  /** Absolute same-origin URLs for footer actions (canonical / crawl signals) */
+  supportHref?: string;
+  homeHref?: string;
+  /** Prefix for breadcrumb links (absolute crawl URLs) */
+  absoluteBase?: string;
 }
 
-const { title, pageTitle, description, breadcrumbLabel, sections, supportLinkLabel, homeLinkLabel } =
+const {
+  title,
+  pageTitle,
+  description,
+  breadcrumbLabel,
+  sections,
+  supportLinkLabel,
+  homeLinkLabel,
+  supportHref,
+  homeHref,
+  absoluteBase,
+} =
   Astro.props;
 const supportLabel = supportLinkLabel ?? 'Contact support';
 const homeLabel = homeLinkLabel ?? 'Back to home';
@@ -28,6 +44,7 @@ const heading = pageTitle ?? title;
   <div class="mx-auto max-w-3xl px-5">
     <div class="text-left">
     <Breadcrumbs
+      absoluteBase={absoluteBase}
       items={[
         { name: 'Home', path: '/' },
         { name: breadcrumbLabel, path: Astro.url.pathname },
@@ -51,11 +68,11 @@ const heading = pageTitle ?? title;
     </Prose>
 
     <div class="mt-12 flex flex-wrap justify-center gap-3 border-t border-border pt-8">
-      <Button as="a" href={ROUTES.support} variant="primary" size="sm">
+      <Button as="a" href={supportHref ?? ROUTES.support} variant="primary" size="sm">
         {supportLabel}
         <Icon name="mail" size={16} />
       </Button>
-      <Button as="a" href={ROUTES.home} variant="outline" size="sm">{homeLabel}</Button>
+      <Button as="a" href={homeHref ?? ROUTES.home} variant="outline" size="sm">{homeLabel}</Button>
     </div>
   </div>
 </article>

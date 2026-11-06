@@ -5,13 +5,17 @@ import BlogCard from '../BlogCard.astro';
 import { Button } from '@/components/starwind/button';
 import Icon from '../icons/Icon.astro';
 import { ROUTES } from '../../utils/path';
+import { canonicalUrl, resolveDocumentOrigin } from '../../config/seo';
 
 interface Props {
   posts: BlogPost[];
   productName: string;
+  linkBase?: string;
 }
 
-const { posts, productName } = Astro.props;
+const { posts, productName, linkBase: linkBaseProp } = Astro.props;
+const schemaOrigin = linkBaseProp ?? resolveDocumentOrigin(Astro.site);
+const blogHubHref = canonicalUrl(ROUTES.blog, schemaOrigin);
 ---
 
 {
@@ -27,12 +31,12 @@ const { posts, productName } = Astro.props;
 
         <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-10">
           {posts.map((post, i) => (
-            <BlogCard post={post} index={i} showDate />
+            <BlogCard post={post} index={i} showDate linkBase={schemaOrigin} />
           ))}
         </div>
 
         <div class="mt-12 flex justify-start lg:justify-center">
-          <Button as="a" href={ROUTES.blog} variant="outline" class="rounded-full">
+          <Button as="a" href={blogHubHref} variant="outline" class="rounded-full">
             Browse all guides
             <Icon name="arrowRight" size={17} />
           </Button>

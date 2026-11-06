@@ -3,6 +3,7 @@ import type { IconName } from './icons/types';
 import Icon from './icons/Icon.astro';
 import { Badge } from '@/components/starwind/badge';
 import { Button } from '@/components/starwind/button';
+import { canonicalUrl } from '../config/seo';
 import {
   Card,
   CardContent,
@@ -25,6 +26,8 @@ interface Props {
   viewLabel?: string;
   maxFeatures?: number;
   class?: string;
+  /** Same-origin absolute URLs for crawlers (detail + internal buy routes) */
+  linkBase?: string;
 }
 
 const {
@@ -41,7 +44,17 @@ const {
   viewLabel = 'View details',
   maxFeatures = 10,
   class: className,
+  linkBase,
 } = Astro.props;
+
+function absHref(h: string): string {
+  if (!linkBase) return h;
+  if (h.startsWith('http://') || h.startsWith('https://')) return h;
+  return canonicalUrl(h, linkBase);
+}
+
+const detailHref = absHref(href);
+const buyHref = absHref(buyUrl);
 
 const displayFeatures = features.slice(0, maxFeatures);
 
@@ -55,7 +68,7 @@ const statusBadgeIcon = (text: string): IconName => {
 <Card class:list={['group flex h-full flex-col transition-shadow hover:shadow-md', className]}>
   <CardHeader class="space-y-2.5">
     <CardTitle class="catalog-card__title !normal-case">
-      <a href={href} class="catalog-card__title-link">{title}</a>
+      <a href={detailHref} class="catalog-card__title-link">{title}</a>
     </CardTitle>
     <div class="catalog-card__badges flex flex-wrap items-center gap-1.5">
       <Badge tone="primary" appearance="outline" size="sm" class="catalog-card__badge gap-1">
@@ -103,11 +116,11 @@ const statusBadgeIcon = (text: string): IconName => {
     </ul>
   </CardContent>
   <CardFooter class="flex flex-col gap-2 sm:flex-row">
-    <Button as="a" href={buyUrl} variant="primary" size="sm" class="w-full sm:flex-1">
+    <Button as="a" href={buyHref} variant="primary" size="sm" class="w-full sm:flex-1">
       {buyLabel}
       <Icon name="arrowRight" size={17} />
     </Button>
-    <Button as="a" href={href} variant="outline" size="sm" class="w-full sm:flex-1">
+    <Button as="a" href={detailHref} variant="outline" size="sm" class="w-full sm:flex-1">
       {viewLabel}
       <Icon name="arrowRight" size={17} />
     </Button>

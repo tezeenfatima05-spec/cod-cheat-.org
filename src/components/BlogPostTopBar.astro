@@ -9,14 +9,17 @@ import { Badge } from '@/components/starwind/badge';
 interface Props {
   post: BlogPost;
   class?: string;
+  /** Absolute blog index URL (matches canonical host for crawlers) */
+  blogIndexHref?: string;
 }
 
-const { post, class: className } = Astro.props;
+const { post, class: className, blogIndexHref } = Astro.props;
+const backHref = blogIndexHref ?? ROUTES.blog;
 const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
 ---
 
 <div class:list={['blog-article__toolbar', className]}>
-  <a href={ROUTES.blog} class="blog-article__toolbar-back shrink-0">
+  <a href={backHref} class="blog-article__toolbar-back shrink-0">
     <Icon name="chevronLeft" size={15} aria-hidden="true" />
     All articles
   </a>

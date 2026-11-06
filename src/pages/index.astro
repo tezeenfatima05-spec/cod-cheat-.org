@@ -10,14 +10,14 @@ import { resolvePageSeo, canonicalUrl, resolveDocumentOrigin } from '../config/s
 import { ROUTES } from '../utils/path';
 import { checkoutPath } from '../config/checkout';
 import { faqPageSchema, homeWebPageSchema, organizationSchema, websiteSchema } from '../utils/schema';
-import { getLandingFaqs } from '../data/faq';
+import { getHomeLandingFaqs } from '../data/faq';
 import { webpSrc } from '../utils/responsiveImage';
 import { SITE_ASSETS } from '../config/site';
 
 const seo = resolvePageSeo('/');
-const homeFaqs = getLandingFaqs();
 const heroLcpImage = webpSrc(SITE_ASSETS.heroPoster, 512);
 const schemaOrigin = resolveDocumentOrigin(Astro.site);
+const homeFaqs = getHomeLandingFaqs(schemaOrigin);
 const shareUrl = canonicalUrl('/', schemaOrigin);
 ---
 
@@ -27,6 +27,8 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
   sharePageUrl={shareUrl}
   sharePageTitle={seo.title}
   omitHeadSocialSrLinks
+  omitBodySitemapLink
+  linkAbsoluteBase={schemaOrigin}
   jsonLd={[
     websiteSchema(schemaOrigin),
     organizationSchema(schemaOrigin),
@@ -54,7 +56,7 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
     <a href={canonicalUrl(ROUTES.blog, schemaOrigin)}>Editorial archive — MW4 setup and patch writeups</a>
     <a href={canonicalUrl(ROUTES.forum, schemaOrigin)}>Sample community threads (demo forum)</a>
     <a href={canonicalUrl(ROUTES.faq, schemaOrigin)}>Help center — tiers, loader, and checkout</a>
-    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Redirect hub — paid access (/go/mw4/)</a>
+    <a href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)}>Paid checkout shortcut — /go/mw4/ handoff</a>
     <a href={canonicalUrl(ROUTES.about, schemaOrigin)}>Editorial scope — how guides are written</a>
     <a href={canonicalUrl(ROUTES.privacy, schemaOrigin)}>Privacy statement — analytics and email</a>
     <a href={canonicalUrl(ROUTES.terms, schemaOrigin)}>Terms of purchase — license and refunds</a>
@@ -62,9 +64,9 @@ const shareUrl = canonicalUrl('/', schemaOrigin);
       OBS capture modes — stream overlay walkthrough
     </a>
   </div>
-  <HeroSection />
+  <HeroSection productsSrHref={canonicalUrl(ROUTES.products, schemaOrigin)} />
   <FeaturesSection />
-  <ProductsSection />
+  <ProductsSection linkBase={schemaOrigin} />
   <WhySetupSection />
-  <ContentSections />
+  <ContentSections faqItems={homeFaqs} blogCtaHref={canonicalUrl(ROUTES.blog, schemaOrigin)} />
 </BaseLayout>

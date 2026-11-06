@@ -11,9 +11,17 @@ import {
 
 interface Props {
   items: BreadcrumbItem[];
+  /** When set, prefix internal paths so crawlers see absolute same-origin URLs */
+  absoluteBase?: string;
 }
 
-const { items } = Astro.props;
+const { items, absoluteBase } = Astro.props;
+
+function crumbHref(path: string): string {
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  const base = absoluteBase?.replace(/\/$/, '') ?? '';
+  return base ? `${base}${path.startsWith('/') ? path : `/${path}`}` : path;
+}
 ---
 
 <Breadcrumb class="mb-4">
@@ -26,7 +34,7 @@ const { items } = Astro.props;
             {isLast ? (
               <BreadcrumbPage>{item.name}</BreadcrumbPage>
             ) : (
-              <BreadcrumbLink href={item.path}>{item.name}</BreadcrumbLink>
+              <BreadcrumbLink href={crumbHref(item.path)}>{item.name}</BreadcrumbLink>
             )}
           </CrumbItem>
           {!isLast && <BreadcrumbSeparator />}

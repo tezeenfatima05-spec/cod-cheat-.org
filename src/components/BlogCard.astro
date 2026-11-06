@@ -4,6 +4,7 @@ import ResponsiveImage from './ResponsiveImage.astro';
 import Icon from './icons/Icon.astro';
 import { CARD_IMAGE_SIZES, CARD_IMAGE_WIDTHS } from '../utils/responsiveImage';
 import { blogPostPath } from '../utils/path';
+import { canonicalUrl } from '../config/seo';
 import type { BlogPost } from '../i18n/types';
 import { t } from '../i18n';
 import { getBlogPostTimestamp, getBlogReadMinutes } from '../data/blog';
@@ -25,6 +26,8 @@ interface Props {
   readButtonLabel?: string;
   /** Descriptive alt for card thumbnail (meaningful images); default decorative. */
   imageAlt?: string;
+  /** Deploy origin so card links match canonical host in HTML source */
+  linkBase?: string;
 }
 
 const {
@@ -36,10 +39,12 @@ const {
   class: className,
   readButtonLabel,
   imageAlt = '',
+  linkBase,
 } = Astro.props;
 const footerCta = readButtonLabel ?? `${t.blog.read} · ${post.slug}`;
 const isFeatured = layout === 'featured';
-const href = blogPostPath(post.slug);
+const pathOnly = blogPostPath(post.slug);
+const href = linkBase ? canonicalUrl(pathOnly, linkBase) : pathOnly;
 const timestamp = getBlogPostTimestamp(post.date);
 const readMinutes = getBlogReadMinutes(post.readTime);
 const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';

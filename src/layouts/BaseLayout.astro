@@ -32,6 +32,10 @@ interface Props {
   sharePageTitle?: string;
   /** Homepage-only: skip redundant head share links to trim HTML weight (MEDIUM doc size). */
   omitHeadSocialSrLinks?: boolean;
+  /** Skip duplicate body sr-only sitemap link when `<head>` already exposes it (homepage trim). */
+  omitBodySitemapLink?: boolean;
+  /** Prefix same-origin nav/footer `<a href>` with deploy origin (canonical URL crawls). */
+  linkAbsoluteBase?: string;
 }
 
 const {
@@ -47,12 +51,17 @@ const {
   sharePageUrl,
   sharePageTitle,
   omitHeadSocialSrLinks = false,
+  omitBodySitemapLink = false,
+  linkAbsoluteBase,
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
 const siteOriginTrim = resolveDocumentOrigin(Astro.site);
+/** Nav/footer links: always same absolute origin as canonical/hreflang (crawlers compare hosts). */
+const siteLinkBase = linkAbsoluteBase ?? siteOriginTrim;
 const pageUrl = canonicalUrl(pathname, siteOriginTrim);
 const sitemapAbsoluteUrl = `${siteOriginTrim}/sitemap.xml`;
+const rssAbsoluteUrl = `${siteOriginTrim}${RSS_FEED_PATH}`;
 const ogImageUrl = absoluteAssetUrl(ogImage, siteOriginTrim);
 const shareUrl = sharePageUrl ?? pageUrl;
 const shareText = sharePageTitle ?? title;
@@ -100,9 +109,9 @@ const robotsContent = noindex
       rel="alternate"
       type="application/rss+xml"
       title={`${t.site.name} Blog RSS`}
-      href={RSS_FEED_PATH}
+      href={rssAbsoluteUrl}
     />
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href={sitemapAbsoluteUrl} />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -180,14 +189,18 @@ const robotsContent = noindex
   </head>
   <body class="site-body min-h-screen bg-background text-foreground">
     <button type="button" class="skip-link" data-skip-to-main>{t.ui.skipLink}</button>
-    <div class="sr-only">
-      <a href={sitemapAbsoluteUrl}>Full URL list (XML sitemap index)</a>
-    </div>
-    <Header />
+    {
+      !omitBodySitemapLink && (
+        <div class="sr-only">
+          <a href={sitemapAbsoluteUrl}>Full URL list (XML sitemap index)</a>
+        </div>
+      )
+    }
+    <Header linkAbsoluteBase={siteLinkBase} />
     <main id="main-content">
       <slot />
     </main>
-    <Footer />
+    <Footer linkAbsoluteBase={siteLinkBase} />
     <script>
       import '../scripts/site.ts';
     </script>

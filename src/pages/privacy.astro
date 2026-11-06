@@ -50,5 +50,8 @@ const shareUrl = canonicalUrl('/privacy/', schemaOrigin);
     sections={content.sections}
     supportLinkLabel="Reach support about privacy"
     homeLinkLabel="Back to homepage overview"
+    absoluteBase={schemaOrigin}
+    supportHref={canonicalUrl(ROUTES.support, schemaOrigin)}
+    homeHref={canonicalUrl(ROUTES.home, schemaOrigin)}
   />
 </BaseLayout>

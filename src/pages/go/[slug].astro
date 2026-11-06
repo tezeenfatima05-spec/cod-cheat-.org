@@ -137,11 +137,11 @@ const jsonLd = {
       )}
       <h2>More on this site</h2>
       <p>
-        <a href={ROUTES.products}>MW4 product overview</a>
+        <a href={canonicalUrl(ROUTES.products, siteOriginTrim)}>MW4 product overview</a>
         {' · '}
-        <a href={ROUTES.blog}>Setup and patch guides</a>
+        <a href={canonicalUrl(ROUTES.blog, siteOriginTrim)}>Setup and patch guides</a>
         {' · '}
-        <a href={ROUTES.faq}>FAQ on tiers and checkout</a>
+        <a href={canonicalUrl(ROUTES.faq, siteOriginTrim)}>FAQ on tiers and checkout</a>
       </p>
       {isMw4 && (
         <>

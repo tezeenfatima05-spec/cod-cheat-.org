@@ -4,6 +4,21 @@ import { parseBlogDate } from '../utils/schema';
 
 const buildDate = new Date().toISOString();
 
+/** Same locales as `BaseLayout` `<link rel="alternate" hreflang>` — sitemap `xhtml:link` mirrors page-level signals. */
+const HREFLANG_ALTERNATES: { lang: string; hreflang: string }[] = [
+  { lang: 'en', hreflang: 'en' },
+  { lang: 'en-US', hreflang: 'en-US' },
+  { lang: 'en-GB', hreflang: 'en-GB' },
+  { lang: 'en-CA', hreflang: 'en-CA' },
+  { lang: 'en-AU', hreflang: 'en-AU' },
+  { lang: 'en-NZ', hreflang: 'en-NZ' },
+  { lang: 'en-IN', hreflang: 'en-IN' },
+  { lang: 'en-SG', hreflang: 'en-SG' },
+  { lang: 'en-IE', hreflang: 'en-IE' },
+  { lang: 'en-ZA', hreflang: 'en-ZA' },
+  { lang: 'x-default', hreflang: 'x-default' },
+];
+
 const blogLastmod = new Map(
   blogPosts.map((post) => [`/blog/${post.slug}/`, parseBlogDate(post.date)] as const),
 );
@@ -19,6 +34,13 @@ export function sitemapSerialize(item: SitemapItem): SitemapItem | undefined {
   if (path.includes('/404') || path.includes('/rss.xml')) {
     return undefined;
   }
+
+  const pageUrl = item.url;
+  item.links = HREFLANG_ALTERNATES.map(({ lang, hreflang }) => ({
+    lang,
+    hreflang,
+    url: pageUrl,
+  }));
 
   if (path.startsWith('/go/')) {
     item.priority = 0.3;

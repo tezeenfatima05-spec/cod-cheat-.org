@@ -1,5 +1,6 @@
 import type { IconName } from '../components/icons/types';
 import { SITE_DOMAIN } from '../config/site';
+import { canonicalUrl } from '../config/seo';
 import { normalizeInternalPath, productPath, ROUTES } from '../utils/path';
 
 export type FaqTopic =
@@ -275,6 +276,63 @@ export function getLandingFaqs(): SiteFaqItem[] {
   return siteFaqs.filter((f) =>
     ['status', 'after-buy', 'ban-risk', 'platforms', 'license-move', 'products-page'].includes(f.id),
   );
+}
+
+/** Homepage FAQ accordion + schema: unique anchor labels + absolute same-origin URLs (SEO audit). */
+export function getHomeLandingFaqs(origin: string): SiteFaqItem[] {
+  const productsHub = canonicalUrl(ROUTES.products, origin);
+  const eliteHub = canonicalUrl(ROUTES.productsElite, origin);
+  const ugcHref = canonicalUrl(productPath('ugc'), origin);
+  const skinHref = canonicalUrl(productPath('unlock-all'), origin);
+
+  return [
+    {
+      id: 'status',
+      topic: 'setup',
+      icon: 'faqStatus',
+      q: 'Where do I check COD MW4 cheat status?',
+      a: `Read the live banner on <a href="${productsHub}">MW4 product hub — live status callout</a> and your portal before launching—especially after a game or anti-cheat update.`,
+    },
+    {
+      id: 'after-buy',
+      topic: 'setup',
+      icon: 'faqAfterBuy',
+      q: 'What happens after I buy?',
+      a: a(
+        'Your portal unlocks the loader and setup guide through secure checkout. Follow the guide before opening MW4.',
+      ),
+    },
+    {
+      id: 'ban-risk',
+      topic: 'safety',
+      icon: 'faqBanRisk',
+      q: 'Can I get banned?',
+      a: a(
+        'Yes. Third-party tools violate publisher rules and can trigger enforcement. Only proceed if you accept that risk.',
+      ),
+    },
+    {
+      id: 'platforms',
+      topic: 'setup',
+      icon: 'faqPlatforms',
+      q: 'Which platforms are supported?',
+      a: a('MW4 on Windows 10/11 PC only. Consoles are not supported.'),
+    },
+    {
+      id: 'license-move',
+      topic: 'setup',
+      icon: 'faqLicenseMove',
+      q: 'Can I move my license to a new PC?',
+      a: a('Usually yes through portal HWID reset—limits depend on your tier and partner policy.'),
+    },
+    {
+      id: 'products-page',
+      topic: 'products',
+      icon: 'faqProductsPage',
+      q: 'Where are products and utilities listed?',
+      a: `<a href="${productsHub}">Main MW4 product catalog hub</a> covers Lite, Pro, and Elite tiers; the <a href="${eliteHub}">Elite tier feature roundup</a> expands the full stack. Utilities: <a href="${ugcHref}">UGC appeals workflow page</a> and <a href="${skinHref}">Skin changer preview route</a>, with checkout via our partner.`,
+    },
+  ];
 }
 
 export function getAllFaqs(): SiteFaqItem[] {

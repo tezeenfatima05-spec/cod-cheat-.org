@@ -44,5 +44,8 @@ const shareUrl = canonicalUrl('/terms/', schemaOrigin);
     description={content.description}
     breadcrumbLabel="Terms & Conditions"
     sections={content.sections}
+    absoluteBase={schemaOrigin}
+    supportHref={canonicalUrl(ROUTES.support, schemaOrigin)}
+    homeHref={canonicalUrl(ROUTES.home, schemaOrigin)}
   />
 </BaseLayout>

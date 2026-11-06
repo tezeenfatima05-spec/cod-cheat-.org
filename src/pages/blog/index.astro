@@ -64,8 +64,18 @@ const shareUrl = canonicalUrl('/blog/', schemaOrigin);
   <h2 class="sr-only">Featured MW4 article</h2>
   <section class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
-      <Breadcrumbs items={breadcrumbs} />
-      {featured && <BlogCard post={featured} index={0} eager showDate layout="featured" imageAlt={featured.title} />}
+      <Breadcrumbs items={breadcrumbs} absoluteBase={schemaOrigin} />
+      {featured && (
+        <BlogCard
+          post={featured}
+          index={0}
+          eager
+          showDate
+          layout="featured"
+          imageAlt={featured.title}
+          linkBase={schemaOrigin}
+        />
+      )}
     </div>
   </section>
 
@@ -126,7 +136,7 @@ const shareUrl = canonicalUrl('/blog/', schemaOrigin);
         data-blog-empty-message={t.blog.emptyFilter}
       >
         {gridPosts.map((post, index) => (
-          <BlogCard post={post} index={index} showDate imageAlt={post.title} />
+          <BlogCard post={post} index={index} showDate imageAlt={post.title} linkBase={schemaOrigin} />
         ))}
       </div>
 
@@ -135,7 +145,7 @@ const shareUrl = canonicalUrl('/blog/', schemaOrigin);
       </p>
 
       <div class="mt-12 flex justify-start lg:justify-center">
-        <Button as="a" href={ROUTES.home} variant="outline">
+        <Button as="a" href={canonicalUrl(ROUTES.home, schemaOrigin)} variant="outline">
           <Icon name="chevronLeft" size={16} />
           Back to home
         </Button>

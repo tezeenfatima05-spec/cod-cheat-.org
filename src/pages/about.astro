@@ -51,5 +51,8 @@ const shareUrl = canonicalUrl('/about/', schemaOrigin);
     sections={content.sections}
     supportLinkLabel="Email support from this page"
     homeLinkLabel="Return to the homepage"
+    absoluteBase={schemaOrigin}
+    supportHref={canonicalUrl(ROUTES.support, schemaOrigin)}
+    homeHref={canonicalUrl(ROUTES.home, schemaOrigin)}
   />
 </BaseLayout>

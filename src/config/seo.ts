@@ -48,22 +48,34 @@ function nodeEnv(key: string): string {
  * then `site` from astro.config, so crawlers on *.workers.dev get self-canonicals that match the live host.
  */
 export function resolveDocumentOrigin(site: URL | string | undefined): string {
+  const fromConfig = site ? String(site).replace(/\/$/, '') : '';
   return (
     nodeEnv('CF_PAGES_URL') ||
     nodeEnv('CF_PAGES_BRANCH_URL') ||
+    nodeEnv('CANONICAL_SITE_ORIGIN') ||
+    fromConfig ||
     trimOrigin(import.meta.env.PUBLIC_SITE_ORIGIN) ||
     trimOrigin(import.meta.env.SITEMAP_PUBLIC_ORIGIN) ||
-    (site ? String(site).replace(/\/$/, '') : '') ||
     SITE_ORIGIN
   );
 }
 
 export function canonicalUrl(pathname: string, origin?: string): string {
-  let path = pathname || '/';
+  const raw = pathname || '/';
+  const q = raw.indexOf('?');
+  const h = raw.indexOf('#');
+  let splitAt = -1;
+  if (q >= 0 && h >= 0) splitAt = Math.min(q, h);
+  else if (q >= 0) splitAt = q;
+  else if (h >= 0) splitAt = h;
+  const pathPart = splitAt >= 0 ? raw.slice(0, splitAt) : raw;
+  const rest = splitAt >= 0 ? raw.slice(splitAt) : '';
+
+  let path = pathPart;
   if (!path.startsWith('/')) path = `/${path}`;
   if (path !== '/' && !path.endsWith('/')) path = `${path}/`;
   const base = (origin ?? SITE_ORIGIN).replace(/\/$/, '');
-  return `${base}${path}`;
+  return `${base}${path}${rest}`;
 }
 
 /** Absolute URL for same-origin assets (OG/Twitter images, JSON-LD). Prefer `documentOrigin` so previews match canonical host. */

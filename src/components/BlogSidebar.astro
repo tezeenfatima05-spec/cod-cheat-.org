@@ -8,14 +8,21 @@ import type { BlogPostFull } from '../data/blog';
 import type { IconName } from './icons/types';
 import { Badge } from '@/components/starwind/badge';
 import { Button } from '@/components/starwind/button';
+import { canonicalUrl } from '../config/seo';
 
 interface Props {
   post: BlogPostFull;
   related: BlogPostFull[];
   class?: string;
+  /** Deploy origin so sidebar links are absolute (same host as canonical) */
+  origin?: string;
 }
 
-const { post, related, class: className } = Astro.props;
+const { post, related, class: className, origin } = Astro.props;
+
+function absHref(path: string): string {
+  return origin ? canonicalUrl(path, origin) : path;
+}
 
 const tocCount = post.body.filter((b) => b.type === 'h2').length;
 
@@ -91,7 +98,7 @@ const productLinks: { label: string; href: string; icon: IconName }[] = [
         <ul class="blog-sidebar__list">
           {related.map((item) => (
             <li>
-              <a href={blogPostPath(item.slug)} class="blog-sidebar__link" title={item.title}>
+              <a href={absHref(blogPostPath(item.slug))} class="blog-sidebar__link" title={item.title}>
                 <Icon name="arrowUpRight" size={13} class="shrink-0 opacity-70" aria-hidden="true" />
                 <span class="blog-sidebar__truncate">{item.title}</span>
               </a>
@@ -110,7 +117,7 @@ const productLinks: { label: string; href: string; icon: IconName }[] = [
     <ul class="blog-sidebar__list">
       {productLinks.map((link) => (
         <li>
-          <a href={link.href} class="blog-sidebar__link" title={link.label}>
+          <a href={absHref(link.href)} class="blog-sidebar__link" title={link.label}>
             <Icon name={link.icon} size={13} class="shrink-0 text-primary" aria-hidden="true" />
             <span class="blog-sidebar__truncate">{link.label}</span>
           </a>
@@ -119,7 +126,7 @@ const productLinks: { label: string; href: string; icon: IconName }[] = [
     </ul>
     <Button
       as="a"
-      href={checkoutPath('mw4')}
+      href={absHref(checkoutPath('mw4'))}
       variant="primary"
       size="sm"
       class="blog-sidebar__cta mt-2.5 w-full min-w-0 justify-start"

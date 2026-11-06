@@ -11,6 +11,20 @@ import SlideRevealButton from './SlideRevealButton.astro';
 import type { IconName } from './icons/types';
 import { SITE_ASSETS } from '../config/site';
 
+interface Props {
+  /** Prefix internal paths so crawlers see absolute same-origin URLs */
+  linkAbsoluteBase?: string;
+}
+
+const { linkAbsoluteBase } = Astro.props;
+
+function absHref(href: string): string {
+  if (!linkAbsoluteBase) return href;
+  if (href.startsWith('http://') || href.startsWith('https://')) return href;
+  const base = linkAbsoluteBase.replace(/\/$/, '');
+  return `${base}${href.startsWith('/') ? href : `/${href}`}`;
+}
+
 const navIcons: Record<string, IconName> = {
   Products: 'navProducts',
   Blog: 'navBlog',
@@ -19,7 +33,7 @@ const navIcons: Record<string, IconName> = {
   Support: 'navSupport',
 };
 
-const purchaseUrl = checkoutPath('mw4');
+const purchaseUrl = absHref(checkoutPath('mw4'));
 ---
 
 <header class="pointer-events-none fixed inset-x-0 top-0 z-50">
@@ -27,7 +41,7 @@ const purchaseUrl = checkoutPath('mw4');
     <div
       class="pointer-events-auto relative flex h-14 w-full max-w-6xl items-center justify-between gap-3 rounded-2xl border border-border/40 bg-background/35 px-4 text-foreground shadow-md shadow-black/5 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/25 dark:border-white/10 dark:bg-background/20 dark:shadow-black/25 sm:px-5 lg:h-[3.75rem]"
     >
-    <a href="/" class="inline-flex min-w-0 items-center gap-2 font-[family-name:var(--font-heading)] text-lg font-bold tracking-wide" aria-label={t.ui.homeAria}>
+    <a href={absHref('/')} class="inline-flex min-w-0 items-center gap-2 font-[family-name:var(--font-heading)] text-lg font-bold tracking-wide" aria-label={t.ui.homeAria}>
       <img src={SITE_ASSETS.logo} alt="COD Cheats" width="32" height="32" class="size-8 shrink-0 rounded-md object-cover" />
       <span class="truncate" aria-hidden="true">COD<span class="text-primary"> Cheats</span></span>
     </a>
@@ -35,7 +49,7 @@ const purchaseUrl = checkoutPath('mw4');
     <nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 lg:flex" aria-label="Primary">
       {t.nav.map((link) => (
         <a
-          href={link.href}
+          href={absHref(link.href)}
           class="nav-link inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           data-nav-link
           {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
@@ -71,7 +85,7 @@ const purchaseUrl = checkoutPath('mw4');
           <nav class="flex flex-col gap-1" aria-label="Mobile">
             {t.nav.map((link) => (
               <a
-                href={link.href}
+                href={absHref(link.href)}
                 class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
                 data-nav-link
                 {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}

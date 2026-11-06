@@ -19,6 +19,7 @@ const trim = (v) => (typeof v === 'string' ? v.trim().replace(/\/$/, '') : '');
 const origin =
   trim(process.env.CF_PAGES_URL) ||
   trim(process.env.CF_PAGES_BRANCH_URL) ||
+  trim(process.env.CANONICAL_SITE_ORIGIN) ||
   trim(process.env.PUBLIC_SITE_ORIGIN) ||
   trim(process.env.SITEMAP_PUBLIC_ORIGIN) ||
   trim(getPublicSiteOrigin());

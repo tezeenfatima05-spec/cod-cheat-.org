@@ -10,6 +10,7 @@ export function getPublicSiteOrigin() {
   return (
     trim(process.env.CF_PAGES_URL) ||
     trim(process.env.CF_PAGES_BRANCH_URL) ||
+    trim(process.env.CANONICAL_SITE_ORIGIN) ||
     trim(process.env.PUBLIC_SITE_ORIGIN) ||
     trim(process.env.SITEMAP_PUBLIC_ORIGIN) ||
     'https://cod-cheat.org'

@@ -45,17 +45,23 @@ const breadcrumbs = [
 
 const related = getRelatedBlogPosts(post.slug, 3);
 
+const schemaOrigin = resolveDocumentOrigin(Astro.site);
+
 function linkify(text: string): string {
   return text
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label: string, href: string) => {
+      if (href.startsWith('http://') || href.startsWith('https://')) {
+        return `<a href="${href}">${label}</a>`;
+      }
       const normalized = normalizeInternalPath(href);
-      return `<a href="${normalized}">${label}</a>`;
+      const hrefOut = canonicalUrl(normalized, schemaOrigin);
+      return `<a href="${hrefOut}">${label}</a>`;
     })
     .replace(new RegExp(`(https://${SITE_DOMAIN.replace(/\./g, '\\.')}[^\\s.,;)]*)`, 'g'), (_match, url: string) => {
       const path = url.replace(new RegExp(`^https://${SITE_DOMAIN.replace(/\./g, '\\.')}`), '');
       const normalized = normalizeInternalPath(path);
-      const href = normalized.startsWith('http') ? normalized : `https://${SITE_DOMAIN}${normalized}`;
-      return `<a href="${href}">${url}</a>`;
+      const hrefOut = normalized.startsWith('http') ? normalized : canonicalUrl(normalized, schemaOrigin);
+      return `<a href="${hrefOut}">${url}</a>`;
     });
 }
 
@@ -66,7 +72,6 @@ function slugify(text: string): string {
     .replace(/^-|-$/g, '');
 }
 const published = parseBlogDate(post.date);
-const schemaOrigin = resolveDocumentOrigin(Astro.site);
 const shareUrl = canonicalUrl(postPath, schemaOrigin);
 const docTitle = pageTitle(post.title, 'COD', 60);
 const metaDescription = post.metaDesc ?? post.desc;
@@ -116,9 +121,9 @@ const companionGuideLabel =
   </div>
   <article class="py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
-      <Breadcrumbs items={breadcrumbs} />
+      <Breadcrumbs items={breadcrumbs} absoluteBase={schemaOrigin} />
 
-      <BlogPostTopBar post={post} class="mt-6" />
+      <BlogPostTopBar post={post} class="mt-6" blogIndexHref={canonicalUrl(ROUTES.blog, schemaOrigin)} />
 
       <div class="blog-article__layout mt-4 grid gap-6 lg:grid-cols-[minmax(14rem,16.5rem)_minmax(0,1fr)] lg:items-start lg:gap-8 xl:grid-cols-[17.5rem_minmax(0,1fr)]">
         <div class="order-1 min-w-0 lg:col-start-2 lg:row-start-1">
@@ -192,11 +197,13 @@ const companionGuideLabel =
                 );
               }
               if (block.type === 'cta') {
+                const ctaPath = resolveCheckoutHref(block.href);
+                const ctaHref = ctaPath.startsWith('http') ? ctaPath : canonicalUrl(ctaPath, schemaOrigin);
                 return (
                   <BlogPostCta
                     title={block.title}
                     html={linkify(block.text)}
-                    href={resolveCheckoutHref(block.href)}
+                    href={ctaHref}
                     ctaLabel={'ctaLabel' in block ? block.ctaLabel : undefined}
                   />
                 );
@@ -206,21 +213,21 @@ const companionGuideLabel =
           </Prose>
 
           <nav class="blog-article__actions" aria-label="Continue reading">
-            <Button as="a" href={checkoutPath('mw4')} variant="primary" aria-label={t.ui.checkoutAria}>
+            <Button as="a" href={canonicalUrl(checkoutPath('mw4'), schemaOrigin)} variant="primary" aria-label={t.ui.checkoutAria}>
               Open MW4 access route
               <Icon name="arrowRight" size={17} />
             </Button>
-            <Button as="a" href={ROUTES.products} variant="outline">
+            <Button as="a" href={canonicalUrl(ROUTES.products, schemaOrigin)} variant="outline">
               Browse COD MW4 product lineup
             </Button>
-            <Button as="a" href={ROUTES.blog} variant="outline">
+            <Button as="a" href={canonicalUrl(ROUTES.blog, schemaOrigin)} variant="outline">
               See more blog guides
               <Icon name="arrowRight" size={17} />
             </Button>
           </nav>
         </div>
 
-        <BlogSidebar post={post} related={related} class="order-2 lg:col-start-1 lg:row-start-1" />
+        <BlogSidebar post={post} related={related} class="order-2 lg:col-start-1 lg:row-start-1" origin={schemaOrigin} />
       </div>
     </div>
   </article>

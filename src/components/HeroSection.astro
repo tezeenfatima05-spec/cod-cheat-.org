@@ -9,6 +9,13 @@ import Icon from './icons/Icon.astro';
 import { Button } from '@/components/starwind/button';
 import { Badge } from '@/components/starwind/badge';
 
+interface Props {
+  /** Absolute products URL for crawlers (sr-only); visible CTA keeps ROUTES.products */
+  productsSrHref?: string;
+}
+
+const { productsSrHref } = Astro.props;
+
 const h = t.hero;
 
 const heroMarqueePills = [
@@ -48,7 +55,7 @@ const heroPoster = SITE_ASSETS.heroPoster;
 
         <div class="hero-section__ctas flex flex-wrap justify-start gap-3 sm:gap-4">
           <span class="sr-only">
-            <a href={ROUTES.products}>MW4 PC cheat catalog (hero CTA destination)</a>
+            <a href={productsSrHref ?? ROUTES.products}>MW4 PC cheat catalog (hero CTA destination)</a>
           </span>
           <Button
             as="a"

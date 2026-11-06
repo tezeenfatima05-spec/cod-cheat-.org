@@ -13,6 +13,15 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/starwind/carousel';
+import { resolveDocumentOrigin } from '../config/seo';
+
+interface Props {
+  /** Same origin as canonical for product card hrefs */
+  linkBase?: string;
+}
+
+const { linkBase: linkBaseProp } = Astro.props;
+const linkBase = linkBaseProp ?? resolveDocumentOrigin(Astro.site);
 
 const s = t.products;
 
@@ -63,6 +72,7 @@ function cardLabel(product: (typeof productHubCatalog)[number]) {
                       buyLabel="Buy now"
                       viewLabel="View details"
                       maxFeatures={5}
+                      linkBase={linkBase}
                     />
                   </CarouselItem>
                 ))

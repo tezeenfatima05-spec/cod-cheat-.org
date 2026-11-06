@@ -45,7 +45,7 @@ const shareUrl = canonicalUrl('/faq/', schemaOrigin);
   </div>
   <section class="border-b border-border bg-muted/10 py-8 md:py-12">
     <div class="mx-auto max-w-6xl px-5">
-      <Breadcrumbs items={breadcrumbs} />
+      <Breadcrumbs items={breadcrumbs} absoluteBase={schemaOrigin} />
       <div class="mt-6">
         <SectionHeader
           eyebrow="Help center"

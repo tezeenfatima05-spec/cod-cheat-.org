@@ -5,9 +5,8 @@ import { sitemapSerialize } from './src/config/sitemap.ts';
 import { getPublicSiteOrigin } from './scripts/site-origin.mjs';
 
 const site = getPublicSiteOrigin();
-if (!process.env.PUBLIC_SITE_ORIGIN) {
-  process.env.PUBLIC_SITE_ORIGIN = site;
-}
+/** Keep Vite `import.meta.env.PUBLIC_SITE_ORIGIN` aligned with deploy host (CF_PAGES_URL wins over a stale dashboard value). */
+process.env.PUBLIC_SITE_ORIGIN = site;
 
 export default defineConfig({
   site,
