@@ -1,0 +1,129 @@
+---
+import { t } from '../i18n';
+import { ROUTES } from '../utils/path';
+import { SITE_ASSETS } from '../config/site';
+import { heroSlides } from '../data/products';
+import { compatibilityIcons, heroStatIcons, heroStatusPills } from '../data/sectionIcons';
+import ImageSlider from './ImageSlider.astro';
+import Icon from './icons/Icon.astro';
+import { Button } from '@/components/starwind/button';
+import { Badge } from '@/components/starwind/badge';
+
+const h = t.hero;
+
+const heroMarqueePills = [
+  ...heroStatusPills,
+  ...t.compatibility.items.map((label, i) => ({
+    label,
+    icon: compatibilityIcons[i] ?? 'check',
+  })),
+];
+
+const heroVideo = SITE_ASSETS.heroVideo?.trim();
+const heroPoster = SITE_ASSETS.heroPoster;
+---
+
+<section
+  id="hero"
+  class="hero-section relative overflow-hidden border-b border-border/80"
+  aria-labelledby="hero-title"
+>
+  <div class="hero-section__ambient pointer-events-none absolute inset-0" aria-hidden="true" />
+  <div class="hero-section__grid-bg pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.22]" aria-hidden="true" />
+
+  <div class="relative z-[1] mx-auto flex max-w-6xl flex-col justify-center px-5">
+    <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+      <div class="hero-section__copy w-full max-w-xl space-y-6 text-left md:space-y-7 lg:max-w-2xl">
+        <Badge variant="secondary" class="hero-section__eyebrow uppercase tracking-wider">
+          {h.eyebrow}
+        </Badge>
+
+        <h1 id="hero-title" class="hero-section__title">
+          <span class="hero-section__title-text block">{h.titleLine2}</span>
+        </h1>
+
+        <p class="hero-section__lead">
+          {h.subtitle}
+        </p>
+
+        <div class="hero-section__ctas flex flex-wrap justify-start gap-3 sm:gap-4">
+          <Button
+            as="a"
+            href={ROUTES.products}
+            data-scroll-target="products"
+            variant="primary"
+            size="lg"
+            class="hero-section__cta-primary rounded-xl transition-[transform,box-shadow] hover:-translate-y-0.5"
+          >
+            {h.ctaPrimary}
+            <Icon name="arrowRight" size={18} />
+          </Button>
+          <Button
+            as="a"
+            href={t.site.discord}
+            variant="secondary"
+            size="lg"
+            class="rounded-xl transition-[transform,background-color] hover:-translate-y-0.5"
+          >
+            <Icon name="messageCircle" size={18} />
+            {h.ctaDiscord}
+          </Button>
+        </div>
+      </div>
+
+      <div
+        class="hero-section__media mx-auto flex w-full max-w-xl flex-col items-center gap-5 lg:mx-0 lg:max-w-none lg:items-end"
+      >
+        {
+          heroVideo ? (
+            <div class="relative hidden w-full overflow-hidden rounded-xl border border-border/90 bg-card shadow-lg shadow-black/20 lg:block">
+              <video
+                class="aspect-[16/10] h-full w-full object-cover"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster={heroPoster}
+                aria-label="MW4 gameplay background"
+              >
+                <source src={heroVideo} type="video/webm" />
+              </video>
+            </div>
+          ) : (
+            <ImageSlider images={heroSlides} id="hero-slider" variant="hero" desktopOnly />
+          )
+        }
+        <div class="grid w-full grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4 lg:grid-cols-2">
+          {h.metrics.map((m, i) => (
+            <div class="hero-section__metric flex min-w-0 items-center gap-3 rounded-xl border border-border/60 bg-card/40 px-3 py-3 transition-[border-color,transform] hover:-translate-y-px hover:border-primary/35">
+              <span
+                class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 ring-1 ring-inset ring-primary/25"
+                aria-hidden="true"
+              >
+                <Icon name={heroStatIcons[i] ?? 'check'} size={18} />
+              </span>
+              <div class="min-w-0">
+                <p class="font-[family-name:var(--font-heading)] text-base font-bold leading-none tracking-tight text-foreground">{m.strong}</p>
+                <p class="mt-1 text-xs leading-tight text-muted-foreground">{m.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-status-marquee relative mt-10 md:mt-12 lg:mt-14" aria-label="Features and platform support">
+      <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-background to-transparent" aria-hidden="true" />
+      <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-background to-transparent" aria-hidden="true" />
+      <div class="hero-status-marquee-track flex w-max gap-2">
+        {[...heroMarqueePills, ...heroMarqueePills].map((pill, i) => (
+          <Badge variant="outline" class="group/badge shrink-0 gap-1 py-0.5 pl-1.5 pr-2.5 text-xs whitespace-nowrap">
+            <Icon name={pill.icon} size={13} />
+            {pill.label}
+          </Badge>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

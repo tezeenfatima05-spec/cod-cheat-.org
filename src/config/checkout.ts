@@ -1,0 +1,58 @@
+import { CHECKOUT_URLS } from './checkout-redirects.mjs';
+
+/**
+ * External checkout URLs — server-side redirect targets only (never use as visible href).
+ */
+export const CHECKOUT = CHECKOUT_URLS;
+
+export type CheckoutProduct = keyof typeof CHECKOUT;
+
+/** URL slug for /go/[slug]/ checkout redirect pages. */
+export const CHECKOUT_SLUGS: Record<CheckoutProduct, string> = {
+  mw4: 'mw4',
+  ugc: 'ugc',
+  skinChanger: 'skin-changer',
+};
+
+export const CHECKOUT_SLUG_TO_PRODUCT = Object.fromEntries(
+  Object.entries(CHECKOUT_SLUGS).map(([product, slug]) => [slug, product as CheckoutProduct]),
+) as Record<string, CheckoutProduct>;
+
+/** Internal checkout path shown to users (hides external URL on hover). */
+export function checkoutPath(product: CheckoutProduct = 'mw4'): string {
+  return `/go/${CHECKOUT_SLUGS[product]}/`;
+}
+
+export const PRIMARY_CHECKOUT_PATH = checkoutPath('mw4');
+
+/** Map internal product slugs to checkout redirect paths. */
+export function checkoutForSlug(slug: string): string {
+  if (slug === 'ugc') return checkoutPath('ugc');
+  if (slug === 'unlock-all') return checkoutPath('skinChanger');
+  return checkoutPath('mw4');
+}
+
+/** Resolve blog CTA or legacy href values to internal checkout paths. */
+export function resolveCheckoutHref(href: string): string {
+  if (!href.startsWith('http')) {
+    return href.startsWith('/') ? href : `/${href}`;
+  }
+
+  for (const [product, url] of Object.entries(CHECKOUT) as [CheckoutProduct, string][]) {
+    if (href === url || href.startsWith(`${url}?`) || href.startsWith(`${url}/`)) {
+      return checkoutPath(product);
+    }
+  }
+
+  if (href.includes('zadeyo.com')) {
+    if (href.includes('products%2Fugc') || href.includes('/products/ugc')) {
+      return checkoutPath('ugc');
+    }
+    if (href.includes('skin-changer') || href.includes('skin%2Dchanger')) {
+      return checkoutPath('skinChanger');
+    }
+    return checkoutPath('mw4');
+  }
+
+  return href;
+}
